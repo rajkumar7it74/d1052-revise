@@ -1,0 +1,8 @@
+name: 'Read Time Field'
+type: module
+description: 'Adds a computed field to estimate reading time for blog content.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - node
+  - field

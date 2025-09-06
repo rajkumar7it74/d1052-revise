@@ -1,0 +1,6 @@
+services:
+  remember_me.subscriber:
+    class: Drupal\remember_me\EventSubscriber\RememberMeSubscriber
+    arguments: ['@current_user']
+    tags:
+      - { name: event_subscriber }

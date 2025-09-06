@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Theme override for views to display rows in a grid.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapping element.
+ * - title: The title of this group of rows.
+ * - view: The view object.
+ * - rows: The rendered view results.
+ * - options: The view plugin style options.
+ *   - row_class_default: A flag indicating whether default classes should be
+ *     used on rows.
+ *   - col_class_default: A flag indicating whether default classes should be
+ *     used on columns.
+ * - items: A list of grid items. Each item contains a list of rows or columns.
+ *   The order in what comes first (row or column) depends on which alignment
+ *   type is chosen (horizontal or vertical).
+ *   - attributes: HTML attributes for each row or column.
+ *   - content: A list of columns or rows. Each row or column contains:
+ *     - attributes: HTML attributes for each row or column.
+ *     - content: The row or column contents.
+ *
+ * @see template_preprocess_views_view_grid()
+ */
+#}
+{%
+  set classes = [
+    'views-view-grid',
+    'views-view-grid--' ~ options.alignment,
+    'row', // Bootstrap grid row
+    'gx-4', // Horizontal gutter
+    'gy-4'  // Vertical gutter
+  ]
+%}
+
+{% if title %}
+  <h2 class="h4 mb-4 text-center" role="heading" aria-level="2">{{ title }}</h2>
+{% endif %}
+
+<div{{ attributes.addClass(classes).setAttribute('style', '--views-grid--column-count: ' ~ options.columns) }} role="region" aria-label="{{ title|default('Grid view') }}">
+  {% for row in items %}
+    {% for item in row.content %}
+      <div class="views-view-grid__item col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="views-view-grid__item-inner h-100">
+          {{ item.content }}
+        </div>
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>
+

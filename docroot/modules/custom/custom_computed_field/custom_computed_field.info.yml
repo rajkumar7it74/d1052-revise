@@ -1,0 +1,7 @@
+name: custom computed field
+type: module
+description: To create custom computed  field.
+package: custom
+core_version_requirement: ^10
+dependencies:
+  - drupal:field

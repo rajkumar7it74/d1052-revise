@@ -1,0 +1,35 @@
+(function ($, Drupal) {
+    Drupal.behaviors.aadhaarValidation = {
+      attach: function (context, settings) {
+        // Select the Aadhaar field
+        const $aadhaarField = $('#edit-aadhar', context);
+        console.log($aadhaarField);
+        alert('hello...');
+  
+        // Prevent multiple bindings using a custom flag
+        if ($aadhaarField.length && !$aadhaarField.data('aadhaar-bound')) {
+          $aadhaarField.on('input', function () {
+            let value = $(this).val().replace(/\D/g, ''); // Remove non-digits
+            let formatted = value.match(/.{1,4}/g)?.join('-') || '';
+            $(this).val(formatted);
+          });
+          $aadhaarField.on('blur', function () {
+            const value = $(this).val();
+            const pattern = /^[2-9]{1}[0-9]{3}-[0-9]{4}-[0-9]{4}$/;
+
+            if (!pattern.test(value)) {
+              //alert('Please enter a valid Aadhaar number in the format XXXX-XXXX-XXXX.');
+              $(this).focus();
+            }     
+            else {
+                $(this).blur();
+            }
+          });
+          
+          // Mark as bound to prevent duplicate event handlers
+          $aadhaarField.data('aadhaar-bound', true);
+        }
+      }
+    };
+  })(jQuery, Drupal);
+  

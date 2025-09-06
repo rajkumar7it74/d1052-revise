@@ -1,0 +1,20 @@
+(function ($, Drupal) {
+    Drupal.behaviors.dobDateRestriction = {
+      attach: function (context, settings) {
+        const $dobField = $('#edit-dob', context);
+  
+        if ($dobField.length && !$dobField.data('dob-restricted')) {
+          const today = new Date();
+          const eighteenYearsAgo = new Date();
+          eighteenYearsAgo.setFullYear(today.getFullYear() - 18);
+  
+          $dobField.attr('max', today.toISOString().split('T')[0]);
+          $dobField.val(eighteenYearsAgo.toISOString().split('T')[0]);
+
+          // Mark as processed to avoid duplicate execution
+          $dobField.data('dob-restricted', true);
+        }
+      }
+    };
+  })(jQuery, Drupal);
+  

@@ -1,0 +1,11 @@
+practice_caching.json_example1:
+  path: '/practice_caching/json-example1/nid/{nid}'
+  defaults:
+    _title: 'JSON Play1'
+    _controller: '\Drupal\practice_caching\Controller\CachePlay1::jsonExample1'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      nid:
+        type: 'integer'

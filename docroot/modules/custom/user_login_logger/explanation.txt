@@ -1,0 +1,88 @@
+1. Confirm Hook Event Dispatcher Is Installed and Enabled
+    drush container:debug | grep user_login_logger_subscriber
+4. Confirm Your Service Is Registered
+    drush container:debug | grep user_login_logger_subscriber
+
+
+✅ Solution: Subscribe to hook_event_dispatcher.user.login via the Hook Event Dispatcher module
+To use Symfony-style event subscribers for user login in
+Drupal, you need the Hook Event Dispatcher module, which
+converts Drupal hooks (like hook_user_login) into Symfony events.
+
+Step-by-Step Implementation
+1. Install Hook Event Dispatcher
+composer require drupal/hook_event_dispatcher
+drush en hook_event_dispatcher
+
+2. Update Your Event Subscriber
+src/EventSubscriber/UserLoginLoggerSubscriber.php
+<?php
+
+namespace Drupal\user_login_logger\EventSubscriber;
+
+use Drupal\hook_event_dispatcher\Event\User\UserLoginEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Psr\Log\LoggerInterface;
+
+class UserLoginLoggerSubscriber implements EventSubscriberInterface {
+
+  protected $logger;
+
+  public function __construct(LoggerInterface $logger) {
+    $this->logger = $logger;
+  }
+
+  public static function getSubscribedEvents(): array {
+    return [
+      UserLoginEvent::class => 'onUserLogin',
+    ];
+  }
+
+  public function onUserLogin(UserLoginEvent $event): void {
+    $account = $event->getAccount();
+    $this->logger->info('User @name has logged in.', ['@name' => $account->getDisplayName()]);
+  }
+}
+
+
+
+3. Update services.yml
+user_login_logger.services.yml
+    services:
+  user_login_logger.user_login_logger_subscriber:
+    class: Drupal\user_login_logger\EventSubscriber\UserLoginLoggerSubscriber
+    arguments: ['@logger.channel.user']
+    tags:
+      - { name: event_subscriber }
+
+###########################################################
+##############
+###########################################################
+Drupal 10 does not currently dispatch a login event via the
+event system. The only reliable way to hook into the user login
+process is still through the legacy hook system, specifically:
+✅ Use hook_user_login() in a custom module
+Here’s how you can implement it:
+<?php
+use Drupal\Core\Session\AccountInterface;
+/**
+ * Implements hook_user_login().
+ */
+function user_login_logger_user_login(AccountInterface $account) {
+  \Drupal::logger('user_login_logger')->info('User logged in: @name', ['@name' => $account->getAccountName()]);
+}
+Explanation
+This hook is triggered after a user successfully logs in.
+You can log messages using \Drupal::logger() to the watchdog log (visible in /admin/reports/dblog).
+##### Optional: Add IP Address and Timestamp ######
+function user_login_logger_user_login(AccountInterface $account) {
+  $ip = \Drupal::request()->getClientIp();
+  $time = date('Y-m-d H:i:s');
+  \Drupal::logger('user_login_logger')->info('User @name logged in from IP @ip at @time', [
+    '@name' => $account->getAccountName(),
+    '@ip' => $ip,
+    '@time' => $time,
+  ]);
+}
+
+####$$$$$$#### READ THIS: https://www.drupal.org/project/drupal/issues/3291586#comment-16065543

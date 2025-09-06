@@ -1,0 +1,13 @@
+<?php
+
+function token_based_remember_me_schema() {
+  $schema['remember_me_tokens'] = [
+    'fields' => [
+      'uid' => ['type' => 'int', 'not null' => TRUE],
+      'token' => ['type' => 'varchar', 'length' => 128, 'not null' => TRUE],
+      'expires' => ['type' => 'int', 'not null' => TRUE],
+    ],
+    'primary key' => ['token'],
+  ];
+  return $schema;
+}

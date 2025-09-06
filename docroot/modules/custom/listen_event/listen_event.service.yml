@@ -1,0 +1,6 @@
+services:
+  listen_event.custom_event_subscriber:
+    class: Drupal\listen_event\EventSubscriber\CustomEventSubscriber
+    arguments: ['@logger.factory']
+    tags:
+      - {name: event_subscriber}

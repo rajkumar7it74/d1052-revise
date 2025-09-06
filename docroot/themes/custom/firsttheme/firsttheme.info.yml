@@ -1,0 +1,19 @@
+name: First Theme
+type: theme
+description: 'A simple custom theme'
+core_version_requirement: ^10
+base theme: olivero
+
+libraries:
+  - firsttheme/global-styling
+  - firsttheme/ajax_load_more
+
+regions:
+  header: Header
+  hero: Hero (full width)
+  content: Content
+  sidebar: Sidebar
+  content_below: Content Below
+  footer_top: Footer Top
+  footer_bottom: Footer Bottom
+

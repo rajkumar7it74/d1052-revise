@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function custom_entity_example_schema() {
+  $schema['custom_entity_example_table'] =[
+    'description' => 'Stores custom_entity_example entity data',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

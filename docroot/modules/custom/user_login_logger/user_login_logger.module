@@ -1,0 +1,11 @@
+<?php
+
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_user_login().
+ */
+function user_login_logger_user_login(AccountInterface $account) {
+  //\Drupal::logger('user')->info('User @name has logged in from hook_user_login.', ['@name' => $account->getDisplayName()]);
+  \Drupal::logger('default')->info('User @name has logged in from hook_user_login.', ['@name' => $account->getDisplayName()]);
+}

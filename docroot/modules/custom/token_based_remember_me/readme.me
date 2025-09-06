@@ -1,0 +1,36 @@
+🔐 Slack Webhook Security
+Slack webhooks are a convenient way to send messages from external systems (like Drupal) into Slack channels. However, they must be used securely to prevent misuse or data leaks.
+
+✅ Best Practices for Securing Slack Webhooks
+Keep the Webhook URL Secret
+
+Treat it like a password.
+Never hardcode it in public repositories or expose it in frontend code.
+Restrict Webhook Usage
+
+Only use it from trusted backend systems.
+Avoid sending sensitive data unless encrypted or anonymized.
+Rotate Webhooks Periodically
+
+If you suspect the URL is compromised, regenerate it from Slack.
+Use Environment Variables
+
+Store the webhook URL in settings.php or a secure config file:
+
+Access it in code via:
+
+Limit Message Frequency
+
+Avoid spamming Slack with frequent or verbose messages.
+Use batching or thresholds for alerts.
+🎨 Customizing Slack Message Format
+Slack messages sent via webhook can include:
+
+Text formatting (bold, italics, code)
+Emojis
+Attachments (blocks, buttons, links)
+✅ Example: Enhanced Slack Message
+
+🧪 Optional: Use Slack Blocks for Rich Messages
+
+Would you like me to update the module ZIP to include these Slack formatting enhancements and secure config handling?

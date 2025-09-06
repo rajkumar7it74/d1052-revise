@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Olivero's theme implementation to display a single Drupal page while offline.
+ *
+ * All available variables are mirrored in page.html.twig.
+ *
+ * @see template_preprocess_maintenance_page()
+ */
+ #}
+
+<div id="page-wrapper" class="page-wrapper">
+  <div id="page">
+
+    <header id="header" class="site-header bg-light py-3 border-bottom" role="banner">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="site-branding">
+          <div class="site-branding__inner">
+            <div class="site-branding__text">
+              <div class="site-branding__name h4 mb-0">
+                {{ site_name }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div id="main-wrapper" class="layout-main-wrapper layout-container">
+      <div id="main" class="layout-main">
+        <div class="main-content">
+          <a id="main-content" tabindex="-1" class="visually-hidden">{{ 'Skip to main content'|t }}</a>
+          <div class="main-content__container container py-5 text-center">
+
+            {{ page.highlighted }}
+
+            <main role="main">
+              <div class="region region--content-above mb-4">
+                {% if title %}
+                  <h1 class="display-5" id="page-title">{{ title }}</h1>
+                {% endif %}
+              </div>
+
+              <div class="region region--content" id="content">
+                <div id="block-olivero-content" class="block block-system block-system-main-block text-content">
+                  {{ page.content }}
+
+                  {# Bootstrap Icon: Tools (representing maintenance) #}
+                  <div class="mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-tools text-secondary" viewBox="0 0 16 16" role="img" aria-label="{{ 'Site under maintenance'|t }}">
+                      <path d="M1 0a1 1 0 0 1 1 1v2.586l1.707-1.707a1 1 0 0 1 1.414 1.414L3.414 5H6a1 1 0 0 1 0 2H3.414l1.707 1.707a1 1 0 0 1-1.414 1.414L2 8.414V11a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1zm14.854 4.854a.5.5 0 0 0-.708-.708l-2.646 2.647a.5.5 0 0 0 .708.708l2.646-2.647z"/>
+                      <path d="M4.646 14.354a.5.5 0 0 0 .708 0l2.646-2.647a.5.5 0 0 0-.708-.708L4.646 13.646a.5.5 0 0 0 0 .708z"/>
+                    </svg>
+                    <p class="mt-3 text-muted">{{ 'We are currently performing scheduled maintenance. Please check back soon.'|t }}</p>
+                  </div>
+                </div>
+              </div>
+            </main>
+
+          </div>
+        </div>
+
+        <div class="social-bar d-flex justify-content-center py-3">
+          {# Optional: Add social icons or links here #}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,8 @@
+name: 'Expose Content'
+type: module
+description: 'Provides a custom REST resource to expose content.'
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - drupal:rest
+  - drupal:serialization

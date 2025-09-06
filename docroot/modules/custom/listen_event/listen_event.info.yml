@@ -1,0 +1,5 @@
+name: Listen Event
+type: module
+description: Custom event listner
+core_version_requirement: ^10
+package: custom

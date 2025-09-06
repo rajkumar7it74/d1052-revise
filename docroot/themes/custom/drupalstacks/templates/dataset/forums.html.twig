@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override to display a forum.
+ *
+ * May contain forum containers as well as forum topics.
+ *
+ * Available variables:
+ * - forums: The forums to display (as processed by forum-list.html.twig).
+ * - topics: The topics to display.
+ * - topics_pager: The topics pager.
+ * - forums_defined: A flag to indicate that the forums are configured.
+ *
+ * @see template_preprocess_forums()
+ */
+#}
+{% if forums_defined %}
+  <section class="container my-4" aria-labelledby="forum-section-title" role="region">
+    <h2 id="forum-section-title" class="visually-hidden">{{ 'Forum Section'|t }}</h2>
+
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <div class="forum-content">
+              {{ forums }}
+            </div>
+
+            <div class="forum-topics mt-4">
+              {{ topics }}
+            </div>
+
+            <nav class="forum-pager mt-3" aria-label="{{ 'Forum topic pagination'|t }}">
+              {{ topics_pager }}
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+

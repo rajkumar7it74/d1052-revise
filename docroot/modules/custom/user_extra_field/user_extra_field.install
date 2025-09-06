@@ -1,0 +1,34 @@
+<?php
+
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_install().
+ */
+function user_extra_field_install() {
+  // Create field storage.
+  if (!FieldStorageConfig::loadByName('user', 'field_extra_info')) {
+    FieldStorageConfig::create([
+        'field_name' => 'field_extra_info',
+        'entity_type' => 'user',
+        'type' => 'string',
+        'cardinality' => 1,
+        'settings' => [
+            'max_length' => 255,
+        ],
+    ])->save();
+  }
+
+  // Attach field to user bundle.
+  if (!FieldConfig::loadByName('user', 'user', 'field_extra_info')) {
+    FieldConfig::create([
+        'field_name' => 'field_extra_info',
+        'entity_type' => 'user',
+        'bundle' => 'user',
+        'label' => 'Extra Info',
+        'required' => FALSE,
+        'settings' => [],
+    ])->save();
+  }
+}

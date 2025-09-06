@@ -1,0 +1,85 @@
+<?php
+
+use Drupal\image\Entity\ImageStyle;
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function firsttheme_preprocess_node(array &$variables) {
+  $node = $variables['node'];
+  // Check for a specific content type.
+  if ($node->bundle() === 'recipe') {
+    if ($node->hasField('field_recipe_image') && !$node->get('field_recipe_image')->isEmpty()) {
+      // Load the image field data.
+      $file = $node->field_recipe_image->entity;
+      if ($file) {
+        $uri = $file->getFileUri();
+        $variables['recipe_small_image'] = ImageStyle::load('recipe_small')->buildUrl($uri);
+        $variables['recipe_medium_image'] = ImageStyle::load('recipe_medium')->buildUrl($uri);
+        $variables['recipe_large_image'] = ImageStyle::load('recipe_large')->buildUrl($uri);
+      }
+      if ($node->hasField('field_recipe_ingredients')) {
+        $ingredients = $node->get('field_recipe_ingredients')->value;
+        $variables['formatted_ingredients'] = $ingredients;
+      }
+      if ($node->hasField('field_recipe_dish_type')) {
+        // Get machine name
+        $value = $node->get('field_recipe_dish_type')->value;
+        // Get allowed values
+        $allowed_values = $node->get('field_recipe_dish_type')->getFieldDefinition()->getSetting('allowed_values');
+        // Get label from allowed values
+        $dish_type = isset($allowed_values[$value]) ? $allowed_values[$value] : $value;
+        $variables['dish_type'] = $dish_type;
+      }
+      if ($node->hasField('field_recipe_total_time')) {
+        $total_time = $node->get('field_recipe_total_time')->value;
+        $variables['total_time'] = $total_time;
+      }
+      if ($node->hasField('field_recipe_total_time')) {
+        $total_time = $node->get('field_recipe_total_time')->value;
+        $variables['total_time'] = $total_time;
+      }
+      if ($node->hasField('field_recipe_description')) {
+        $description = $node->get('field_recipe_description')->value;
+        $variables['description'] = $description;
+      }
+      if ($node->hasField('field_recipe_instructions')) {
+        $instructions = $node->get('field_recipe_instructions')->value;
+        $variables['instructions'] = $instructions;
+      }
+    }
+  }
+}
+
+function firsttheme_preprocess_views_view__custom_image_gallery(&$variables) {
+  //dump($variables['rows'][0]['#rows']);
+  foreach ($variables['rows'][0]['#rows'] as $key => &$row) {
+    if (isset($row->_entity)) {
+      $entity = $row->_entity;
+
+      // Example: Get image URL
+      if ($entity->hasField('field_recipe_image') && !$entity->get('field_recipe_image')->isEmpty()) {
+        $image_uri = $entity->get('field_recipe_image')->entity->getFileUri();
+        if ($image_uri) {
+          $variables['images'][$key]['small_image'] = ImageStyle::load('recipe_small')->buildUrl($image_uri);
+          $variables['images'][$key]['medium_image'] = ImageStyle::load('recipe_medium')->buildUrl($image_uri);
+          $variables['images'][$key]['large_image'] = ImageStyle::load('recipe_large')->buildUrl($image_uri);
+          $variables['images'][$key]['title'] = $entity->label();
+        }
+      }
+      if ($entity->hasField('field_image') && !$entity->get('field_image')->isEmpty()) {
+        $image_uri = $entity->get('field_image')->entity->getFileUri();
+        if ($image_uri) {
+          $variables['images'][$key]['small_image'] = ImageStyle::load('recipe_small')->buildUrl($image_uri);
+          $variables['images'][$key]['medium_image'] = ImageStyle::load('recipe_medium')->buildUrl($image_uri);
+          $variables['images'][$key]['large_image'] = ImageStyle::load('recipe_large')->buildUrl($image_uri);
+          $variables['images'][$key]['title'] = $entity->label();
+        }
+      }
+    }
+  }
+  $variables['#attached']['library'][] = 'firsttheme/ajax_load_more';
+}
+
+
+

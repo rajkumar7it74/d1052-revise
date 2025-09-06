@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for a local task link.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper element.
+ * - is_active: Whether the task item is an active tab.
+ * - link: A rendered link element.
+ * - level: The menu level where the tab is rendered.
+ *
+ * Note: This template renders the content for each task item in
+ * menu-local-tasks.html.twig.
+ *
+ * @see template_preprocess_menu_local_task()
+ */
+#}
+<li{{ attributes.addClass('nav-item', is_active ? 'active') }}>
+  {{ link }}
+
+  {% if is_active and level == 'primary' %}
+    <button
+      class="btn btn-outline-secondary ms-2"
+      type="button"
+      aria-label="{{ 'Toggle tab display'|t }}"
+      aria-expanded="false"
+      aria-controls="tab-content"
+      data-bs-toggle="collapse"
+      data-bs-target="#tab-content"
+    >
+      <span class="visually-hidden">{{ 'Toggle tab content'|t }}</span>
+      <span class="d-inline-block">
+        <i class="bi bi-chevron-down"></i>
+      </span>
+    </button>
+  {% endif %}
+</li>
+

@@ -1,0 +1,39 @@
+<article class="recipe-details">
+  <header>
+    <h1>{{ node.label }}</h1>
+
+    {% if content.field_recipe_image %}
+      <div class="recipe-image">
+         <picture>
+            <source srcset="{{ recipe_large_image }}" media="(min-width: 1024px)">
+            <source srcset="{{ recipe_medium_image }}" media="(min-width: 768px)">
+            <source srcset="{{ recipe_small_image }}" media="(max-width: 767px)">
+            <img src="{{ recipe_medium_image }}" alt="{{ node.label }}" loading="lazy">
+        </picture>
+      </div>
+    {% endif %}
+  </header>
+
+  <section class="recipe-meta">
+    <p><strong>Dish Type:</strong> {{ dish_type }}</p>
+    <p><strong>Total Time:</strong> {{ total_time }}</p>
+  </section>
+
+  <section class="recipe-description">
+    {{ description }}
+  </section>
+
+  <section class="recipe-ingredients">
+    <h2>Ingredients</h2>
+    {{ content.field_recipe_ingredients }}
+  </section>
+  <section class="recipe-read-time">
+    <h2>Read Time</h2>
+    {{ content.field_recipe_read_time }}
+  </section>
+
+  <section class="recipe-instructions">
+    <h2>Instructions</h2>
+    {{ content.field_recipe_instructions }}
+  </section>
+</article>

@@ -1,0 +1,4 @@
+services:
+  common_utility.common_utility:
+    class: Drupal\common_utility\Service\CommonUtility
+    arguments: ['@entity_type.manager', '@file_url_generator', '@database', '@email.validator', '@current_user']

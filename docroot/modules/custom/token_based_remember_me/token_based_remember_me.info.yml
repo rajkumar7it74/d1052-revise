@@ -1,0 +1,7 @@
+name: 'Token Based Remember Me'
+type: module
+description: 'Add a remember me checkbox and Secure Token Based Validation.'
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - user

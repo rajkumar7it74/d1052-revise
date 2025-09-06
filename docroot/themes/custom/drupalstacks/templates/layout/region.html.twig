@@ -1,0 +1,158 @@
+{#
+/**
+ * @file
+ * Olivero's theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region <div>.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{# region.html.twig #}
+
+{# Base region classes #}
+{% set classes = [
+  'region',
+  'region--' ~ region|clean_class
+] %}
+
+{# Bootstrap 5 layout classes per region #}
+{% set bootstrap_classes = {
+  header: 'container-fluid bg-primary text-white py-3',
+  primary_menu: 'container py-2 border-bottom',
+  secondary_menu: 'container py-2 text-end',
+  hero: 'container-fluid bg-light text-center py-5 shadow-sm',
+  highlighted: 'container bg-warning text-dark py-3 shadow-sm',
+  breadcrumb: 'container py-2',
+  social: 'container-fluid bg-light py-2 text-center',
+  content_above: 'container py-3',
+  content: 'container py-4',
+  sidebar: 'container py-4',
+  content_below: 'container py-3',
+  footer_top: 'container-fluid bg-secondary text-white py-4',
+  footer_bottom: 'container-fluid bg-dark text-white py-3'
+} %}
+
+{# Optional animation classes #}
+{% set animation_classes = {
+  header: 'animate__animated animate__fadeInDown',
+  primary_menu: 'animate__animated animate__fadeInLeft',
+  secondary_menu: 'animate__animated animate__fadeInRight',
+  hero: 'animate__animated animate__zoomIn',
+  highlighted: 'animate__animated animate__pulse',
+  breadcrumb: 'animate__animated animate__fadeInUp',
+  social: 'animate__animated animate__fadeIn',
+  content_above: 'animate__animated animate__fadeInUp',
+  content: 'animate__animated animate__fadeIn',
+  sidebar: 'animate__animated animate__fadeInRight',
+  content_below: 'animate__animated animate__fadeInDown',
+  footer_top: 'animate__animated animate__fadeInUp',
+  footer_bottom: 'animate__animated animate__fadeInUp'
+} %}
+
+{# Accessible labels #}
+{% set region_labels = {
+  header: 'Site Header',
+  primary_menu: 'Primary Navigation',
+  secondary_menu: 'Secondary Navigation',
+  hero: 'Hero Section',
+  highlighted: 'Highlighted Content',
+  breadcrumb: 'Breadcrumb Navigation',
+  social: 'Social Media Links',
+  content_above: 'Content Above Main',
+  content: 'Main Content',
+  sidebar: 'Sidebar',
+  content_below: 'Content Below Main',
+  footer_top: 'Footer Top',
+  footer_bottom: 'Footer Bottom'
+} %}
+
+{# Final class string #}
+{% set final_classes = [
+  bootstrap_classes[region]|default('container'),
+  classes|join(' '),
+  animation_classes[region]|default('')
+]|join(' ') %}
+
+{# IDs and labels #}
+{% set region_id = 'region-' ~ region|clean_class %}
+{% set heading_id = region_id ~ '-title' %}
+{% set label = region_labels[region]|default(region|capitalize) %}
+
+{# Regions that need a wrapper #}
+{% set wrapped_regions = [
+  'hero',
+  'highlighted',
+  'social',
+  'sidebar',
+  'footer_top',
+  'footer_bottom'
+] %}
+
+{# Special rendering for enhanced regions #}
+{% if region == 'header' %}
+  <header class="{{ final_classes }} sticky-top shadow-sm" aria-labelledby="{{ heading_id }}">
+    <h2 id="{{ heading_id }}" class="visually-hidden">{{ label }}</h2>
+    <div class="row">
+      <div class="col-12">
+        {{ content }}
+      </div>
+    </div>
+  </header>
+
+{% elseif region == 'social' %}
+  <div class="wrapper wrapper--social">
+    <section class="{{ final_classes }}" aria-labelledby="{{ heading_id }}">
+      <h2 id="{{ heading_id }}" class="visually-hidden">{{ label }}</h2>
+
+      <button class="btn btn-outline-secondary d-md-none mb-2" type="button"
+              data-bs-toggle="collapse" data-bs-target="#socialCollapse"
+              aria-expanded="false" aria-controls="socialCollapse">
+        Toggle Social Bar
+      </button>
+
+      <div class="collapse d-md-block" id="socialCollapse">
+        <div class="row">
+          <div class="col-12">
+            {{ content }}
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% elseif region == 'sidebar' %}
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="{{ heading_id }}">
+    <div class="offcanvas-header">
+      <h2 id="{{ heading_id }}" class="offcanvas-title">{{ label }}</h2>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      {{ content }}
+    </div>
+  </div>
+
+  <button class="btn btn-secondary d-md-none m-3" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas"
+          aria-controls="sidebarOffcanvas">
+    Open Sidebar
+  </button>
+
+{% elseif region in wrapped_regions %}
+  <div class="wrapper wrapper--{{ region }}">
+    <section class="{{ final_classes }}" aria-labelledby="{{ heading_id }}">
+      <h2 id="{{ heading_id }}" class="visually-hidden">{{ label }}</h2>
+      {{ content }}
+    </section>
+  </div>
+
+{% else %}
+  <section class="{{ final_classes }}" aria-labelledby="{{ heading_id }}">
+    <h2 id="{{ heading_id }}" class="visually-hidden">{{ label }}</h2>
+    {{ content }}
+  </section>
+{% endif %}

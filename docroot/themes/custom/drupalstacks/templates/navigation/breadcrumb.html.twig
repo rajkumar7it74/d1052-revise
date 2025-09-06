@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ */
+#}
+{% if breadcrumb %}
+  <nav class="breadcrumb-wrapper my-3 overflow-auto" role="navigation" aria-labelledby="system-breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
+
+    <div class="breadcrumb__content">
+      <ol class="breadcrumb breadcrumb__list mb-0 d-flex flex-nowrap">
+        {% for item in breadcrumb %}
+          {% set is_first = loop.first %}
+          {% set is_last = loop.last %}
+          <li class="breadcrumb-item breadcrumb__item{{ is_last ? ' active' : '' }}"
+              itemprop="itemListElement"
+              itemscope
+              itemtype="https://schema.org/ListItem"
+              {{ is_last ? ' aria-current="page"' : '' }}>
+            
+            {% if item.url and not is_last %}
+              <a href="{{ item.url }}" class="breadcrumb__link" itemprop="item">
+                {% if is_first %}
+                  <i class="bi bi-house-door-fill me-1" aria-hidden="true"></i>
+                {% endif %}
+                <span itemprop="name">{{ item.text }}</span>
+              </a>
+            {% else %}
+              <span itemprop="name">{{ item.text }}</span>
+            {% endif %}
+            <meta itemprop="position" content="{{ loop.index }}" />
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </nav>
+{% endif %}
+

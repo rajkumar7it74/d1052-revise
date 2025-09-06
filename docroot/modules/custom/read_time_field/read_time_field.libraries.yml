@@ -1,0 +1,4 @@
+read_time_styles:
+  css:
+    theme:
+      css/read_time.css: {}

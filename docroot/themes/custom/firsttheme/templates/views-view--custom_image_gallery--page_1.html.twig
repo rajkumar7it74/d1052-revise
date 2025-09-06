@@ -1,0 +1,16 @@
+
+<div id="ajax-content">
+  {% for image in images %}
+    <div class="article-row">
+      <picture>
+        <source srcset="{{ image['large_image'] }}" media="(min-width: 1024px)">
+        <source srcset="{{ image['medium_image'] }}" media="(min-width: 768px)">
+        <source srcset="{{ image['small_image'] }}" media="(max-width: 767px)">
+        <img src="{{ image['medium_image'] }}" alt="{{ image['label'] }}" loading="lazy">
+      </picture>
+    </div>
+  {% endfor %}
+</div>
+
+<button id="load-more" data-page="1">Load More</button>
+

@@ -1,0 +1,42 @@
+<?php
+
+use Drupal\Core\Database\Schema;
+
+function user_extend_schema() {
+  $schema['user_extend_data'] = [
+    'description' => 'Stores user data from the custom form.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'phone' => [
+        'type' => 'varchar',
+        'length' => 15,
+        'not null' => TRUE,
+      ],
+      'dob' => [
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => TRUE,
+      ],
+      'aadhar' => [
+        'type' => 'varchar',
+        'length' => 12,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+  return $schema;
+}

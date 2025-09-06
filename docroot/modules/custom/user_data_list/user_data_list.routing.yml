@@ -1,0 +1,9 @@
+user_data_list.list:
+  path: '/user-data-list'
+  defaults:
+    _controller: '\Drupal\user_data_list\Controller\UserDataController::listUsers'
+    _title: 'User Data List'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE #no_cache: TRUE disables route-level caching.

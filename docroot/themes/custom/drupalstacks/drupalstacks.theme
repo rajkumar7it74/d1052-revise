@@ -1,0 +1,208 @@
+<?php
+
+use Drupal\Core\Render\Element;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\Core\Render\Markup;
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function drupalstacks_preprocess_html(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    $variables['head_title'] = Markup::create($node->label());
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+// function YOUR_THEME_preprocess_html(array &$variables) {
+//   // Add a default meta description if Metatag is not installed.
+//   $description = 'Welcome to our feature-rich Drupal site powered by Bootstrap 5.';
+//   $variables['#attached']['html_head'][] = [
+//     [
+//       '#tag' => 'meta',
+//       '#attributes' => [
+//         'name' => 'description',
+//         'content' => $description,
+//       ],
+//     ],
+//     'meta_description',
+//   ];
+
+//   // Add a canonical URL if not already set.
+//   if (!isset($variables['canonical_url'])) {
+//     $variables['canonical_url'] = \Drupal::request()->getUri();
+//   }
+
+//   // Optionally add a fallback favicon.
+//   $theme = \Drupal::theme()->getActiveTheme()->getName();
+//   $theme_path = \Drupal::service('extension.path.resolver')->getPath('theme', $theme);
+
+//   $variables['#attached']['html_head'][] = [
+//     [
+//       '#tag' => 'link',
+//       '#attributes' => [
+//         'rel' => 'shortcut icon',
+//         'href' => '/' . $theme_path . '/favicon.ico',
+//         'type' => 'image/x-icon',
+//       ],
+//     ],
+//     'favicon',
+//   ];
+// }
+
+/**
+ * Implements hook_preprocess_HOOK() for page title templates.
+ */
+// function drupalstacks_preprocess_page_title(&$variables) {
+//   // Since the title and the shortcut link are both block level elements,
+//   // positioning them next to each other is much simpler with a wrapper div.
+//   if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+//     // Add a wrapper div using the title_prefix and title_suffix render
+//     // elements.
+//     $variables['title_prefix']['shortcut_wrapper'] = [
+//       '#markup' => '<div class="shortcut-wrapper">',
+//       '#weight' => 100,
+//     ];
+//     $variables['title_suffix']['shortcut_wrapper'] = [
+//       '#markup' => '</div>',
+//       '#weight' => -99,
+//     ];
+
+//     // Make sure the shortcut link is the first item in title_suffix.
+//     $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+//   }
+
+//   // Unset shortcut link on front page.
+//   $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+//   if ($variables['is_front'] === TRUE) {
+//     unset($variables['title_suffix']['add_or_remove_shortcut']);
+//   }
+// }
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+// function drupalstacks_preprocess_node(&$variables) {
+//   // Remove the "Add new comment" link on teasers or when the comment form is
+//   // displayed on the page.
+//   if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+//     unset($variables['content']['links']['comment']['#links']['comment-add']);
+//   }
+
+//   // Apply custom date formatter to "date" field.
+//   if (!empty($variables['date']) && !empty($variables['display_submitted']) && $variables['display_submitted'] === TRUE) {
+//     $variables['date'] = \Drupal::service('date.formatter')->format($variables['node']->getCreatedTime(), 'olivero_medium');
+//   }
+
+//   // Pass layout variable to template if content type is article in full view
+//   // mode. This is then used in the template to create a BEM style CSS class to
+//   // control the layout.
+//   if ($variables['node']->bundle() === 'article' && $variables['view_mode'] === 'full') {
+//     $variables['layout'] = 'content-narrow';
+//   }
+// }
+
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+// function drupalstacks_preprocess_maintenance_page(&$variables) {
+//   // By default, site_name is set to Drupal if no db connection is available
+//   // or during site installation. Setting site_name to an empty string makes
+//   // the site and update pages look cleaner.
+//   // @see template_preprocess_maintenance_page
+//   if (!$variables['db_is_active']) {
+//     $variables['site_name'] = '';
+//   }
+// }
+/**
+ * Implements hook_preprocess_links__comment().
+ */
+// function drupalstacks_preprocess_links__comment(&$variables) {
+//   foreach ($variables['links'] as &$link) {
+//     $link['link']['#options']['attributes']['class'][] = 'comment__links-link';
+//   }
+// }
+
+/**
+ * Implements hook_preprocess_HOOK() for comment.html.twig.
+ */
+// function drupalstacks_preprocess_comment(&$variables) {
+//   // Getting the node creation time stamp from the comment object.
+//   $date = $variables['comment']->getCreatedTime();
+//   // Formatting "created" as "X days ago".
+//   $variables['created'] = new TranslatableMarkup('@time ago', ['@time' => \Drupal::service('date.formatter')->formatInterval(\Drupal::time()->getRequestTime() - $date)]);
+// }
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-task templates.
+ */
+// function drupalstacks_preprocess_menu_local_task(&$variables) {
+//   $variables['link']['#options']['attributes']['class'][] = 'tabs__link';
+//   $variables['link']['#options']['attributes']['class'][] = 'js-tabs-link';
+
+//   // Ensure is-active class is set when the tab is active. The generic active
+//   // link handler applies stricter comparison rules than what is necessary for
+//   // tabs.
+//   if (isset($variables['is_active']) && $variables['is_active'] === TRUE) {
+//     $variables['link']['#options']['attributes']['class'][] = 'is-active';
+//   }
+
+//   if (isset($variables['element']['#level'])) {
+//     $variables['level'] = $variables['element']['#level'];
+//   }
+// }
+/**
+ * Implements hook_preprocess_HOOK() for menu-local-tasks templates.
+ */
+// function drupalstacks_preprocess_menu_local_tasks(&$variables) {
+//   foreach (Element::children($variables['primary']) as $key) {
+//     $variables['primary'][$key]['#level'] = 'primary';
+//   }
+//   foreach (Element::children($variables['secondary']) as $key) {
+//     $variables['secondary'][$key]['#level'] = 'secondary';
+//   }
+// }
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block().
+ */
+// function drupalstacks_theme_suggestions_block_alter(&$suggestions, array $variables) {
+//   if (!empty($variables['elements']['#id'])) {
+
+//     /** @var \Drupal\block\BlockInterface $block */
+//     $block = \Drupal::entityTypeManager()
+//       ->getStorage('block')
+//       ->load($variables['elements']['#id']);
+//     if ($block) {
+
+//       // Add region-specific block theme suggestions.
+//       $region = $block
+//         ->getRegion();
+
+//       $suggestions[] = 'block__' . $region;
+//       $suggestions[] = 'block__' . $region . '__' . 'plugin_id' . '__' . $variables['elements']['#plugin_id'];
+//       $suggestions[] = 'block__' . $region . '__' . 'id' . '__' . $variables['elements']['#id'];
+//     }
+//   }
+// }
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+// function drupalstacks_preprocess_menu(&$variables) {
+//   if (isset($variables['attributes']['region'])) {
+//     if ($variables['attributes']['region'] === 'sidebar') {
+//       $variables['attributes']['class'][] = 'menu--sidebar';
+//     }
+//     unset($variables['attributes']['region']);
+//   }
+// }
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for menu.
+ */
+// function drupalstacks_theme_suggestions_menu_alter(&$suggestions, array $variables) {
+//   if (isset($variables['attributes']['region'])) {
+//     $suggestions[] = 'menu__' . $variables['attributes']['region'];
+//   }
+// }

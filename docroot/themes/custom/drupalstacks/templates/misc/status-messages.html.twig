@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Theme override for status messages.
+ *
+ * Displays status, error, and warning messages, grouped by type.
+ *
+ * An invisible heading identifies the messages for assistive technology.
+ * Sighted users see a colored box. See
+ * https://www.w3.org/TR/WCAG-TECHS/H69.html for info.
+ *
+ * Add an ARIA label to the contentinfo area so that assistive technology
+ * user agents will better describe this landmark.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: List of all status types.
+ * - attributes: HTML attributes for the element, including:
+ *   - class: HTML classes.
+ */
+#}
+{% if message_list %}
+  <nav class="container my-3" aria-label="{{ 'Site messages'|t }}">
+    <div class="row">
+      <div class="col-12">
+        {% for type, messages in message_list %}
+          {% set bootstrap_class = {
+            error: 'alert-danger',
+            warning: 'alert-warning',
+            status: 'alert-success',
+            info: 'alert-info'
+          }[type]|default('alert-secondary') %}
+
+          {% set alert_classes = [
+            'alert',
+            bootstrap_class,
+            'd-flex',
+            'align-items-start',
+            'gap-3',
+            'fade',
+            'show'
+          ] %}
+
+          <div{{ attributes
+            .addClass(alert_classes)
+            .setAttribute('role', type == 'error' ? 'alert' : 'status')
+            .setAttribute('aria-label', status_headings[type])
+          }}>
+            {% if status_headings[type] %}
+              <div class="flex-shrink-0">
+                {% if type == 'error' %}
+                  <i class="bi bi-x-circle-fill text-danger fs-4" aria-hidden="true"></i>
+                {% elseif type == 'warning' %}
+                  <i class="bi bi-exclamation-triangle-fill text-warning fs-4" aria-hidden="true"></i>
+                {% elseif type == 'status' %}
+                  <i class="bi bi-check-circle-fill text-success fs-4" aria-hidden="true"></i>
+                {% elseif type == 'info' %}
+                  <i class="bi bi-info-circle-fill text-info fs-4" aria-hidden="true"></i>
+                {% endif %}
+              </div>
+              <div class="flex-grow-1">
+                <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+                {% if messages|length > 1 %}
+                  <ul class="mb-0">
+                    {% for message in messages %}
+                      <li>{{ message }}</li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <p class="mb-0">{{ messages|first }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </nav>
+{% endif %}
+

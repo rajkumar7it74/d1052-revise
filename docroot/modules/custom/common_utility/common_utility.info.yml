@@ -1,0 +1,7 @@
+name: All Common Utility
+type: module
+description: Module having all common Utility
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - user

@@ -1,0 +1,10 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+ajax_load_more:
+  version: 1.x
+  js:
+    js/ajax_load_more.js: {}
+  dependencies:
+    - core/jquery

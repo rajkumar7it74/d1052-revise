@@ -1,0 +1,11 @@
+services:
+  user_login_logger.user_login_logger_subscriber:
+    class: Drupal\user_login_logger\EventSubscriber\UserLoginLoggerSubscriber
+    arguments: ['@logger.channel.user']
+    tags:
+      - { name: event_subscriber }
+  user_login_logger.user_login_before_subscriber:
+    class: Drupal\user_login_logger\EventSubscriber\UserLoginBeforeSubscriber
+    arguments: ['@logger.channel.default']
+    tags:
+      - { name: event_subscriber }

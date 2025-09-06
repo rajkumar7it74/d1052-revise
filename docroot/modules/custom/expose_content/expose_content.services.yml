@@ -1,0 +1,6 @@
+services:
+  expose_content.contents_api:
+    class: Drupal\expose_content\Plugin\rest\resource\ContentsApi
+    arguments: ['@entity_type.manager']
+    tags:
+      - {name: rest.resource}

@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Contains user_extra_field.module.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function user_extra_field_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.user_extra_field':
+      return '<p>' . t('This module adds an extra field to the user entity.') . '</p>';
+  }
+}

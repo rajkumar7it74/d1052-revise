@@ -1,0 +1,48 @@
+<div id="page-wrapper" class="page-wrapper">
+  <div id="page">
+    {{ page.header }}
+
+    <div id="main-wrapper" class="layout-main-wrapper layout-container">
+      <div id="main" class="layout-main">
+        <div class="main-content">
+          <a id="main-content" tabindex="-1"></a>
+          {{ page.hero }}
+          <div class="main-content__container container">
+            {{ page.highlighted }}
+            {{ page.breadcrumb }}
+
+            {% if page.sidebar %}
+              <div class="sidebar-grid grid-full">
+                <main role="main" class="site-main">
+                  {{ page.content_above }}
+                  {{ page.content }}
+                </main>
+
+                {{ page.sidebar }}
+              </div>
+            {% else %}
+              <main role="main">
+                {{ page.content_above }}
+                {{ page.content }}
+              </main>
+            {% endif %}
+            {{ page.content_below }}
+          </div>
+        </div>
+        <div class="social-bar">
+          {{ page.social }}
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner container">
+        {{ page.footer_top }}
+        {{ page.footer_bottom }}
+      </div>
+    </footer>
+
+    <div class="overlay" data-drupal-selector="overlay"></div>
+
+  </div>
+</div>

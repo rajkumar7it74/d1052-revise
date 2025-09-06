@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - rest
+    - expose_content_api
+id: rest.resource.image_upload_resource
+plugin_id: image_upload_resource
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+    - hal_json
+    - multipart
+  authentication:
+    - basic_auth
+    - cookie

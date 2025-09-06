@@ -1,0 +1,34 @@
+/** 
+What setcookie() Does
+setcookie() is a PHP function that sends a cookie to the user's
+browser. Cookies are small pieces of data stored on the
+client side and sent with every request to the server.
+
+
+setcookie(
+  'remember_me_uid',           // 1. Cookie name
+  $account->id(),              // 2. Cookie value (user ID)
+  time() + (60 * 60 * 24 * 30),// 3. Expiry time (30 days from now)
+  '/',                         // 4. Path (available to entire site)
+  '',                          // 5. Domain (empty = current domain)
+  true,                        // 6. Secure flag (only sent over HTTPS)
+  true                         // 7. HttpOnly flag (not accessible via JavaScript)
+);
+
+
+
+Security Concerns
+Using a raw user ID ($account->id()) as the cookie value is not secure because:
+
+Anyone can modify the cookie value in their browser.
+If your code uses this cookie to auto-login, it can be exploited to impersonate other users.
+
+
+✅ Recommended Fix
+Instead of storing the user ID directly, store a secure token:
+
+
+token = Crypt::randomBytesBase64(64);
+setcookie('remember_me_token', $token, time() + (60 * 60 * 24 * 30), '/', '', true, true);
+
+**/

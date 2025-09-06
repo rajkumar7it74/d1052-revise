@@ -1,0 +1,61 @@
+<?php
+
+namespace Drupal\custom_computed_field\Plugin\Field\FieldType;
+
+use Drupal\Core\Field\FieldItemList;
+//use Drupal\Core\TypedData\ComputedItemListTrait;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\TypedData\DataDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+/**
+ * Defines the 'custom_computed_field' field type.
+ *
+ * @FieldType(
+ *   id = "custom_computed_field",
+ *   label = @Translation("Custom Computed Field"),
+ *   description = @Translation("A field that computes its value based on other fields."),
+ *   category = @Translation("General"),
+ *   default_formatter = "string",
+ *   list_class = "\Drupal\custom_computed_field\Plugin\Field\FieldType\CustomComputedField"
+ * )
+ */
+class CustomComputedField extends FieldItemList {
+
+  //use ComputedItemListTrait;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
+    $properties['value'] = DataDefinition::create('string') // Or 'integer', 'float', etc.
+      ->setLabel(new TranslatableMarkup('Computed Value'));
+    return $properties;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  // protected function computeValue() {
+  //   // Get the entity the field is attached to.
+  //   $entity = $this->getEntity();
+
+  //   // Access other fields on the entity to compute the value.
+  //   // Example: If you have 'field_first_name' and 'field_last_name'
+  //   $firstName = '';
+  //   if ($entity->hasField('field_first_name') && !$entity->get('field_first_name')->isEmpty()) {
+  //     $firstName = $entity->get('field_first_name')->value;
+  //   }
+
+  //   $lastName = '';
+  //   if ($entity->hasField('field_last_name') && !$entity->get('field_last_name')->isEmpty()) {
+  //     $lastName = $entity->get('field_last_name')->value;
+  //   }
+
+  //   $computedValue = trim($firstName . ' ' . $lastName);
+
+  //   // Set the computed value.
+  //   $this->list[0] = $this->createItem(0, $computedValue);
+  // }
+
+}

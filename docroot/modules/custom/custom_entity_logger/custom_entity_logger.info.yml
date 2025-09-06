@@ -1,0 +1,6 @@
+name: 'Custom Entity Logger'
+type: module
+description: 'Logs when entities are created.'
+core_version_requirement: ^10
+package: Custom
+version: 1.0

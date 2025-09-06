@@ -1,0 +1,5 @@
+name: 'Practice Caching'
+type: module
+description: 'Custom module to practice caching'
+core_version_requirement: ^10
+package: custom

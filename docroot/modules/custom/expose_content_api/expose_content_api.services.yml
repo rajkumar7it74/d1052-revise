@@ -1,0 +1,4 @@
+services:
+  expose_content_api.content_utility:
+    class: Drupal\expose_content_api\Service\ContentUtility
+    arguments: ['@entity_type.manager', '@file_url_generator']

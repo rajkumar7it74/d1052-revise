@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * Theme override to display a pager.
+ *
+ * Available variables:
+ * - heading_id: Pagination heading ID.
+ * - pagination_heading_level: The heading level to use for the pager.
+ * - items: List of pager items.
+ *   The list is keyed by the following elements:
+ *   - first: Item for the first page; not present on the first page of results.
+ *   - previous: Item for the previous page; not present on the first page
+ *     of results.
+ *   - next: Item for the next page; not present on the last page of results.
+ *   - last: Item for the last page; not present on the last page of results.
+ *   - pages: List of pages, keyed by page number.
+ *   Sub-sub elements:
+ *   items.first, items.previous, items.next, items.last, and each item inside
+ *   items.pages contain the following elements:
+ *   - href: URL with appropriate query parameters for the item.
+ *   - attributes: A keyed list of HTML attributes for the item.
+ *   - text: The visible text used for the item link, such as "‹ Previous"
+ *     or "Next ›".
+ * - current: The page number of the current page.
+ * - ellipses: If there are more pages than the quantity allows, then an
+ *   ellipsis before or after the listed pages may be present.
+ *   - previous: Present if the currently visible list of pages does not start
+ *     at the first page.
+ *   - next: Present if the visible list of pages ends before the last page.
+ *
+ * @see template_preprocess_pager()
+ */
+#}
+{% if items %}
+  <nav aria-label="{{ 'Pagination'|t }}" role="navigation">
+    <{{ pagination_heading_level }} id="{{ heading_id }}" class="visually-hidden">{{ 'Pagination'|t }}</{{ pagination_heading_level }}>
+    <ul class="pagination justify-content-center">
+
+      {# First page link #}
+      {% if items.first %}
+        <li class="page-item">
+          <a href="{{ items.first.href }}" class="page-link" title="{{ 'Go to first page'|t }}" aria-label="{{ 'First page'|t }}">
+            <span aria-hidden="true">&laquo;&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {# Previous page link #}
+      {% if items.previous %}
+        <li class="page-item">
+          <a href="{{ items.previous.href }}" class="page-link" title="{{ 'Go to previous page'|t }}" rel="prev" aria-label="{{ 'Previous page'|t }}">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {# Ellipsis before numbered pages #}
+      {% if ellipses.previous %}
+        <li class="page-item disabled" role="presentation">
+          <span class="page-link">&hellip;</span>
+        </li>
+      {% endif %}
+
+      {# Numbered page links #}
+      {% for key, item in items.pages %}
+        {% set is_current = current == key %}
+        <li class="page-item{{ is_current ? ' active' : '' }}">
+          {% if is_current %}
+            <span class="page-link" aria-current="page">{{ key }}</span>
+          {% else %}
+            <a href="{{ item.href }}" class="page-link" title="{{ 'Go to page @key'|t({'@key': key}) }}" aria-label="{{ 'Page @key'|t({'@key': key}) }}">{{ key }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+
+      {# Ellipsis after numbered pages #}
+      {% if ellipses.next %}
+        <li class="page-item disabled" role="presentation">
+          <span class="page-link">&hellip;</span>
+        </li>
+      {% endif %}
+
+      {# Next page link #}
+      {% if items.next %}
+        <li class="page-item">
+          <a href="{{ items.next.href }}" class="page-link" title="{{ 'Go to next page'|t }}" rel="next" aria-label="{{ 'Next page'|t }}">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {# Last page link #}
+      {% if items.last %}
+        <li class="page-item">
+          <a href="{{ items.last.href }}" class="page-link" title="{{ 'Go to last page'|t }}" aria-label="{{ 'Last page'|t }}">
+            <span aria-hidden="true">&raquo;&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+{% endif %}
+

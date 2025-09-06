@@ -1,0 +1,26 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function remember_me_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['remember_me'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Remember me'),
+    '#weight' => 10,
+  ];
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function remember_me_user_login($account) {
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $remember = $request->get('remember_me');
+
+  if ($remember) {
+    setcookie('remember_me_uid', $account->id(), time() + (60 * 60 * 24 * 30), '/', '', true, true);
+  }
+}

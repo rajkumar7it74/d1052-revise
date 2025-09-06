@@ -1,0 +1,8 @@
+name: 'User Extra Field'
+type: module
+description: 'Adds an extra field to the user entity.'
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - field
+  - user

@@ -1,0 +1,123 @@
+To fetch data from the database on a specific route in Drupal 10 and prevent caching, you can create a custom controller and define a route with caching disabled.
+ Module Structure: user_data_list
+user_data_list/
+├── user_data_list.info.yml
+├── user_data_list.routing.yml
+├── src/Controller/UserDataController.php
+
+✅ Summary
+Route: /user-data-list
+Data: Fetched from users_field_data
+Caching: Disabled both at route and render level
+
+
+Disabling caching in Drupal is important when you want to ensure that dynamic or frequently changing data is always fetched fresh from the database or external sources. Here's a detailed breakdown of how caching works in Drupal and how to disable it properly at different levels:
+--------------------------
+ 1. Types of Caching in Drupal
+Drupal uses multiple layers of caching:
+
+Layer	                Description
+Page Cache	            Caches entire HTML pages for anonymous users.
+Dynamic Page Cache	    Caches parts of the page for both anonymous and authenticated users.
+Render Cache	        Caches the rendered output of render arrays.
+Route Cache	            Caches route definitions and metadata.
+Data Cache	            Caches data like configuration, entities, etc.
+------------------
+2. Disabling Caching for a Route
+In your *.routing.yml file:
+my_module.my_route:
+  path: '/my-data'
+  defaults:
+    _controller: '\Drupal\my_module\Controller\MyController::myMethod'
+    _title: 'My Data'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE
+
+no_cache: TRUE disables route-level caching.
+This ensures the route is not cached in the router cache.
+---------------------
+3. Disabling Render Cache in Controller
+In your controller method, you must also disable render caching:
+return [
+  '#type' => 'markup',
+  '#markup' => $output,
+  '#cache' => [
+    'max-age' => 0,
+  ],
+];
+
+'#cache' => ['max-age' => 0] tells Drupal not to cache the rendered output.
+You can also use '#cache' => ['contexts' => [], 'tags' => [], 'max-age' => 0] for full control.
+----------------------
+4. Disabling Cache in Custom Blocks or Plugins
+If you're using a block or plugin:
+public function build() {
+  return [
+    '#markup' => 'Dynamic content',
+    '#cache' => ['max-age' => 0],
+  ];
+}
+
+------------------------------
+🧪 5. Disabling Twig Template Caching (Dev Only)
+In services.yml (for development):
+parameters:
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
+
+Not recommended for production.
+----------------------------
+✅ Summary: Best Practices
+Use Case	            What to Do
+Dynamic route	        no_cache: TRUE in routing.yml
+Dynamic output	        '#cache' => ['max-age' => 0] in render array
+Custom block	        Same as above
+Dev environment	        Disable Twig cache in services.yml
+---------------------------------------
+🔧 What This Module Does
+Defines a route /user-data-demo
+Fetches user data from the database (users_field_data)
+Lists user ID, name, and email
+Disables caching at both route and render levels
+Demonstrates use of cache tags and cache contexts
+------------------------------
+🧠 Cache Concepts Explained
+---------------------------
+✅ Cache Tags
+Tags allow Drupal to invalidate cached content when related data changes.
+'#cache' => [
+  'tags' => ['user_list'],
+]
+user_list: If any user is added/updated/deleted, this tag can be invalidated.
+Useful for targeted cache clearing.
+--------------------------
+✅ Cache Contexts
+Contexts define variations of cached content based on conditions.
+'#cache' => [
+  'contexts' => ['user.roles', 'url'],
+]
+user.roles: Content may vary based on user role.
+url: Content may vary based on the current URL.
+-----------------------
+✅ Max Age
+'max-age' => 0
+
+Tells Drupal not to cache the rendered output at all.
+Ensures fresh data is fetched every time.
+------------------------
+⚠️ Impact of Disabling Cache on Performance
+Aspect	            Impact
+Speed	            Slower page loads due to repeated DB queries
+Scalability	        Increased server load under high traffic
+Efficiency	        Reduced optimization from Drupal’s caching layers
+Use Case	        Best for admin dashboards, real-time data, or debugging
+🧩 Tip: Use caching selectively. Disable only where necessary and use cache tags/contexts to keep content dynamic yet performant.
+
+
+
+
+

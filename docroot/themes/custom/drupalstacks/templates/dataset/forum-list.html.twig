@@ -1,0 +1,90 @@
+{#
+/**
+ * @file
+ * Theme override to display a list of forums and containers.
+ *
+ * Available variables:
+ * - forums: A collection of forums and containers to display. It is keyed to
+ *   the numeric IDs of all child forums and containers. Each forum in forums
+ *   contains:
+ *   - is_container: A flag indicating if the forum can contain other
+ *     forums. Otherwise, the forum can only contain topics.
+ *   - depth: How deep the forum is in the current hierarchy.
+ *   - zebra: 'even' or 'odd', used for row class.
+ *   - icon_class: 'default' or 'new', used for forum icon class.
+ *   - icon_title: Text alternative for the forum icon.
+ *   - name: The name of the forum.
+ *   - link: The URL to link to this forum.
+ *   - description: The description field for the forum, containing:
+ *     - value: The descriptive text for the forum.
+ *   - new_topics: A flag indicating if the forum contains unread posts.
+ *   - new_url: A URL to the forum's unread posts.
+ *   - new_text: Text for the above URL, which tells how many new posts.
+ *   - old_topics: A count of posts that have already been read.
+ *   - num_posts: The total number of posts in the forum.
+ *   - last_reply: Text representing the last time a forum was posted or
+ *     commented in.
+ * - forum_id: Forum ID for the current forum. Parent to all items within the
+ *   forums array.
+ *
+ * @see template_preprocess_forum_list()
+ */
+#}
+<table id="forum-{{ forum_id }}" class="table table-bordered table-hover align-middle" role="table" aria-describedby="forum-table-caption">
+  <caption id="forum-table-caption" class="visually-hidden">{{ 'Forum listing table'|t }}</caption>
+  <thead class="table-light">
+    <tr>
+      <th scope="col">{{ 'Forum'|t }}</th>
+      <th scope="col">{{ 'Topics'|t }}</th>
+      <th scope="col">{{ 'Posts'|t }}</th>
+      <th scope="col">{{ 'Last post'|t }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for child_id, forum in forums %}
+      <tr id="forum-list-{{ child_id }}" class="{{ forum.zebra }}">
+        <td {% if forum.is_container %}
+          colspan="4" class="bg-light fw-bold"
+        {% else %}
+          class="forum-list__forum"
+        {% endif %}>
+          {% if forum.depth > 0 %}
+            {% for i in 1..forum.depth %}
+              <div class="ms-{{ i }}">{% endfor %}
+          {% endif %}
+
+          <div class="d-flex align-items-start gap-2">
+            <div class="forum__icon forum-status-{{ forum.icon_class }}" title="{{ forum.icon_title }}">
+              <span class="visually-hidden">{{ forum.icon_title }}</span>
+            </div>
+            <div>
+              <div class="forum__name">
+                <a href="{{ forum.link }}" class="forum__name--link fw-semibold text-decoration-none">{{ forum.label }}</a>
+              </div>
+              {% if forum.description.value %}
+                <div class="forum__description text-muted small">{{ forum.description.value }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+          {% if forum.depth > 0 %}
+            {% for i in 1..forum.depth %}</div>{% endfor %}
+          {% endif %}
+        </td>
+
+        {% if not forum.is_container %}
+          <td class="forum__topics text-center">
+            {{ forum.num_topics }}
+            {% if forum.new_topics %}
+              <br />
+              <a href="{{ forum.new_url }}" class="badge bg-info text-dark">{{ forum.new_text }}</a>
+            {% endif %}
+          </td>
+          <td class="forum__posts text-center">{{ forum.num_posts }}</td>
+          <td class="forum__last-reply text-muted small">{{ forum.last_reply }}</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+

@@ -1,0 +1,8 @@
+name: 'User Data List'
+type: module
+description: 'Fetches user data and lists it without caching.'
+core_version_requirement: ^10
+package: Custom
+version: 1.0
+dependencies:
+  - user

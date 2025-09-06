@@ -1,0 +1,27 @@
+<?php
+
+// use Drupal\Core\StringTranslation\TranslatableMarkup;
+// use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_entity_bundle_field_info().
+ */
+// function custom_computed_field_entity_bundle_field_info(\Drupal\Core\Entity\EntityTypeInterface $entity_type, $bundle) {
+//   $fields = [];
+
+//   // Add the computed field to the 'article' content type.
+//   if ($entity_type->id() === 'node' && $bundle === 'article') {
+//     $fields['custom_computed_field'] = BaseFieldDefinition::create('custom_computed_field')
+//       ->setLabel(new TranslatableMarkup('Custom Computed Field Label'))
+//       ->setDescription(new TranslatableMarkup('This field computes its value automatically.'))
+//       ->setComputed(TRUE) // Mark as computed
+//       ->setDisplayOptions('view', [
+//         'label' => 'above',
+//         'type' => 'string', // Or a custom formatter type
+//         'weight' => 10,
+//       ])
+//       ->setDisplayConfigurable('view', TRUE);
+//   }
+
+//   return $fields;
+// }

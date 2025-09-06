@@ -1,0 +1,7 @@
+json_cache_control.example:
+  path: '/json/cache-example/{id}'
+  defaults:
+    _controller: '\Drupal\json_cache_control\Controller\JsonCacheController::example'
+    _title: 'JSON Cache Example'
+  requirements:
+    _permission: 'access content'

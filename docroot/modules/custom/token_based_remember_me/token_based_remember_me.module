@@ -1,0 +1,169 @@
+use Drupal\Core\Database\Database;
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+
+function token_based_remember_me_user_login($account) {
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $remember = $request->get('token_based_remember_me');
+
+  if ($remember) {
+    $token = Crypt::randomBytesBase64(64);
+    $expires = time() + (60 * 60 * 24 * 30); // 30 days
+
+    $connection = Database::getConnection();
+    $connection->insert('remember_me_tokens')
+      ->fields([
+        'uid' => $account->id(),
+        'token' => $token,
+        'expires' => $expires,
+      ])
+      ->execute();
+
+    setcookie('token_based_remember_me', $token, $expires, '/', '', true, true);
+  }
+}
+
+/**
+* 4. Optional: Revoke Tokens on Logout
+* Use hook_user_logout() to delete the token:
+*
+function remember_me_user_logout($account) {
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  $token = $request->cookies->get('token_based_remember_me');
+
+  if ($token) {
+    Database::getConnection()->delete('remember_me_tokens')
+      ->condition('token', $token)
+      ->execute();
+
+    setcookie('token_based_remember_me', '', time() - 3600, '/', '', true, true);
+  }
+}
+
+
+/**
+* To add a cron job for cleaning up expired "Remember Me" tokens in your Drupal
+* 10 module, you can implement hook_cron() in your remember_me.module
+* file. This ensures that expired tokens are regularly removed from
+* the database, improving security and performance.
+* 1. Implement hook_cron()
+*/
+
+/**
+ * Implements hook_cron().
+ */
+function remember_me_cron() {
+  // To only remove tokens from database.
+  $connection = \Drupal::database();
+  $connection->delete('remember_me_tokens')
+    ->condition('expires', time(), '<')
+    ->execute();
+
+
+  /**
+  * To add logging to your token cleanup cron job in Drupal
+  * 10, you can use Drupal's logging service (logger.factory)
+  * to record how many expired tokens were deleted during each cron run.
+  * Updated hook_cron() with Logging
+  * Update your remember_me.module file:
+  */
+  /**
+  $connection = Database::getConnection();
+
+  // Count expired tokens before deletion
+  $count = $connection->select('remember_me_tokens', 'r')
+    ->condition('expires', time(), '<')
+    ->countQuery()
+    ->execute()
+    ->fetchField();
+
+  // Delete expired tokens
+  $connection->delete('remember_me_tokens')
+    ->condition('expires', time(), '<')
+    ->execute();
+
+  // Log the cleanup
+  \Drupal::logger('remember_me')->info('Cron cleanup removed @count expired remember-me tokens.', ['@count' => $count]);
+**/
+  /**
+  * To add email alerts and Slack notifications for your "Remember Me" token
+  * cleanup cron job in Drupal 10, we’ll enhance your hook_cron() implementation with:
+  * 1. Email alerts using Drupal's mail system.
+  * 2. Slack notifications using a webhook integration.
+  * Step 1: Add Email Alerts
+  *  1.1 Update hook_cron() in remember_me.module:
+  *   use Drupal\Core\Mail\MailManagerInterface;
+  *   use Drupal\Core\Render\Markup;
+  *  Add below code after logger code.
+  *   // Send email alert
+  *   $mailManager = \Drupal::service('plugin.manager.mail');
+  *   $module = 'remember_me';
+  *   $key = 'token_cleanup';
+  *   $to = 'admin@example.com'; // Replace with your admin email
+  *   $params['subject'] = 'Remember Me Token Cleanup Report';
+  *   $params['message'] = "Cron cleanup removed $count expired tokens.";
+  *   $langcode = \Drupal::currentUser()->getPreferredLangcode();
+  *   $send = true;
+  *   $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+  *
+  *  1.2 Define Mail Template in remember_me.module:
+  *   
+  *  /**
+      * Implements hook_mail().
+      */
+  *   function remember_me_mail($key, &$message, $params) {
+  *     switch ($key) {
+  *       case 'token_cleanup':
+  *         $message['subject'] = $params['subject'];
+  *         $message['body'][] = $params['message'];
+  *         break;
+  *     }
+  *   }
+  *
+  * Step 2: Add Slack Notifications
+  *  2.1 Create a Slack Webhook
+  *   Go to your Slack workspace → Apps → Incoming Webhooks
+  *   Create a webhook and copy the URL.
+  *  2.2 Send Slack Message in hook_cron():
+  *   Add this inside your remember_me_cron() function:
+  *      use GuzzleHttp\Client;
+
+  *      $slack_webhook_url = 'https://hooks.slack.com/services/XXX/YYY/ZZZ'; // Replace with your webhook URL
+  *      $client = new Client();
+  *      $client->post($slack_webhook_url, [
+  *        'json' => [
+  *          'text' => "🧹 Cron cleanup removed *$count* expired remember-me tokens.",
+  *        ],
+  *      ]);
+  *
+  *   Testing
+  *   Run drush cron manually.
+  *   Check:
+  *    Email inbox for the alert.
+  *    Slack channel for the notification.
+  *    Drupal logs for confirmation.
+  *
+  *    ✅ Slack Webhook Configuration Guide
+  *     To configure a Slack webhook for sending notifications from your Drupal site:
+  *     🔧 Steps to Create an Incoming Webhook
+  *      Log in to Slack
+  *      Go to your workspace at yourteam.slack.com.
+  *      Create a Webhook Integration
+  *   Visit: Slack Incoming Webhooks 1 (https://api.slack.com/messaging/webhooks)
+  *   Enable Incoming Webhooks
+  *   Click Create App or use an existing one.
+  *   Go to Incoming Webhooks in the app settings.
+  *   Toggle Activate Incoming Webhooks to ON.
+  *   Add a Webhook to a Channel
+  *   Click Add New Webhook to Workspace.
+  *   Choose the channel (e.g., #general) where messages should be posted.
+  *   Click Authorize.
+  *   Copy the Webhook URL
+  *   It will look like:
+  *   https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+  *   Paste this into your Drupal module code where Slack notifications are triggered.
+  */
+}
+
+
+

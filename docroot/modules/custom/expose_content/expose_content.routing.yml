@@ -1,0 +1,6 @@
+expose_content.contents:
+  path: '/api/v1/expose/contents'
+  defaults:
+    _plugin: 'contents_api'
+  requirements:
+    _permission: 'access content'

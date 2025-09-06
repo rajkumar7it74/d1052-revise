@@ -1,0 +1,7 @@
+read_time_field.settings:
+  path: '/admin/config/content/read-time'
+  defaults:
+    _form: '\Drupal\read_time_field\Form\ReadTimeSettingsForm'
+    _title: 'Read Time Settings'
+  requirements:
+    _permission: 'administer site configuration'

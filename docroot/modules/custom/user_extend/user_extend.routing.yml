@@ -1,0 +1,42 @@
+user_extend.user_form:
+  path: '/user-extend/collect-data'
+  defaults:
+    _form: '\Drupal\user_extend\Form\UserDataForm'
+    _title: 'Collect User Data'
+  requirements:
+    _permission: 'access content'
+user_extend.email_check:
+  path: '/email-exist-check'
+  defaults:
+    _controller: '\Drupal\user_extend\Controller\EmailExistCheckController::emailExistCheck'
+  requirements:
+    _access: 'TRUE'
+user_extend.ajax_form:
+  path: '/user-extend/ajax-message-form'
+  defaults:
+    _form: '\Drupal\user_extend\Form\AjaxMessageForm'
+    _title: 'AJAX Message Form'
+  requirements:
+    _permission: 'access content'
+load_more_articles:
+  path: '/load-more-articles'
+  defaults:
+    _controller: '\Drupal\user_extend\Controller\LoadMoreController::load'
+    _title: 'Load More Articles'
+  requirements:
+    _permission: 'access content'
+user_extend.responsive_image_config_form:
+  path: '/admin/config/media/configure-responsive-image'
+  defaults:
+    _form: '\Drupal\user_extend\Form\ResponsiveImageConfigForm'
+    _title: 'Responsive Image Settings'
+  requirements:
+    _permission: 'administer site configuration'
+user_existence_check_form:
+  path: '/admin/config/people/user-existence-check'
+  defaults:
+    _form: '\Drupal\user_extend\Form\UserExistenceCheckForm'
+    _title: 'User Existence Check Settings'
+  requirements:
+    _permission: 'administer site configuration'
+

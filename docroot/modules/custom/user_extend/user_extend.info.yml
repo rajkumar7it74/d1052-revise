@@ -1,0 +1,5 @@
+name: 'Custom Form to Collect User Data'
+type: module
+description: 'A custom form to collect user data and store in DB.'
+core_version_requirement: ^10
+package: custom

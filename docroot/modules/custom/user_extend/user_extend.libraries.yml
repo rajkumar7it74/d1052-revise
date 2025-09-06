@@ -1,0 +1,8 @@
+form_field_validation:
+  version: 1.x
+  js:
+    js/form-field-validation.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+

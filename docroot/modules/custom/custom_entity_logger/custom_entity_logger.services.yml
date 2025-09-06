@@ -1,0 +1,6 @@
+services:
+  custom_entity_logger.subscriber:
+    class: Drupal\custom_entity_logger\EventSubscriber\EntityCreateSubscriber
+    arguments: ['@logger.factory']
+    tags:
+      - { name: event_subscriber }

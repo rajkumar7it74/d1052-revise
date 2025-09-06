@@ -1,0 +1,4 @@
+channels:
+  user_login:
+    label: 'User Login'
+    description: 'Logs related to user login events.'

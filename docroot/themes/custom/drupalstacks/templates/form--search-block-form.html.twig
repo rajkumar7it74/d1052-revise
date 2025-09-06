@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+{% set classes = [
+  'search-form',
+  'search-block-form',
+  'mb-3'
+] %}
+
+<form{{ attributes.addClass(classes) }} role="search" aria-label="{{ 'Site search'|t }}">
+  <div class="input-group">
+    {{ children }}
+    {# If your theme or module doesn't render a submit button, you can add one like this: #}
+    {# 
+    <button class="btn btn-primary" type="submit" aria-label="{{ 'Submit search'|t }}">
+      <i class="bi bi-search"></i>
+    </button>
+    #}
+  </div>
+</form>
+
