@@ -1,0 +1,13 @@
+{#
+  region--messages.html.twig
+  Purpose: A clean, separate region for status messages.
+           - No highlight by default.
+           - Renders ONLY when there are messages (no empty wrapper).
+#}
+{% set rendered = content|render %}
+{% set has_content = rendered|striptags|trim is not empty %}
+{% if has_content %}
+  <section class="container my-2" aria-label="{{ 'Status messages'|t }}">
+    {{ content }}
+  </section>
+{% endif %}

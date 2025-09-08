@@ -1,0 +1,19 @@
+{#
+  region--primary-menu.html.twig
+  Purpose: Remove the Bootstrap 'border-bottom' utility so no bottom border appears.
+#}
+
+{# Strip the border-bottom class coming from markup while preserving other classes #}
+{% set cleaned = attributes.removeClass('border-bottom') %}
+
+{# Ensure region classes are present #}
+{% set cleaned = cleaned.addClass('region','region--primary-menu') %}
+
+{# Ensure an accessible label exists if no label attributes are present #}
+{% if not cleaned.hasAttribute('aria-label') and not cleaned.hasAttribute('aria-labelledby') %}
+  {% set cleaned = cleaned.setAttribute('aria-label', 'Primary menu'|t) %}
+{% endif %}
+
+<div{{ cleaned }}>
+  {{ content }}
+</div>
