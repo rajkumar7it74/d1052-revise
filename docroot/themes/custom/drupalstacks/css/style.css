@@ -112,3 +112,555 @@ section[aria-label="Hero section"] {
     padding: 1rem;
   }
   
+
+
+/* ==========================================================================
+   Medium-ish Palette Refinement
+   Appended on 2025-09-06 18:49:02
+   Notes: overrides only CSS variables from the previous block to improve aesthetics.
+   ========================================================================== */
+:root {
+  --mi-text: #111827;      /* slate-900 */
+  --mi-muted: #6B7280;     /* gray-500 */
+  --mi-muted-2: #4B5563;   /* gray-600 */
+  --mi-border: #E5E7EB;    /* gray-200 */
+  --mi-link: #1a8917;      /* Medium green */
+  --mi-link-hover: #166e13;
+  --mi-accent: #22C55E;    /* green-500 */
+  --mi-accent-2: #0EA5E9;  /* sky-500 */
+  --mi-tag-bg: #F1F5F9;    /* slate-100 */
+  --mi-tag-text: #334155;  /* slate-700 */
+}
+
+/* Optional: Slightly softer shadows */
+:root {
+  --mi-shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --mi-shadow-md: 0 8px 24px rgba(0,0,0,.07);
+}
+
+/* Better focus states for accessibility */
+.node--type-article a:focus,
+.view-blog a:focus,
+.node--type-article .clap-button:focus,
+.node--type-article .bookmark-button:focus {
+  outline: 2px solid var(--mi-accent-2);
+  outline-offset: 2px;
+}
+
+/* Dark mode variable overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mi-text: #E5E7EB;      /* gray-200 */
+    --mi-muted: #9CA3AF;     /* gray-400 */
+    --mi-muted-2: #CBD5E1;   /* slate-300 */
+    --mi-border: #374151;    /* gray-700 */
+    --mi-tag-bg: #111827;    /* slate-900 */
+    --mi-tag-text: #E5E7EB;  /* gray-200 */
+    --mi-link: #34D399;      /* emerald-400 */
+    --mi-link-hover: #10B981;/* emerald-500 */
+    --mi-accent: #10B981;    /* emerald-500 */
+    --mi-accent-2: #38BDF8;  /* sky-400 */
+  }
+  .site-footer { border-top-color: var(--mi-border); }
+}
+
+
+
+
+/* ==========================================================================
+   Local tasks (tabs) refinements - 2025-09-06 19:24:36
+   - Ensure spacing around status messages
+   - Remove any legacy yellow backgrounds
+   - Improve hit area and gap between links
+   ========================================================================== */
+.mi-local-tasks { gap: .25rem; }
+.mi-local-tasks .nav-link { padding: .5rem 1rem; }
+.mi-local-tasks .nav-link.active { font-weight: 600; }
+
+/* Space between messages and tabs/content */
+.messages + .mi-local-tasks,
+.alert + .mi-local-tasks { margin-top: .75rem; }
+
+/* Remove legacy yellow backgrounds that might come from older themes */
+.tabs,
+.tabs.primary,
+.tabs.secondary,
+.mi-local-tasks { background: transparent !important; border: 0; }
+
+/* If your theme printed old .tabs markup somewhere, normalize spacing */
+ul.tabs { list-style: none; margin: 0 0 1rem 0; padding: 0; }
+ul.tabs > li { display: inline-block; margin-right: .25rem; }
+ul.tabs > li > a { display: inline-block; padding: .5rem 1rem; text-decoration: none; }
+
+/* Tighten spacing below tabs before content forms */
+.mi-local-tasks + .region-content,
+.mi-local-tasks + .block-system-main-block { margin-top: .75rem; }
+
+
+
+/* ==========================================================================
+   Highlighted content refinements - 2025-09-06 19:31:08
+   - Tone down Bootstrap .bg-warning sections used as a highlight banner
+   - Add spacing from status messages
+   - Provide a reusable .mi-callout utility
+   ========================================================================== */
+
+/* If markup keeps using bg-warning for the highlighted section, soften it */
+[aria-label="Highlighted content"].bg-warning {
+  background-color: var(--mi-tag-bg) !important;
+  color: var(--mi-text) !important;
+  border: 1px solid var(--mi-border);
+  border-radius: var(--mi-radius);
+}
+[aria-label="Highlighted content"].bg-warning a { color: var(--mi-link); }
+[aria-label="Highlighted content"].bg-warning a:hover { color: var(--mi-link-hover); }
+
+/* Spacing from Drupal/Bootstrap status messages */
+.messages + [aria-label="Highlighted content"],
+.alert + [aria-label="Highlighted content"] {
+  margin-top: .75rem;
+}
+
+/* Reusable neutral callout (preferred vs. bg-warning) */
+.mi-callout {
+  background-color: var(--mi-tag-bg);
+  color: var(--mi-text);
+  border: 1px solid var(--mi-border);
+  border-radius: var(--mi-radius);
+  padding: .75rem 1rem;
+  box-shadow: var(--mi-shadow-sm);
+}
+.mi-callout a { color: var(--mi-link); }
+.mi-callout a:hover { color: var(--mi-link-hover); }
+
+/* In dark mode, variables already adapt; just ensure the border shows */
+@media (prefers-color-scheme: dark) {
+  [aria-label="Highlighted content"].bg-warning,
+  .mi-callout { border-color: var(--mi-border); }
+}
+
+
+
+/* ==========================================================================
+   Region highlighted refinements - 2025-09-06 19:35:34
+   - Neutralize Bootstrap bg-warning on the highlighted region
+   - Keep consistent with theme palette and dark mode
+   ========================================================================== */
+
+/* Target either by region class or aria-labelledby id */
+.region--highlighted,
+[aria-labelledby="region-highlighted-title"] {
+  background-color: var(--mi-tag-bg) !important;
+  color: var(--mi-text) !important;
+  border: 1px solid var(--mi-border);
+  border-radius: var(--mi-radius);
+}
+
+/* Explicitly override if bg-warning is present on the same element */
+.region--highlighted.bg-warning,
+[aria-labelledby="region-highlighted-title"].bg-warning {
+  background-color: var(--mi-tag-bg) !important;
+  color: var(--mi-text) !important;
+}
+
+/* Links inside the region */
+.region--highlighted a,
+[aria-labelledby="region-highlighted-title"] a {
+  color: var(--mi-link);
+}
+.region--highlighted a:hover,
+[aria-labelledby="region-highlighted-title"] a:hover {
+  color: var(--mi-link-hover);
+}
+
+/* Spacing when following Drupal/Bootstrap messages */
+.messages + .region--highlighted,
+.alert + .region--highlighted,
+.messages + [aria-labelledby="region-highlighted-title"],
+.alert + [aria-labelledby="region-highlighted-title"] {
+  margin-top: .75rem;
+}
+
+/* Optional: tone down attention-grabbing animation if present */
+[aria-labelledby="region-highlighted-title"].animate__animated.animate__pulse,
+.region--highlighted.animate__animated.animate__pulse {
+  animation-duration: 1.1s;
+  animation-iteration-count: 1;
+}
+
+/* Dark mode border harmonization */
+@media (prefers-color-scheme: dark) {
+  .region--highlighted,
+  [aria-labelledby="region-highlighted-title"] {
+    border-color: var(--mi-border);
+  }
+}
+\n\n
+/* Optional: ensure highlighted region has no extra chrome */
+.region--highlighted {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+\n\n
+/* ==========================================================================
+   Primary menu region refinements - 2025-09-06 19:52:25
+   - Ensure no bottom border even if utility sneaks in
+   ========================================================================== */
+.region--primary-menu,
+[aria-labelledby="region-primary-menu-title"] {
+  border-bottom: 0 !important;
+  box-shadow: none;
+}
+\n\n
+/* ==========================================================================
+   Hide highlighted region for anonymous users (fallback)
+   Uses Drupal body class 'user-logged-out' so it won't affect logged-in editors.
+   ========================================================================== */
+.user-logged-out [aria-label="Highlighted content"],
+.user-logged-out .region--highlighted { display: none !important; }
+\n\n
+/* ==========================================================================
+   Anonymous hide (corrected for Drupal core) - 2025-09-06 19:59:14
+   Drupal core adds 'user-logged-in' on <body>, not 'user-logged-out'.
+   Hide highlighted region when body is NOT logged-in.
+   ========================================================================== */
+body:not(.user-logged-in) [aria-label="Highlighted content"],
+body:not(.user-logged-in) .region--highlighted { display: none !important; }
+/* Style additions (merge into your theme's style.css) - 2025-09-07 09:02:36 */
+.mi-local-tasks { gap: .25rem; }
+.mi-local-tasks .nav-link { padding: .5rem 1rem; }
+.mi-local-tasks .nav-link.active { font-weight: 600; }
+/* Remove legacy yellow-ish tab backgrounds */
+.tabs, .tabs.primary, .tabs.secondary, .mi-local-tasks { background: transparent !important; border: 0; }
+/* Spacing around messages */
+.messages + .mi-local-tasks, .alert + .mi-local-tasks { margin-top: .75rem; }
+/* No bottom border on primary menu region */
+.region--primary-menu { border-bottom: 0 !important; box-shadow: none; }
+.region--highlighted--custom {
+  background: none !important;
+  border: none !important;
+}
+/* Navbar toggler: hamburger -> X (scoped) */
+.navbar-toggler.mi-has-icons .navbar-toggler-icon { display: none; }
+
+.navbar-toggler.mi-has-icons .mi-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.navbar-toggler.mi-has-icons .mi-close { opacity: 0; transform: rotate(-90deg) scale(.85); }
+.navbar-toggler.mi-has-icons:not(.collapsed) .mi-hamburger { opacity: 0; transform: rotate(90deg) scale(.85); }
+.navbar-toggler.mi-has-icons:not(.collapsed) .mi-close { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* DO NOT hide .navbar-toggler-icon globally elsewhere. */
+
+/* Navbar toggler border normalization */
+:root {
+  --mi-focus-ring: rgba(14,165,233,.25); /* soft blue */
+}
+.navbar .navbar-toggler{
+  background-color: transparent;
+  border-color: var(--mi-border) !important;
+  transition: border-color .2s ease, background-color .2s ease, transform .05s ease;
+}
+.navbar .navbar-toggler:hover{
+  background-color: var(--bg-alt);
+  border-color: var(--mi-border) !important;
+}
+.navbar .navbar-toggler:active{
+  transform: translateY(1px);
+  background-color: transparent;
+  border-color: var(--mi-border) !important;
+}
+.navbar .navbar-toggler:focus{
+  outline: none;
+  box-shadow: 0 0 0 .2rem var(--mi-focus-ring);
+}
+/* When expanded (no .collapsed), keep the same border and bg */
+.navbar .navbar-toggler:not(.collapsed){
+  background-color: transparent;
+  border-color: var(--mi-border) !important;
+}
+
+/* Optional: if you have a dark navbar, use this instead for contrast
+.navbar.navbar-dark .navbar-toggler{
+  border-color: rgba(255,255,255,.25) !important;
+}
+.navbar.navbar-dark .navbar-toggler:focus{
+  box-shadow: 0 0 0 .2rem rgba(255,255,255,.25);
+}
+*/
+/* Navbar toggler: remove border shadow */
+.navbar .navbar-toggler,
+.navbar .navbar-toggler:hover,
+.navbar .navbar-toggler:active,
+.navbar .navbar-toggler:focus,
+.navbar .navbar-toggler:not(.collapsed){
+  box-shadow: none !important;
+}
+/* Disable any custom focus ring we added earlier */
+.navbar .navbar-toggler:focus{
+  outline: none;
+}
+
+/* Make author panel narrower and centered */
+.author-panel--narrow {
+  max-width: 860px;          /* tweak to taste (e.g., 720/800/900px) */
+  margin-inline: auto;       /* center */
+  width: 100%;
+}
+
+/* Optional: slightly wider on very large screens */
+@media (min-width: 1400px) {
+  .author-panel--narrow { max-width: 900px; }
+}
+
+/* Bookmark flag: icon + states (works with Flag module output) */
+.flag.flag-bookmark a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/** 
+  Styles for blog hero section paragraph.
+**/
+.hero-section {
+  position: relative;
+  padding: 4rem 2rem;
+  color: #fff;
+  text-align: center;
+}
+.hero--light { background-color: #f9f9f9; color: #333; }
+.hero--dark { background-color: #222; }
+.hero--overlay .overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.hero-image {
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+@media (max-width: 768px) {
+  .hero-image {
+    height: 250px;
+  }
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+/** 
+  Styles for Blog Content paragraph.
+**/
+.blog-content-wrapper {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.blog-content-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+@media (max-width: 768px) {
+  .blog-content-wrapper {
+    padding: 1rem;
+  }
+  .blog-content-inner {
+    font-size: 1rem;
+  }
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .blog-content-wrapper {
+    background-color: #1e1e1e !important;
+    color: #f0f0f0;
+  }
+}
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+/* Default state: outline bookmark (asks to bookmark) */
+.flag.flag-bookmark a::before {
+  content: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>\
+<path d='M7 3.75h10c.966 0 1.75.784 1.75 1.75v15.5l-7-3.111L5.25 21V5.5c0-.966.784-1.75 1.75-1.75Z'/>\
+</svg>");
+  width: 1em;
+  height: 1.2em;
+  display: inline-block;
+}
+
+/* Bookmarked state: solid bookmark (looks “bookmarked”) */
+.flag.flag-bookmark.action-unflag a::before {
+  content: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>\
+<path d='M7 3.75h10c.966 0 1.75.784 1.75 1.75v15.5l-7-3.111L5.25 21V5.5c0-.966.784-1.75 1.75-1.75Z'/>\
+</svg>");
+}
+
+/* Optional: emphasize bookmarked color/text */
+.flag.flag-bookmark.action-unflag a {
+  color: var(--bs-warning, #ffc107);
+  font-weight: 600;
+}
+
+/* Small hover affordance */
+.flag.flag-bookmark a:hover { text-decoration: underline; }
+
+/* Clap flag: icon + states (works with Flag module) */
+.flag.flag-claps-flag a{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  text-decoration: none;
+  line-height: 1;
+  font-weight: 500;
+}
+
+/* Asking to clap (not clapped yet) */
+.flag.flag-claps-flag.action-flag a::before{
+  content: "👏";
+  font-size: 1.1rem;
+}
+
+/* Asking to unclap (already clapped) */
+.flag.flag-claps-flag.action-unflag a::before{
+  content: "✋";         /* “stop clapping / unclap” */
+  font-size: 1.1rem;
+}
+
+/* Optional emphasis when clapped */
+.flag.flag-claps-flag.action-unflag a{
+  color: var(--bs-success, #198754);
+  font-weight: 600;
+}
+
+/* Small hover affordance */
+.flag.flag-claps-flag a:hover{ text-decoration: underline; }
+
+/* Like flag: icon + states */
+.flag.flag-like-flag a{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  text-decoration: none;
+  line-height: 1;
+  transition: color .2s ease, transform .1s ease;
+}
+
+/* Default (ask to like): outline heart */
+.flag.flag-like-flag.action-flag a::before{
+  content: "♡";               /* outline heart */
+  font-size: 1.1rem;
+}
+
+/* Liked (ask to unlike): solid heart + color */
+.flag.flag-like-flag.action-unflag a{
+  color: var(--bs-danger, #dc3545);
+  font-weight: 600;
+}
+.flag.flag-like-flag.action-unflag a::before{
+  content: "♥";               /* solid heart */
+  font-size: 1.1rem;
+}
+
+/* Nice tap/click feedback */
+.flag.flag-like-flag a:active{ transform: scale(.96); }
+
+/* Hover affordance */
+.flag.flag-like-flag a:hover{ text-decoration: underline; }
+
+/* Like flag: icon + states */
+.flag.flag-like-flag a{
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  text-decoration: none;
+  line-height: 1;
+  transition: color .2s ease, transform .1s ease;
+}
+
+/* Default (ask to like): outline heart */
+.flag.flag-like-flag.action-flag a::before{
+  content: "♡";               /* outline heart */
+  font-size: 1.1rem;
+}
+
+/* Liked (ask to unlike): solid heart + color */
+.flag.flag-like-flag.action-unflag a{
+  color: var(--bs-danger, #dc3545);
+  font-weight: 600;
+}
+.flag.flag-like-flag.action-unflag a::before{
+  content: "♥";               /* solid heart */
+  font-size: 1.1rem;
+}
+
+/* Nice tap/click feedback */
+.flag.flag-like-flag a:active{ transform: scale(.96); }
+
+/* Hover affordance */
+.flag.flag-like-flag a:hover{ text-decoration: underline; }

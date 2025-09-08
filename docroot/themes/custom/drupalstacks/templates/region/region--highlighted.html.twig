@@ -1,0 +1,18 @@
+{# region--highlighted.html.twig
+  Only render when region has content; no full-bleed styling; inner .container for width
+#}
+{% set clean = attributes
+  .removeClass('bg-warning','bg-warning-subtle','text-dark','py-2','py-3','shadow-sm','animate__animated','animate__pulse')
+  .addClass('region','region--highlighted', 'container', 'region--highlighted--custom')
+%}
+{% set rendered = content|render %}
+{% if rendered|striptags|trim is not empty %}
+  {% if not clean.hasAttribute('aria-label') and not clean.hasAttribute('aria-labelledby') %}
+    {% set clean = clean.setAttribute('aria-label', 'Highlighted content'|t) %}
+  {% endif %}
+  <div{{ clean }}>
+    <div class="container my-2">
+      {{ content }}
+    </div>
+  </div>
+{% endif %}

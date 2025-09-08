@@ -1,0 +1,32 @@
+<div class="hero-section {{ bg_class }}">
+  {% if featured_image %}
+    <div class="hero-image" style="background-image: url('{{ featured_image }}');">
+      {% if background_style == 'overlay' %}
+        <div class="overlay"></div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="hero-content" data-aos="fade-up">
+    {% if title %}
+      <h1 class="hero-title">{{ title }}</h1>
+    {% endif %}
+    {% if subtitle %}
+      <p class="hero-subtitle">{{ subtitle }}</p>
+    {% endif %}
+    {% if video_embed %}
+      <div class="hero-video">
+        <div class="video-wrapper">
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/{{video_embed}}"
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

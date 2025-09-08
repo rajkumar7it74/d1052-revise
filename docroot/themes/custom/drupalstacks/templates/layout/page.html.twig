@@ -1,157 +1,62 @@
 {#
-/**
- * @file
- * Olivero's theme implementation to display a single page.
- *
- * The doctype, html, head and body tags are not in this template. Instead they
- * can be found in the html.html.twig template normally located in the
- * core/modules/system directory.
- *
- * Available variables:
- *
- * General utility variables:
- * - base_path: The base URL path of the Drupal installation. Will usually be
- *   "/" unless you have installed Drupal in a sub-directory.
- * - is_front: A flag indicating if the current page is the front page.
- * - logged_in: A flag indicating if the user is registered and signed in.
- * - is_admin: A flag indicating if the user has permission to access
- *   administration pages.
- *
- * Site identity:
- * - front_page: The URL of the front page. Use this instead of base_path when
- *   linking to the front page. This includes the language domain or prefix.
- *
- * Page content (in order of occurrence in the default page.html.twig):
- * - node: Fully loaded node, if there is an automatically-loaded node
- *   associated with the page and the node ID is the second argument in the
- *   page's path (e.g. node/12345 and node/12345/revisions, but not
- *   comment/reply/12345).
- *
- * Regions:
- * - page.header: Items for the header region.
- * - page.highlighted: Items for the highlighted region.
- * - page.primary_menu: Items for the primary menu region.
- * - page.secondary_menu: Items for the secondary menu region.
- * - page.content: The main content of the current page.
- * - page.sidebar: Items for the first sidebar.
- * - page.featured_bottom_first: Items for the first featured bottom region.
- * - page.featured_bottom_second: Items for the second featured bottom region.
- * - page.footer_first: Items for the first footer column.
- * - page.footer_second: Items for the second footer column.
- * - page.breadcrumb: Items for the breadcrumb region.
- * - page.social: Items for the social region.
- *
- * @see template_preprocess_page()
- * @see html.html.twig
- */
+  Minimal page.html.twig override
+  Goal:
+    - Print the "highlighted" region (your custom callouts), letting region--highlighted.html.twig decide wrappers.
+    - Print the "messages" region (Status messages block) ABOVE content, only when it exists.
+    - Avoid adding extra wrappers/colors here; let region templates control visuals.
 #}
 
-{# page.html.twig #}
-
-{# Hero Section (Full Width) #}
-{% if page.hero %}
-  <section class="container-fluid bg-light text-center py-5 shadow-sm" aria-label="Hero section">
-    {{ page.hero }}
-  </section>
-{% endif %}
-
-{# Header Section #}
+{# Header #}
 {% if page.header %}
-  <header class="container bg-primary text-white py-3" aria-label="Site header">
-    {{ page.header }}
-  </header>
+  {{ page.header }}
 {% endif %}
 
-{# Navigation Menus #}
-{% if page.primary_menu or page.secondary_menu %}
-  <nav class="container my-3" aria-label="Main navigation">
-    <div class="row">
-      {% if page.primary_menu %}
-        <div class="col-md-6">
-          {{ page.primary_menu }}
-        </div>
-      {% endif %}
-      {% if page.secondary_menu %}
-        <div class="col-md-6 text-end">
-          {{ page.secondary_menu }}
-        </div>
-      {% endif %}
-    </div>
-  </nav>
+{# Primary menu #}
+{% if page.primary_menu %}
+  {{ page.primary_menu }}
 {% endif %}
 
-{# Highlighted Section #}
+{# Highlighted region (no wrapper here; region template handles it) #}
 {% if page.highlighted %}
-  <section class="container bg-warning text-dark py-2 shadow-sm" aria-label="Highlighted content">
-    {{ page.highlighted }}
-  </section>
+  {{ page.highlighted }}
 {% endif %}
 
-{# Breadcrumbs #}
-{% if page.breadcrumb %}
-  <nav class="container my-2" aria-label="Breadcrumb">
-    {{ page.breadcrumb }}
-  </nav>
+{# Status messages region (no wrapper here; region--messages handles it and only renders when non-empty) #}
+{% if page.messages %}
+  {{ page.messages }}
 {% endif %}
 
-{# Social Bar #}
-{% if page.social %}
-  <section class="container-fluid bg-light py-2 text-center" aria-label="Social media links">
-    {{ page.social }}
-  </section>
+{# Breadcrumb (optional) #}
+{% if breadcrumb %}
+  {{ breadcrumb }}
 {% endif %}
 
-{# Status Messages #}
-{% if page.status_messages %}
-  <section class="container my-3" aria-live="polite" aria-atomic="true">
-    <div class="alert-area">
-      {{ page.status_messages }}
-    </div>
-  </section>
-{% endif %}
+{# Main content area #}
+<main role="main" class="container my-3">
+  <a id="main-content" tabindex="-1"></a>
 
-{# Content Above #}
-{% if page.content_above %}
-  <section class="container my-3" aria-label="Content above main">
-    {{ page.content_above }}
-  </section>
-{% endif %}
-
-{# Main Content Area #}
-<main class="container my-4" id="main-content" aria-label="Main content">
   <div class="row">
-    {% if page.sidebar %}
-      <aside class="col-md-4" aria-label="Sidebar">
-        {{ page.sidebar }}
+    {# Sidebar first #}
+    {% if page.sidebar_first %}
+      <aside class="col-md-3" role="complementary">
+        {{ page.sidebar_first }}
       </aside>
-      <section class="col-md-8">
-        {{ page.content }}
-      </section>
-    {% else %}
-      <section class="col-md-12">
-        {{ page.content }}
-      </section>
+    {% endif %}
+
+    <section class="{% if page.sidebar_first and page.sidebar_second %}col-md-6{% elseif page.sidebar_first or page.sidebar_second %}col-md-9{% else %}col-12{% endif %}" role="region" aria-label="{{ 'Content'|t }}">
+      {{ page.content }}
+    </section>
+
+    {# Sidebar second #}
+    {% if page.sidebar_second %}
+      <aside class="col-md-3" role="complementary">
+        {{ page.sidebar_second }}
+      </aside>
     {% endif %}
   </div>
 </main>
 
-{# Content Below #}
-{% if page.content_below %}
-  <section class="container my-3" aria-label="Content below main">
-    {{ page.content_below }}
-  </section>
-{% endif %}
-
-{# Footer Top #}
-{% if page.footer_top %}
-  <footer class="container-fluid bg-secondary text-white py-3" aria-label="Footer top">
-    {{ page.footer_top }}
-  </footer>
-{% endif %}
-
-{# Footer Bottom #}
-{% if page.footer_bottom %}
-  <footer class="container-fluid bg-dark text-white py-3" aria-label="Footer bottom">
-    {{ page.footer_bottom }}
-  </footer>
+{# Footer #}
+{% if page.footer %}
+  {{ page.footer }}
 {% endif %}

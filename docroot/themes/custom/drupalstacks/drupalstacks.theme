@@ -3,6 +3,9 @@
 use Drupal\Core\Render\Element;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Render\Markup;
+use Drupal\node\NodeInterface;
+use Drupal\Component\Utility\Html;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_html().
@@ -10,8 +13,194 @@ use Drupal\Core\Render\Markup;
 function drupalstacks_preprocess_html(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof \Drupal\node\NodeInterface) {
-    $variables['head_title'] = Markup::create($node->label());
+    $variables['head_title'] = Html::escape($node->label());
   }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function drupalstacks_preprocess_node(array &$variables) {
+  // Ensure we're on a node.
+  if (empty($variables['node']) || !$variables['node'] instanceof NodeInterface) {
+    return;
+  }
+
+  $node = $variables['node'];
+  $bundle = $node->bundle();
+  $target_bundles = ['story', 'blog'];
+  if (!in_array($bundle, $target_bundles, true)) {
+    return;
+  }
+  if (($variables['view_mode'] ?? '') !== 'full') {
+    return;
+  }
+
+  // Prefer a dedicated media/image field: field_featured_image.
+  if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
+    $image_item = NULL;
+    $file = NULL;
+
+    // CASE A: field_featured_image is an Image field (File on node).
+    if ($node->get('field_featured_image')->first()->entity && $node->get('field_featured_image')->first()->entity->getEntityTypeId() === 'file') {
+      $image_item = $node->get('field_featured_image')->first();
+      $file = $image_item->entity;
+    }
+
+    // CASE B: field_featured_image is a Media reference (Image media).
+    if (!$file) {
+      $media = $node->get('field_featured_image')->entity ?? NULL;
+      if ($media && $media->hasField('field_media_image') && !$media->get('field_media_image')->isEmpty()) {
+        $image_item = $media->get('field_media_image')->first();
+        $file = $image_item->entity;
+      }
+    }
+
+    if ($file) {
+      $uri = $file->getFileUri();
+      // Use the field-provided alt if available; fall back to node title.
+      $alt = $image_item->alt ?? $node->label();
+
+      // IMPORTANT: Create a Responsive image style named "hero_card" in the UI
+      // (Configuration → Media → Responsive image styles) mapped to your breakpoints.
+      $variables['featured_picture'] = [
+        '#theme' => 'image_style',
+        '#style_name' => 'story_hero_image',      // <-- change to your style machine name
+        '#uri' => $uri,
+        '#alt' => $alt,
+        // These attributes will go on the <img> inside the <picture>.
+        '#attributes' => [
+          'class' => ['card-img-top', 'img-fluid', 'w-100'],
+          'loading' => 'lazy',
+          'decoding' => 'async',
+        ],
+      ];
+
+      // Prevent the field from being printed again in {{ content }}.
+      unset($variables['content']['field_featured_image']);
+    }
+    // If the content type has a comment field, prevent default rendering in {{ content }}.
+    // Adjust field name if yours isn’t 'comment'.
+    if (isset($variables['content']['comment'])) {
+      // Either unset or gate with #access. #access keeps cache contexts sane.
+      $variables['content']['comment']['#access'] = FALSE;
+    }
+  }
+
+  // Also useful: a safe ISO date for <time datetime="..."> in Twig.
+  if (method_exists($node, 'getCreatedTime')) {
+    $variables['created_iso'] = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'custom', \DateTime::ATOM);
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function drupalstacks_preprocess_block(array &$vars) {
+  // Only target your specific block; adjust to your block’s plugin/delta as needed.
+  // Example: if you created a custom block “Author info”, inspect Twig debug suggestions.
+  // Remove this if-block to allow on any block context where a node is present.
+  // if ($vars['plugin_id'] !== 'YOUR_BLOCK_PLUGIN_ID') { return; }
+
+  // Get node from route if on a node page.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  if ($vars['plugin_id'] === 'views_block:author-blog_author_block' || $vars['elements']['#derivative_plugin_id'] === 'author-blog_author_block') {
+    // Only target the "Author info" block from the "Author blog" view.
+    // Author basics.
+    $account = $node->getOwner();
+    $vars['author_name'] = $account->getDisplayName();
+    $vars['author_url']  = $account->toUrl()->toString();
+
+    // Optional bio: adjust to your user field, e.g. field_bio.
+    if ($account->hasField('field_author_bio') && !$account->get('field_author_bio')->isEmpty()) {
+      $vars['author_bio'] = $account->get('field_author_bio')->value;
+    }
+
+    // Picture: try user picture; fall back to featured image on node.
+    if ($account->user_picture && !$account->user_picture->isEmpty()) {
+      $file = $account->user_picture->entity;
+      if ($file) {
+        $vars['author_picture_url'] = \Drupal::service('file_url_generator')
+        ->generateAbsoluteString($file->getFileUri());
+      }
+    }
+
+    // Published date.
+    $timestamp = $node->getCreatedTime();
+    $vars['published_iso']   = \Drupal::service('date.formatter')->format($timestamp, 'custom', \DateTime::ATOM);
+    $vars['published_date']  = \Drupal::service('date.formatter')->format($timestamp, 'custom', 'F j, Y');
+  
+    // Build a render array for the comment field (label hidden).
+    // Adjust the field name if yours isn’t 'comment'.
+    $bundle = $node->bundle();
+    if ($bundle == 'story') {
+      if ($node->hasField('field_story_comments')) {
+        $vars['author_block_comments'] = $node->get('field_story_comments')->view([
+          'label' => 'hidden',
+        ]);
+      }
+    }
+  }
+}
+
+function drupalstacks_preprocess_paragraph__blog_hero_section(&$variables) {
+  $paragraph = $variables['paragraph'];
+  // Get field values
+  $variables['title'] = $paragraph->get('field_blog_title')->value ?? '';
+  $variables['subtitle'] = $paragraph->get('field_blog_subtitle')->value ?? '';
+  $variables['featured_image'] = '';
+  $variables['video_embed'] = $paragraph->get('field_blog_video_embed')->value ?? '';
+  $variables['background_style'] = $paragraph->get('field_blog_background_style')->value ?? 'light';
+
+  // Load image URL
+  if (!$paragraph->get('field_blog_featured_image')->isEmpty()) {
+    $image = $paragraph->get('field_blog_featured_image')->entity;
+    if ($image) {
+      $variables['featured_image'] = \Drupal::service('file_url_generator')
+      ->generateAbsoluteString($image->getFileUri());
+    }
+  }
+  if (!$paragraph->get('field_blog_featured_image')->isEmpty()) {
+    $image = $paragraph->get('field_blog_featured_image')->entity;
+    $uri = $image->getFileUri();
+
+    // Responsive image styles
+    $variables['hero_image_webp'] = [
+      'small' => ImageStyle::load('hero_webp_small')->buildUrl($uri),
+      'medium' => ImageStyle::load('hero_webp_medium')->buildUrl($uri),
+      'large' => ImageStyle::load('hero_webp_large')->buildUrl($uri),
+    ];
+    $variables['hero_image_jpeg'] = [
+      'small' => ImageStyle::load('hero_jpeg_small')->buildUrl($uri),
+      'medium' => ImageStyle::load('hero_jpeg_medium')->buildUrl($uri),
+      'large' => ImageStyle::load('hero_jpeg_large')->buildUrl($uri),
+    ];
+
+    $variables['hero_image_alt'] = $image->get('field_image_alt')->value ?? '';
+  }
+  // Add CSS class based on background style
+  $variables['bg_class'] = 'hero--' . $variables['background_style'];
+}
+
+function drupalstacks_preprocess_paragraph__blog_content(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $alignment = $paragraph->get('field_blog_body_alignment')->value;
+  $variables['alignment_class'] = 'text-' . $alignment;
+  $background_color = $paragraph->get('field_body_background_color')->value;
+  $variables['background_style'] = 'background-color: ' . $background_color . ';';
+  $body = $paragraph->get('field_blog_body')->view([
+    'label' => 'hidden',
+  ]);
+  $variables['wrapper_class'] = 'blog-content-wrapper';
+  // Sanitize and pass to Twig
+  $variables['blog_body_alignment'] = $alignment ?: 'left';
+  $variables['blog_body_background_color'] = $background_color ?: '#ffffff';
+  $variables['blog_body'] = $body;
+
 }
 
 /**

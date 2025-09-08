@@ -1,33 +1,17 @@
 {#
-/**
- * @file
- * Olivero theme implementation to display primary and secondary local tasks.
- *
- * Available variables:
- * - primary: HTML list items representing primary tasks.
- * - secondary: HTML list items representing secondary tasks.
- *
- * Each item in these variables (primary and secondary) can be individually
- * themed in menu-local-task.html.twig.
- *
- * @ingroup themeable
- */
+  Bootstrap 5-styled local tasks (primary/secondary tabs)
+  File: menu-local-tasks.html.twig
 #}
-
 {% if primary %}
-  <h2 id="primary-tabs-title" class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <nav role="navigation" aria-labelledby="primary-tabs-title" class="mb-3">
-    <ul class="nav nav-tabs" role="tablist">
-      {{ primary }}
-    </ul>
-  </nav>
+  <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
+  <ul class="nav nav-tabs mi-local-tasks mb-3" role="tablist">
+    {{ primary }}
+  </ul>
 {% endif %}
 
 {% if secondary %}
-  <h2 id="secondary-tabs-title" class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  <nav role="navigation" aria-labelledby="secondary-tabs-title">
-    <ul class="nav nav-pills" role="tablist">
-      {{ secondary }}
-    </ul>
-  </nav>
+  <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
+  <ul class="nav nav-pills mi-local-tasks mb-3" role="tablist">
+    {{ secondary }}
+  </ul>
 {% endif %}

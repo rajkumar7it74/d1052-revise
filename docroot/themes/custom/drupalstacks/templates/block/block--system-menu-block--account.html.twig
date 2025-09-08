@@ -1,0 +1,11 @@
+{# block--system-menu-block--account.html.twig (specific to Account menu) #}
+{% set navbar_id = 'navbar-account' %}
+<nav{{ attributes.addClass('navbar','navbar-expand-lg','navbar-light').removeClass('block') }} role="navigation" aria-label="{{ 'Account'|t }}">
+  <div class="container">
+    <div class="collapse navbar-collapse show" id="{{ navbar_id }}">
+      <ul class="navbar-nav ms-lg-auto">
+        {{ content }}
+      </ul>
+    </div>
+  </div>
+</nav>

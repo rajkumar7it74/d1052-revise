@@ -1,0 +1,41 @@
+{# block--system-menu-block.html.twig (generic) #}
+{% set navbar_id = 'navbar-' ~ (attributes.id ? attributes.id|clean_id : plugin_id|clean_id) %}
+{% set nav_label = (configuration.label|render|striptags|trim) ?: 'Site navigation' %}
+<nav{{ attributes.addClass('navbar','navbar-expand-lg','navbar-light').removeClass('block') }} role="navigation" aria-label="{{ nav_label }}">
+  <div class="container">
+    
+    
+    <button class="navbar-toggler collapsed mi-has-icons"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#{{ navbar_id }}"
+            aria-controls="{{ navbar_id }}"
+            aria-expanded="false"
+            aria-label="{{ 'Toggle navigation'|t }}">
+      <span class="navbar-toggler-icon"></span>
+      <svg class="mi-icon mi-hamburger" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <line x1="4" y1="7" x2="20" y2="7" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="17" x2="20" y2="17" />
+      </svg>
+      <svg class="mi-icon mi-close" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+        <line x1="5" y1="5" x2="19" y2="19" />
+        <line x1="19" y1="5" x2="5" y2="19" />
+      </svg>
+      <span class="visually-hidden">{{ 'Toggle navigation'|t }}</span>
+    </button>
+    
+
+    <div class="collapse navbar-collapse" id="{{ navbar_id }}">
+      {{ content }}
+      <ul class="navbar-nav ms-lg-auto">
+        {% if not logged_in %}
+          <li class="nav-item"><a class="nav-link" href="{{ path('user.login') }}">{{ 'Log in'|t }}</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{{ path('entity.user.canonical', {'user': user.id}) }}">{{ 'My account'|t }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ path('user.logout') }}">{{ 'Log out'|t }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
