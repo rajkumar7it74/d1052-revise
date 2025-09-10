@@ -1,0 +1,28 @@
+<div class="faq-accordion {{ accordion_style_class }}">
+  {% for item in faq_items %}
+    <div class="faq-item">
+      <h3 class="faq-question-header">
+        <button
+          class="faq-toggle"
+          aria-expanded="false"
+          aria-controls="faq-answer-{{ item.id }}"
+          id="faq-button-{{ item.id }}"
+          onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'); document.getElementById('faq-answer-{{ item.id }}').classList.toggle('open');"
+        >
+          {{ item.question }}
+          <span class="faq-icon">+</span>
+        </button>
+      </h3>
+
+      <div
+        id="faq-answer-{{ item.id }}"
+        class="faq-answer"
+        role="region"
+        aria-labelledby="faq-button-{{ item.id }}"
+        aria-hidden="true"
+      >
+        {{ item.answer }}
+      </div>
+    </div>
+  {% endfor %}
+</div>

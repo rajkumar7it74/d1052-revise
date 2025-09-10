@@ -5,6 +5,31 @@
         <div class="overlay"></div>
       {% endif %}
     </div>
+    <picture>
+      <source
+        srcset="{{ hero_image_webp.small }} 480w,
+                {{ hero_image_webp.medium }} 768w,
+                {{ hero_image_webp.large }} 1200w"
+        sizes="(max-width: 480px) 100vw,
+               (max-width: 768px) 100vw,
+               1200px"
+        type="image/webp">
+    
+      <source
+        srcset="{{ hero_image_jpeg.small }} 480w,
+                {{ hero_image_jpeg.medium }} 768w,
+                {{ hero_image_jpeg.large }} 1200w"
+        sizes="(max-width: 480px) 100vw,
+               (max-width: 768px) 100vw,
+               1200px"
+        type="image/jpeg">
+    
+      <img src="{{ hero_image_jpeg.large }}"
+           alt="{{ hero_image_alt }}"
+           loading="lazy"
+           class="hero-image">
+    </picture>
+    
   {% endif %}
 
   <div class="hero-content" data-aos="fade-up">

@@ -1,0 +1,17 @@
+(function ($, Drupal) {
+  Drupal.behaviors.slickInit = {
+    attach: function (context, settings) {
+      once('slickInit', '.hero-image-gallery', context).forEach(function (el) {
+        $(el).slick({
+          dots: true,
+          arrows: true,
+          autoplay: true,
+          autoplaySpeed: 4000,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        });
+      });
+    }
+  };
+})(jQuery, Drupal);

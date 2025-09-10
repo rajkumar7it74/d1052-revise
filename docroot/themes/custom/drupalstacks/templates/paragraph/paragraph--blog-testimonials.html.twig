@@ -1,0 +1,35 @@
+<div class="testimonial-block {{ testimonial_style_class }} {{ tag_class_list }} {% if is_featured %}testimonial-featured{% endif %}" style="background-color: {{ background_color }};">
+  <div class="testimonial-wrapper">
+    <div class="testimonial-text">“{{ testimonial_text }}”</div>
+
+    <div class="testimonial-author">
+      {% if author_image %}
+        <img class="author-avatar" src="{{ author_image }}" alt="{{ author_name }}" />
+      {% endif %}
+      <div class="author-details">
+        <div class="author-name">{{ author_name }}</div>
+        {% if author_title %}
+          <div class="author-title">{{ author_title }}</div>
+        {% endif %}
+        {% if testimonial_date %}
+          <div class="testimonial-date">{{ testimonial_date }}</div>
+        {% endif %}
+        {% if rating %}
+          <div class="testimonial-rating">
+            {% for i in 1..rating %}
+              ★
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if testimonial_tags %}
+      <div class="testimonial-tags">
+        {% for tag in testimonial_tags %}
+          <span class="testimonial-tag">{{ tag.label }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

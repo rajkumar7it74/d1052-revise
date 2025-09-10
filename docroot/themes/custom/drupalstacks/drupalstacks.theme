@@ -6,6 +6,8 @@ use Drupal\Core\Render\Markup;
 use Drupal\node\NodeInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
 
 /**
  * Implements hook_preprocess_html().
@@ -160,27 +162,21 @@ function drupalstacks_preprocess_paragraph__blog_hero_section(&$variables) {
   if (!$paragraph->get('field_blog_featured_image')->isEmpty()) {
     $image = $paragraph->get('field_blog_featured_image')->entity;
     if ($image) {
+      $uri = $image->getFileUri();
+      // Responsive image styles
+      $variables['hero_image_webp'] = [
+        'small' => ImageStyle::load('hero_image_webp_small')->buildUrl($uri),
+        'medium' => ImageStyle::load('hero_image_webp_medium')->buildUrl($uri),
+        'large' => ImageStyle::load('hero_image_webp_large')->buildUrl($uri),
+      ];
+      $variables['hero_image_jpeg'] = [
+        'small' => ImageStyle::load('hero_image_jpeg_small')->buildUrl($uri),
+        'medium' => ImageStyle::load('hero_image_jpeg_medium')->buildUrl($uri),
+        'large' => ImageStyle::load('hero_image_jpeg_large')->buildUrl($uri),
+      ];
       $variables['featured_image'] = \Drupal::service('file_url_generator')
-      ->generateAbsoluteString($image->getFileUri());
+      ->generateAbsoluteString($uri);
     }
-  }
-  if (!$paragraph->get('field_blog_featured_image')->isEmpty()) {
-    $image = $paragraph->get('field_blog_featured_image')->entity;
-    $uri = $image->getFileUri();
-
-    // Responsive image styles
-    $variables['hero_image_webp'] = [
-      'small' => ImageStyle::load('hero_webp_small')->buildUrl($uri),
-      'medium' => ImageStyle::load('hero_webp_medium')->buildUrl($uri),
-      'large' => ImageStyle::load('hero_webp_large')->buildUrl($uri),
-    ];
-    $variables['hero_image_jpeg'] = [
-      'small' => ImageStyle::load('hero_jpeg_small')->buildUrl($uri),
-      'medium' => ImageStyle::load('hero_jpeg_medium')->buildUrl($uri),
-      'large' => ImageStyle::load('hero_jpeg_large')->buildUrl($uri),
-    ];
-
-    $variables['hero_image_alt'] = $image->get('field_image_alt')->value ?? '';
   }
   // Add CSS class based on background style
   $variables['bg_class'] = 'hero--' . $variables['background_style'];
@@ -200,8 +196,323 @@ function drupalstacks_preprocess_paragraph__blog_content(&$variables) {
   $variables['blog_body_alignment'] = $alignment ?: 'left';
   $variables['blog_body_background_color'] = $background_color ?: '#ffffff';
   $variables['blog_body'] = $body;
-
 }
+
+function drupalstacks_preprocess_paragraph__call_to_action(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  // CTA text (formatted)
+  $variables['cta_text'] = $paragraph->get('field_cta_text')->view();
+  // Button label and URL
+  $variables['cta_button_label'] = $paragraph->get('field_cta_button_label')->value ?? 'Click Here';
+  $variables['cta_button_url'] = $paragraph->get('field_cta_button_url')->value ?? '#';
+  // CTA style (e.g., primary, secondary, outline, danger)
+  $style = $paragraph->get('field_cta_style')->value ?? 'primary';
+  $variables['cta_style_class'] = 'cta-button--' . $style;
+}
+
+function drupalstacks_preprocess_paragraph__hero_image_gallery(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  // Get layout style
+  $layout = $paragraph->get('field_gallery_layout_style')->value ?? 'carousel';
+  $variables['gallery_layout_class'] = 'gallery--' . $layout;
+
+  // Theme class
+  $theme = $paragraph->get('field_gallery_theme')->value ?? 'light';
+  $variables['gallery_theme_class'] = 'gallery-theme--' . $theme;
+
+  // Autoplay toggle
+  $variables['gallery_autoplay'] = $paragraph->get('field_gallery_autoplay')->value ?? FALSE;
+
+  // Prepare image gallery array
+  $medias = $paragraph->get('field_blog_media_images')->referencedEntities();
+  $gallery_items = [];
+  foreach ($medias as $media) {
+    $alt = $media->get('field_image_alt')->value ?? '';
+    $caption = $media->get('field_image_caption')->value ?? '';
+    if ($media && $media->bundle() === 'image') {
+      $file = $media->get('field_media_image')->entity;
+      if ($file) {
+        $uri = $file->getFileUri();
+        $gallery_items[] = [
+          'webp' => ImageStyle::load('gallery_webp_large')->buildUrl($uri),
+          'jpeg' => ImageStyle::load('gallery_jpeg_large')->buildUrl($uri),
+          'alt' => $alt,
+          'caption' => $caption,
+        ];
+      }
+    }
+  }
+  $variables['gallery_items'] = $gallery_items;
+  $variables['#attached']['library'][] = 'drupalstacks/slick-init';
+}
+
+function drupalstacks_preprocess_paragraph__related_articles(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  // Display style class
+  $style = $paragraph->get('field_display_style')->value ?? 'grid';
+  $variables['display_style_class'] = 'related-articles--' . $style;
+
+  // Auto-tagged toggle
+  $variables['is_auto_tagged'] = $paragraph->get('field_auto_tagged')->value ?? FALSE;
+
+  // Get manually linked articles
+  $linked_nodes = $paragraph->get('field_manual_links')->referencedEntities();
+  $articles = [];
+
+  foreach ($linked_nodes as $node) {
+    if ($node instanceof Node && $node->isPublished()) {
+      $article = [
+        'title' => $node->getTitle(),
+        'url' => $node->toUrl()->toString(),
+        'body' => NULL,
+        'image' => NULL,
+        'author_name' => NULL,
+        'author_image' => NULL,
+        'published_date' => NULL,
+        'claps' => rand(10, 100),
+        'responses' => rand(0, 20),
+      ];
+      // Check and render body field
+      if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
+        $full_text = $node->get('body')->value;
+        $plain_text = Html::decodeEntities(strip_tags($full_text));
+        $trimmed = mb_substr($plain_text, 0, 200);
+        $body_text = $trimmed . '… <a href="' . $node->toUrl()->toString() . '">Read more</a>';
+        //$article['body'] = $node->get('body')->view(['label' => 'hidden', 'type' => 'text_default']);
+        $article['body'] = [
+          '#markup' => $body_text,
+          '#allowed_tags' => ['a'],
+        ];
+      }
+
+      $image_url = get_blog_paragraph_hero_image_url($node);
+      // Check and render image field 
+      if (!empty($image_url)) {
+        $styled_url = ImageStyle::load('hero_image_webp_small')->buildUrl($image_url);
+        $article['image'] = $styled_url;
+      }
+      else {
+        if ($node->hasField('field_fallback_image') && !$node->get('field_fallback_image')->isEmpty()) {
+          $image = $node->get('field_fallback_image')->entity;
+          $uri = $image->getFileUri();
+          $article['image'] = ImageStyle::load('hero_image_webp_small')->buildUrl($uri);
+        }
+      }
+
+      $author = $node->getOwner();
+      $article['author_name'] = $author->getDisplayName();
+      // Optional: Get author's profile image
+      if ($author->hasField('user_picture') && !$author->get('user_picture')->isEmpty()) {
+        $image = $author->get('user_picture')->entity;
+        if ($image) {
+          $uri = $image->getFileUri();
+          $article['author_image'] = ImageStyle::load('avatar_circle_smallest')->buildUrl($uri);
+        }
+      }
+      $article['published_date']  = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'custom', 'M d, Y');
+      $articles[] = $article;
+    }
+  }
+  $variables['related_articles'] = $articles;
+  $variables['#attached']['library'][] = 'drupalstacks/popup-menu';
+}
+
+function get_blog_paragraph_hero_image_url(Node $node) {
+  // Check if node has the paragraph field
+  if ($node->hasField('field_blog_paragraph') && !$node->get('field_blog_paragraph')->isEmpty()) {
+    $paragraphs = $node->get('field_blog_paragraph')->referencedEntities();
+
+    foreach ($paragraphs as $paragraph) {
+      if ($paragraph instanceof Paragraph && $paragraph->bundle() === 'blog_hero_section') {
+        // Check if paragraph has the image field
+        if ($paragraph->hasField('field_blog_featured_image') && !$paragraph->get('field_blog_featured_image')->isEmpty()) {
+          $image = $paragraph->get('field_blog_featured_image')->entity;
+          if ($image) {
+            return $image->getFileUri();
+          }
+        }
+      }
+    }
+  }
+
+  return NULL;
+}
+
+function drupalstacks_preprocess_paragraph__blog_quote_testimonial(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $author_name = $paragraph->get('field_blog_author_name')->value ?? '';
+  $quote_text = '';//$paragraph->get('field_quote_text')->value ?? '';
+  $quote_style = $paragraph->get('field_blog_quote_style')->value ?? 'default';
+  $author_image_url = '';
+
+  if ($paragraph->hasField('field_blog_author_image') && !$paragraph->get('field_blog_author_image')->isEmpty()) {
+    $image = $paragraph->get('field_blog_author_image')->entity;
+    if ($image) {
+      $uri = $image->getFileUri();
+      $author_image_url = ImageStyle::load('avatar_circle_medium')->buildUrl($uri);
+    }
+  }
+
+  $variables['author_name'] = $author_name;
+  $variables['quote_text'] = $quote_text;
+  $variables['quote_style_class'] = 'quote-style--' . $quote_style;
+  $variables['author_image'] = $author_image_url;
+}
+
+/**
+ * NEW QUOTE IMplementation
+ */
+function drupalstacks_preprocess_paragraph__blog_quote(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  // Core fields
+  $variables['quote_text'] = $paragraph->get('field_quote_text')->value ?? '';
+  $variables['quote_author'] = $paragraph->get('field_quote_author')->value ?? '';
+  $variables['quote_author_title'] = $paragraph->get('field_author_title')->value ?? '';
+  $variables['quote_date'] = $paragraph->get('field_quote_date')->value ?? '';
+  $variables['quote_source'] = $paragraph->get('field_quote_source')->value ?? '';
+  $variables['quote_tags'] = $paragraph->get('field_quote_tags')->referencedEntities();
+
+  // Style class
+  $style = $paragraph->get('field_quote_style')->value ?? 'default';
+  $variables['quote_style_class'] = 'quote-style--' . $style;
+
+  // Featured flag
+  $variables['is_featured'] = !$paragraph->get('field_featured_quote')->isEmpty();
+
+  // Background color
+  $variables['background_color'] = $paragraph->get('field_background_color')->value ?? '';
+
+  // Author image
+  $variables['quote_author_image'] = '';
+  if ($paragraph->hasField('field_author_image') && !$paragraph->get('field_author_image')->isEmpty()) {
+    $image = $paragraph->get('field_author_image')->entity;
+    if ($image) {
+      $uri = $image->getFileUri();
+      $variables['quote_author_image'] = ImageStyle::load('avatar_circle_smaller')->buildUrl($uri);
+    }
+  }
+}
+
+function drupalstacks_preprocess_paragraph__blog_testimonials(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  $variables['testimonial_text'] = $paragraph->get('field_testimonial_text')->value ?? '';
+  $variables['author_name'] = $paragraph->get('field_author_name')->value ?? '';
+  $variables['author_title'] = $paragraph->get('field_author_title')->value ?? '';
+  $variables['testimonial_date'] = $paragraph->get('field_testimonial_date')->value ?? '';
+  $variables['testimonial_tags'] = $paragraph->get('field_testimonial_tags')->referencedEntities();
+  $variables['testimonial_style_class'] = 'testimonial-style--' . ($paragraph->get('field_quote_style')->value ?? 'default');
+  $variables['is_featured'] = !$paragraph->get('field_featured_testimonial')->isEmpty();
+  $variables['background_color'] = $paragraph->get('field_background_color')->value ?? '';
+  $variables['rating'] = $paragraph->get('field_testimonial_rating')->value ?? '';
+
+  $variables['author_image'] = '';
+  if ($paragraph->hasField('field_author_image') && !$paragraph->get('field_author_image')->isEmpty()) {
+    $image = $paragraph->get('field_author_image')->entity;
+    if ($image) {
+      $uri = $image->getFileUri();
+      $variables['author_image'] = ImageStyle::load('avatar_circle_smaller')->buildUrl($uri);
+    }
+  }
+
+  // Create a space-separated tag class list for filtering via CSS
+  $tag_classes = [];
+  foreach ($variables['testimonial_tags'] as $tag) {
+    $tag_classes[] = 'tag-' . strtolower(preg_replace('/[^a-z0-9]+/', '-', $tag->label()));
+  }
+  $variables['tag_class_list'] = implode(' ', $tag_classes);
+}
+
+function drupalstacks_preprocess_paragraph__faq(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $style = $paragraph->get('field_accordion_style')->value ?? 'default';
+  $variables['accordion_style_class'] = 'accordion-style--' . $style;
+
+  $variables['faq_items'] = [];
+  if ($paragraph->hasField('field_faq_item') && !$paragraph->get('field_faq_item')->isEmpty()) {
+    foreach ($paragraph->get('field_faq_item')->referencedEntities() as $item) {
+      $id = $item->id();
+      $variables['faq_items'][] = [
+        'question' => $item->get('field_faq_question')->value,
+        'answer' => $item->get('field_faq_answer')->view('default'),
+        'id' => $id,
+      ];
+    }
+  }
+}
+
+function drupalstacks_preprocess_paragraph__poll_survey_embed(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $variables['description'] = $paragraph->get('field_description')->value ?? '';
+  $variables['display_mode'] = $paragraph->get('field_display_mode')->value ?? 'default';
+  $variables['embed_code'] = $paragraph->get('field_embed_code')->value ?? '';
+
+  // Style class based on display mode
+  $variables['display_class'] = 'poll-display--' . $variables['display_mode'];
+}
+
+function drupalstacks_preprocess_paragraph__blog_author_bio(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $variables['author_name'] = $paragraph->get('field_author_name')->value ?? '';
+  $variables['bio_text'] = $paragraph->get('field_bio_text')->value ?? '';
+
+  // Author photo
+  $variables['author_photo'] = '';
+  if ($paragraph->hasField('field_author_photo') && !$paragraph->get('field_author_photo')->isEmpty()) {
+    $image = $paragraph->get('field_author_photo')->entity;
+    if ($image) {
+      $uri = $image->getFileUri();
+      $variables['author_photo'] = ImageStyle::load('avatar_circle_smaller')->buildUrl($uri);
+    }
+  }
+
+  // Social links
+  $variables['social_links'] = [];
+  if ($paragraph->hasField('field_social_links') && !$paragraph->get('field_social_links')->isEmpty()) {
+    foreach ($paragraph->get('field_social_links') as $link_item) {
+      $url = $link_item->get('uri')->getValue();
+      $title = $link_item->get('title')->getValue();
+      $variables['social_links'][] = [
+        'url' => $url,
+        'title' => $title,
+      ];
+    }
+  }
+
+  // Optional style class (if you add a style field)
+  $style = $paragraph->get('field_bio_style')->value ?? 'default';
+  $variables['bio_style_class'] = 'author-bio--' . $style;
+}
+
+function drupalstacks_preprocess_paragraph__video_embed(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $variables['video_url'] = $paragraph->get('field_video_url')->value ?? '';
+  $variables['caption'] = $paragraph->get('field_video_embed_caption')->value ?? '';
+  $variables['autoplay'] = !$paragraph->get('field_video_embed_autoplay')->isEmpty();
+
+  // Extract video ID from YouTube or Vimeo URL
+  $video_id = '';
+  $provider = '';
+  if (strpos($variables['video_url'], 'youtube.com') !== false || strpos($variables['video_url'], 'youtu.be') !== false) {
+    $provider = 'youtube';
+    preg_match('/(?:v=|\/)([a-zA-Z0-9_-]{11})/', $variables['video_url'], $matches);
+    $video_id = $matches[1] ?? '';
+  } elseif (strpos($variables['video_url'], 'vimeo.com') !== false) {
+    $provider = 'vimeo';
+    preg_match('/vimeo\.com\/(\d+)/', $variables['video_url'], $matches);
+    $video_id = $matches[1] ?? '';
+  }
+
+  $variables['provider'] = $provider;
+  $variables['video_id'] = $video_id;
+}
+
 
 /**
  * Implements hook_preprocess_html().
