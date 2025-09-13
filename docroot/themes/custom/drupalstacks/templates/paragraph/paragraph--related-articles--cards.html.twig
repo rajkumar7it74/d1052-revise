@@ -1,4 +1,4 @@
-<div class="related-articles {{ display_style_class }} {{ card_count_class }}">
+<div class="related-articles {{ display_style_class }}">
   {% if related_articles %}
     <div class="related-articles__wrapper">
       {% for article in related_articles %}
@@ -31,15 +31,7 @@
                 <img class="author-avatar" src="{{ article.author_image }}" alt="{{ article.author_name }}" />
               {% endif %}
               <span class="author-name">{{ article.author_name }}</span>
-              <span class="published-date">{{ article.published_date }}</span>
-
-            </div>
-
-            {# Social Actions #}
-            <div class="card-actions">
-              <button class="clap-btn" data-article-id="{{ loop.index }}">👏 {{ article.claps }}</button>
-              <button class="response-btn">💬 {{ article.responses }}</button>
-              <button class="bookmark-btn" data-article-id="{{ loop.index }}">🔖</button>
+              <span class="published-date">• {{ article.published_date }}</span>
 
               <div class="popup-wrapper">
                 <button class="menu-btn" aria-label="More options">⋯</button>
@@ -52,6 +44,14 @@
                 </div>
               </div>
             </div>
+
+            {# Social Actions #}
+            <div class="card-actions">
+              <button class="clap-btn" data-article-id="{{ loop.index }}">👏 {{ article.claps }}</button>
+              <button class="response-btn">💬 {{ article.responses }}</button>
+              <button class="bookmark-btn" data-article-id="{{ loop.index }}">🔖</button>
+            </div>
+
           </div>
         </div>
       {% endfor %}

@@ -86,24 +86,6 @@
 {% endif %}
 
   <article{{ attributes.addClass(classes).setAttribute('role', 'article').setAttribute('aria-label', aria_label) }}>
-
-    {# Hero picture from preprocess (outputs <picture>...</picture>) #}
-  {% if featured_picture %}
-    {{ featured_picture }}
-  {% endif %}
-
-    {# Badges for promoted/sticky #}
-    {% if node.isPromoted() or node.isSticky() %}
-      <div class="position-absolute top-0 end-0 m-2 z-1">
-        {% if node.isPromoted() %}
-          <span class="badge bg-success me-1" aria-label="{{ 'Promoted content'|t }}">{{ 'Promoted'|t }}</span>
-        {% endif %}
-        {% if node.isSticky() %}
-          <span class="badge bg-warning text-dark" aria-label="{{ 'Sticky content'|t }}">{{ 'Sticky'|t }}</span>
-        {% endif %}
-      </div>
-    {% endif %}
-
     <div{{ content_attributes.addClass(['node__content', 'card-body', 'text-body']) }}>
       {{ content|without(
           'comment',

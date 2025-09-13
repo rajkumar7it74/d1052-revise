@@ -1,0 +1,29 @@
+<div class="cta-block {{ cta_style_class }}">
+  {% if image_url %}
+    <div class="cta-image">
+        <div class="image-wrapper">
+            <img src="{{ image_url }}" alt="{{ title }}" />
+        </div>
+      {% if cta_style_class == 'cta-style--full' %}
+        <div class="cta-overlay">
+            <div class="cta-overlay-content">
+            <h2 class="cta-title">{{ title }}</h2>
+            {% if link %}
+                <a href="{{ link }}" class="cta-button">{{ link_title }}</a>
+            {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+  {% endif %}
+
+  {% if cta_style_class != 'cta-style--full' %}
+    <div class="cta-content">
+        <h2 class="cta-title">{{ title }}</h2>
+        <div class="cta-text">{{ text }}</div>
+        {% if link %}
+        <a href="{{ link }}" class="cta-button">{{ link_title }}</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

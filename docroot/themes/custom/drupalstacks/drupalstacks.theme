@@ -8,14 +8,21 @@ use Drupal\Component\Utility\Html;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Title\TitleResolverInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+
 
 /**
  * Implements hook_preprocess_html().
  */
 function drupalstacks_preprocess_html(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node instanceof \Drupal\node\NodeInterface) {
+  if (!empty($node) && $node instanceof \Drupal\node\NodeInterface) {
     $variables['head_title'] = Html::escape($node->label());
+  }
+  else {
+    $variables['head_title'] = getCurrentPathTitle();
   }
 }
 
@@ -87,6 +94,12 @@ function drupalstacks_preprocess_node(array &$variables) {
       // Either unset or gate with #access. #access keeps cache contexts sane.
       $variables['content']['comment']['#access'] = FALSE;
     }
+    // Unset authored by and authored on for story and blog page.
+    unset($variables['author_picture']);
+    unset($variables['display_submitted']);
+    unset($variables['field_authored_on']);
+    unset($variables['field_authored_by']);
+    unset($variables['field_author_image']);
   }
 
   // Also useful: a safe ISO date for <time datetime="..."> in Twig.
@@ -152,11 +165,13 @@ function drupalstacks_preprocess_block(array &$vars) {
 function drupalstacks_preprocess_paragraph__blog_hero_section(&$variables) {
   $paragraph = $variables['paragraph'];
   // Get field values
-  $variables['title'] = $paragraph->get('field_blog_title')->value ?? '';
-  $variables['subtitle'] = $paragraph->get('field_blog_subtitle')->value ?? '';
+  $title = $paragraph->get('field_blog_title')->value ?? '';
+  $variables['title'] = $title ? mb_substr($title, 0, 40) : '';
+  $subtitle = $paragraph->get('field_blog_subtitle')->value ?? '';
+  $variables['subtitle'] = $title ? mb_substr($subtitle, 0, 100) : '';
   $variables['featured_image'] = '';
   $variables['video_embed'] = $paragraph->get('field_blog_video_embed')->value ?? '';
-  $variables['background_style'] = $paragraph->get('field_blog_background_style')->value ?? 'light';
+  //$variables['layout_style'] = $paragraph->get('field_blog_background_style')->value ?? 'light';
 
   // Load image URL
   if (!$paragraph->get('field_blog_featured_image')->isEmpty()) {
@@ -179,7 +194,14 @@ function drupalstacks_preprocess_paragraph__blog_hero_section(&$variables) {
     }
   }
   // Add CSS class based on background style
-  $variables['bg_class'] = 'hero--' . $variables['background_style'];
+  //$variables['hero_style'] = $variables['background_style'];
+  //$variables['bg_class'] = 'hero--' . $variables['background_style'];
+  $layout_style = $paragraph->get('field_blog_background_style')->value ?? 'overlay';
+  $theme_style = $paragraph->get('field_blog_theme_style')->value ?? 'light';
+
+  $variables['layout_class'] = 'hero-style--' . $layout_style;
+  $variables['theme_class'] = 'theme-style--' . $theme_style;
+
 }
 
 function drupalstacks_preprocess_paragraph__blog_content(&$variables) {
@@ -260,6 +282,9 @@ function drupalstacks_preprocess_paragraph__related_articles(array &$variables) 
   $linked_nodes = $paragraph->get('field_manual_links')->referencedEntities();
   $articles = [];
 
+  $card_count = $paragraph->get('field_card_count')->value ?? '2';
+  $variables['card_count_class'] = 'card-count--' . $card_count;
+
   foreach ($linked_nodes as $node) {
     if ($node instanceof Node && $node->isPublished()) {
       $article = [
@@ -277,9 +302,8 @@ function drupalstacks_preprocess_paragraph__related_articles(array &$variables) 
       if ($node->hasField('body') && !$node->get('body')->isEmpty()) {
         $full_text = $node->get('body')->value;
         $plain_text = Html::decodeEntities(strip_tags($full_text));
-        $trimmed = mb_substr($plain_text, 0, 200);
+        $trimmed = mb_substr($plain_text, 0, 100);
         $body_text = $trimmed . '… <a href="' . $node->toUrl()->toString() . '">Read more</a>';
-        //$article['body'] = $node->get('body')->view(['label' => 'hidden', 'type' => 'text_default']);
         $article['body'] = [
           '#markup' => $body_text,
           '#allowed_tags' => ['a'],
@@ -513,6 +537,90 @@ function drupalstacks_preprocess_paragraph__video_embed(array &$variables) {
   $variables['video_id'] = $video_id;
 }
 
+
+/**
+ * Returns the current path title.
+ *
+ * @return string|null
+ *   The title of the current route, or NULL if not available.
+ */
+function getCurrentPathTitle() {
+  $route_match = \Drupal::routeMatch();
+  $route = $route_match->getRouteObject();
+  if ($route) {
+    $title_resolver = \Drupal::service('title_resolver');
+    $request = \Drupal::service('request_stack')->getCurrentRequest();
+    $title = $title_resolver->getTitle($request, $route, $route_match->getParameters());
+    return $title;
+  }
+  return NULL;
+}
+
+function drupalstacks_preprocess_paragraph__dynamic_author_bio(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  $parent_node = $paragraph->getParentEntity();
+
+  if ($parent_node instanceof \Drupal\node\NodeInterface) {
+    //$variables['parent_node'] = $parent_node;
+    $author = $parent_node->getOwner();
+    $variables['author_name'] = $author->getDisplayName();
+    $variables['author_url'] = $author->toUrl()->toString();
+    // If user picture field exists
+    if ($author->hasField('user_picture') && !$author->get('user_picture')->isEmpty()) {
+      $image = $author->get('user_picture')->entity;
+      if ($image) {
+        $uri = $image->getFileUri();
+        $variables['author_photo'] = ImageStyle::load('avatar_circle_smaller')->buildUrl($uri);
+      }
+    }
+    // Get user description if available
+    if ($author->hasField('field_user_description') && !$author->get('field_user_description')->isEmpty()) {
+      $variables['bio_text'] = $author->get('field_user_description')->value;
+    }
+    // Optional style class (if you add a style field)
+    $style = $paragraph->get('field_bio_style')->value ?? 'default';
+    $variables['bio_style_class'] = 'author-bio--' . $style;
+
+    // // Social links
+    // $variables['social_links'] = [];
+    // if ($paragraph->hasField('field_social_links') && !$paragraph->get('field_social_links')->isEmpty()) {
+    //   foreach ($paragraph->get('field_social_links') as $link_item) {
+    //     $url = $link_item->get('uri')->getValue();
+    //     $title = $link_item->get('title')->getValue();
+    //     $variables['social_links'][] = [
+    //       'url' => $url,
+    //       'title' => $title,
+    //     ];
+    //   }
+    // }
+
+  }
+
+}
+
+function drupalstacks_preprocess_paragraph__cta_with_image(array &$variables) {
+  $paragraph = $variables['paragraph'];
+
+  $variables['title'] = $paragraph->get('field_cta_title')->value ?? '';
+  $variables['text'] = $paragraph->get('field_cta_image_text')->view('default');
+  $variables['link'] = $paragraph->get('field_cta_link')->first()?->getUrl()?->toString() ?? '';
+  $variables['link_title'] = $paragraph->get('field_cta_link')->first()?->title ?? 'Learn More';
+
+  $style = $paragraph->get('field_cta_display_style')->value ?? 'left';
+  $variables['cta_style_class'] = 'cta-style--' . $style;
+
+  $variables['image_url'] = '';
+  if ($paragraph->hasField('field_cta_image') && !$paragraph->get('field_cta_image')->isEmpty()) {
+    $image = $paragraph->get('field_cta_image')->entity;
+    $image_style = 'cta_half';
+    if ($style == 'full') {
+      $image_style = 'cta_full_width';
+    }
+    
+    $uri = $image->getFileUri();
+    $variables['image_url'] = ImageStyle::load($image_style)->buildUrl($uri);
+  }
+}
 
 /**
  * Implements hook_preprocess_html().

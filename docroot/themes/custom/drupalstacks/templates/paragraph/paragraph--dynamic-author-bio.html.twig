@@ -1,0 +1,25 @@
+<div class="author-bio {{ bio_style_class }}">
+    <div class="author-bio-wrapper">
+      {% if author_photo %}
+        <div class="author-photo">
+          <img src="{{ author_photo }}" alt="{{ author_name }}" />
+        </div>
+      {% endif %}
+  
+      <div class="author-details">
+        <h3 class="author-name">{{ author_name }}</h3>
+        <div class="author-bio-text">{{ bio_text }}</div>
+  
+        {% if social_links %}
+          <div class="author-social-links">
+            {% for link in social_links %}
+              <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="social-link">
+                {{ link.title }}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  

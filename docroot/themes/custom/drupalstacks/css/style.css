@@ -437,7 +437,7 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
 **/
 .hero-section {
   position: relative;
-  padding: 4rem 2rem;
+  /* padding: 4rem 2rem; */
   color: #fff;
   text-align: center;
 }
@@ -702,7 +702,7 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
 }
 
 .popup-menu {
-  position: absolute;
+  position: sticky;
   top: 100%; /* directly below the button */
   background: #fff;
   border: 1px solid #ccc;
@@ -713,6 +713,7 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
   z-index: 999;
   min-width: 120px;
   animation: fadeIn 0.2s ease-in-out;
+  float: right;
 }
 
 .popup-menu ul {
@@ -766,6 +767,7 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
 .card-actions button:hover {
   color: #000;
 }
+
 
 
 /**
@@ -830,6 +832,7 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
   font-weight: bold;
   font-size: 1rem;
   color: #555;
+  padding-right: 10px;
 }
 .quote-style--highlighted .quote-wrapper {
   background: linear-gradient(135deg, #ffe0e0, #fff);
@@ -975,6 +978,9 @@ body:not(.user-logged-in) .region--highlighted { display: none !important; }
 .author-name {
   font-weight: bold;
   font-size: 1rem;
+}
+.published-date {
+  padding-left: 30px;
 }
 
 .author-title,
@@ -1266,7 +1272,256 @@ body.filter-tag-creativity .testimonial-block:not(.tag-creativity) {
   border: 2px solid #00adef;
 }
 
+/**
+ * Styles for CTA with image paragraph.
+ */
+ .cta-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 12px;
+  background: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 
+.cta-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.cta-content {
+  flex: 1;
+  min-width: 250px;
+}
+
+.cta-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cta-text {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #0074d9;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #005fa3;
+}
+
+/* Style variants */
+.cta-style--left .cta-image {
+  order: 0;
+}
+
+.cta-style--right .cta-image {
+  order: 1;
+}
+
+.cta-style--full {
+  flex-direction: column;
+  text-align: center;
+}
+/* For full width */
+.cta-block {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.cta-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.cta-style--full .cta-image {
+  position: relative;
+}
+
+.cta-style--full .cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.3));*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.cta-overlay-content {
+  color: #fff;
+  max-width: 800px;
+}
+
+.cta-overlay-content .cta-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-overlay-content .cta-button {
+  background: #ff6f61;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cta-overlay-content .cta-button:hover {
+  background: #e85c50;
+}
+.image-wrapper {
+  padding: 4px;
+  background: #fff;
+  border-radius: 12px;
+  display: inline-block;
+}
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+
+/**
+ * Css for hero section
+ */
+ .hero-section {
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Layout: Overlay */
+.hero-style--overlay .hero-image {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.hero-style--overlay img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Layout: Split */
+.hero-style--split .hero-split {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.hero-image-side img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.hero-content-side {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Layout: Minimal */
+.hero-style--minimal {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Theme: Light */
+.theme-style--light {
+  background-color: #f9f9f9;
+  color: #222;
+}
+.theme-style--light .hero-overlay {
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+}
+
+/* Theme: Dark */
+.theme-style--dark {
+  background-color: #1a1a1a;
+  color: #eee;
+}
+.theme-style--dark .hero-overlay {
+  background: linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+}
+
+/* Shared Elements */
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  padding: 2px 10px;
+  color: inherit;
+}
+/* Ensure overlay fills the image container */
+.hero-style--overlay .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Light theme overlay fix */
+.theme-style--light .hero-overlay {
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.7), rgba(255,255,255,0.5));
+  color: #222;
+}
+
+/* Responsive tweak for mobile */
+@media (max-width: 768px) {
+  .hero-style--overlay .hero-overlay {
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-style--overlay .hero-content {
+    max-width: 90%;
+  }
+  .hero-style--overlay img {
+    min-height: 300px; /* Ensures image has enough vertical space */
+  }
+}
 
 
 

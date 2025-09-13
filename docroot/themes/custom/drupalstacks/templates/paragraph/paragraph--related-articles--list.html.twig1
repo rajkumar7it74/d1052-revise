@@ -1,0 +1,169 @@
+<div class="related-articles related-articles--grid">
+  {% if related_articles %}
+    <div class="related-articles__wrapper">
+      {% for article in related_articles %}
+        <div class="related-article-card">
+          
+          {# Article Image #}
+          {% if article.image %}
+            <div class="card-image">
+              <a href="{{ article.url }}">
+                <img src="{{ article.image }}" alt="{{ article.title }}" loading="lazy" />
+              </a>
+            </div>
+          {% endif %}
+
+          <div class="card-content">
+            
+            {# Title #}
+            <h3 class="card-title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+
+            {# Body #}
+            {% if article.body %}
+              <div class="card-body">{{ article.body }}</div>
+            {% endif %}
+
+            {# Author Info #}
+            <div class="card-meta">
+              {% if article.author_image %}
+                <img class="author-avatar" src="{{ article.author_image }}" alt="{{ article.author_name }}" />
+              {% endif %}
+              <span class="author-name">{{ article.author_name }}</span>
+              <span class="published-date">• {{ article.published_date }}</span>
+
+              <div class="popup-wrapper">
+                <button class="menu-btn" aria-label="More options">⋯</button>
+                <div class="popup-menu">
+                  <ul>
+                    <li><a href="#">Follow {{ article.author_name }}</a></li>
+                    <li><a href="#">Mute {{ article.author_name }}</a></li>
+                    <li><button class="popup-close">Close</button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {# Social Actions #}
+            <div class="card-actions">
+              <button class="clap-btn" data-article-id="{{ loop.index }}">👏 {{ article.claps }}</button>
+              <button class="response-btn">💬 {{ article.responses }}</button>
+              <button class="bookmark-btn" data-article-id="{{ loop.index }}">🔖</button>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No related articles found.</p>
+  {% endif %}
+</div>
+
+<!--
+
+  .related-articles--grid .related-articles__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.related-article-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.related-article-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-title a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
+}
+
+.card-body {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  position: relative;
+}
+
+.author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.popup-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.popup-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  padding: 0.75rem;
+  display: none;
+  z-index: 999;
+  min-width: 180px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.card-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.card-actions button:hover {
+  color: #000;
+}
+
+
+-->
