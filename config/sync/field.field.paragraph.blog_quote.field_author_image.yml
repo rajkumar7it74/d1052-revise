@@ -1,0 +1,38 @@
+uuid: f7d58961-859f-4690-8324-d261f9ab4c99
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_image
+    - paragraphs.paragraphs_type.blog_quote
+  module:
+    - image
+id: paragraph.blog_quote.field_author_image
+field_name: field_author_image
+entity_type: paragraph
+bundle: blog_quote
+label: 'Author Image'
+description: 'Name of the person who said or wrote the quote'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

@@ -1,0 +1,96 @@
+uuid: f46b50f3-2a4a-448b-8a22-36c19c16d4fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_blog_paragraph
+    - node.type.blog
+    - paragraphs.paragraphs_type.blog_author_bio
+    - paragraphs.paragraphs_type.blog_content
+    - paragraphs.paragraphs_type.blog_hero_section
+    - paragraphs.paragraphs_type.blog_quote
+    - paragraphs.paragraphs_type.blog_testimonials
+    - paragraphs.paragraphs_type.call_to_action
+    - paragraphs.paragraphs_type.cta_with_image
+    - paragraphs.paragraphs_type.dynamic_author_bio
+    - paragraphs.paragraphs_type.faq
+    - paragraphs.paragraphs_type.faq_item
+    - paragraphs.paragraphs_type.hero_image_gallery
+    - paragraphs.paragraphs_type.poll_survey_embed
+    - paragraphs.paragraphs_type.related_articles
+    - paragraphs.paragraphs_type.video_embed
+  module:
+    - entity_reference_revisions
+id: node.blog.field_blog_paragraph
+field_name: field_blog_paragraph
+entity_type: node
+bundle: blog
+label: 'Blog Paragraph'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      blog_author_bio: blog_author_bio
+      blog_content: blog_content
+      blog_hero_section: blog_hero_section
+      call_to_action: call_to_action
+      blog_quote: blog_quote
+      blog_testimonials: blog_testimonials
+      faq: faq
+      hero_image_gallery: hero_image_gallery
+      dynamic_author_bio: dynamic_author_bio
+      faq_item: faq_item
+      poll_survey_embed: poll_survey_embed
+      cta_with_image: cta_with_image
+      related_articles: related_articles
+      video_embed: video_embed
+    negate: 0
+    target_bundles_drag_drop:
+      blog_author_bio:
+        weight: 12
+        enabled: true
+      blog_content:
+        weight: 13
+        enabled: true
+      blog_hero_section:
+        weight: 14
+        enabled: true
+      blog_quote:
+        weight: 17
+        enabled: true
+      blog_testimonials:
+        weight: 19
+        enabled: true
+      call_to_action:
+        weight: 16
+        enabled: true
+      cta_with_image:
+        weight: 21
+        enabled: true
+      dynamic_author_bio:
+        weight: 20
+        enabled: true
+      faq:
+        weight: 19
+        enabled: true
+      faq_item:
+        weight: 20
+        enabled: true
+      hero_image_gallery:
+        weight: 19
+        enabled: true
+      poll_survey_embed:
+        weight: 20
+        enabled: true
+      related_articles:
+        weight: 21
+        enabled: true
+      video_embed:
+        weight: 22
+        enabled: true
+field_type: entity_reference_revisions

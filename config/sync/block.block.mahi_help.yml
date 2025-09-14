@@ -1,0 +1,22 @@
+uuid: 331a0195-f889-406b-aee1-d453adac4dbc
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - mahi
+_core:
+  default_config_hash: BU5xL7pDumVrL7nLQ8CMrSuOQA_LWC6AMIYfRXWWaXM
+id: mahi_help
+theme: mahi
+region: content
+weight: -10
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

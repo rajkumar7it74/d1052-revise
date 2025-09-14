@@ -1,0 +1,19 @@
+uuid: 8fc0af3a-2009-4c78-a6ad-5452fd238b23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_video_embed
+    - paragraphs.paragraphs_type.blog_hero_section
+id: paragraph.blog_hero_section.field_blog_video_embed
+field_name: field_blog_video_embed
+entity_type: paragraph
+bundle: blog_hero_section
+label: 'Video Embed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

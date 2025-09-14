@@ -1,0 +1,21 @@
+uuid: b411e6fa-65cb-4fc7-99e9-430baad4cd31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_testimonial
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_featured_testimonial
+field_name: field_featured_testimonial
+entity_type: paragraph
+bundle: blog_testimonials
+label: featured_testimonial
+description: 'Boolean to mark high-impact testimonials for homepage or sliders'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

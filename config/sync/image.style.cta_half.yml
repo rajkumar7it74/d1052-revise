@@ -1,0 +1,21 @@
+uuid: 010febf7-d3ac-43c4-be72-7c81976105d8
+langcode: en
+status: true
+dependencies: {  }
+name: cta_half
+label: 'CTA Half'
+effects:
+  0af3d1a4-c5cb-4900-b67b-352858481991:
+    uuid: 0af3d1a4-c5cb-4900-b67b-352858481991
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 400
+      anchor: center-center
+  d49a6152-a539-4c93-a021-c5fafd4f54f9:
+    uuid: d49a6152-a539-4c93-a021-c5fafd4f54f9
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

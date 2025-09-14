@@ -1,0 +1,62 @@
+uuid: ce4cb85b-67f3-42f5-9aa9-6896f465f5ee
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_author_bio.field_author_name
+    - field.field.paragraph.blog_author_bio.field_author_photo
+    - field.field.paragraph.blog_author_bio.field_bio_style
+    - field.field.paragraph.blog_author_bio.field_bio_text
+    - field.field.paragraph.blog_author_bio.field_social_links
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.blog_author_bio
+  module:
+    - image
+    - link
+    - text
+id: paragraph.blog_author_bio.default
+targetEntityType: paragraph
+bundle: blog_author_bio
+mode: default
+content:
+  field_author_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_author_photo:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_bio_style:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_bio_text:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_social_links:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

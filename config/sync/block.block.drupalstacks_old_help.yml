@@ -1,0 +1,22 @@
+uuid: e7705179-c55c-4d2f-a026-a67fff95eea6
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: BU5xL7pDumVrL7nLQ8CMrSuOQA_LWC6AMIYfRXWWaXM
+id: drupalstacks_old_help
+theme: drupalstacks_old
+region: content
+weight: -10
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

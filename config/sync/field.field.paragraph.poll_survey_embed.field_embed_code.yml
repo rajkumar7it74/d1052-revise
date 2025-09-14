@@ -1,0 +1,19 @@
+uuid: 8d38639c-e8fb-49c9-a77b-c70ecfe327b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_embed_code
+    - paragraphs.paragraphs_type.poll_survey_embed
+id: paragraph.poll_survey_embed.field_embed_code
+field_name: field_embed_code
+entity_type: paragraph
+bundle: poll_survey_embed
+label: 'Embed Code'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

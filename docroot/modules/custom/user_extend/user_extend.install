@@ -16,12 +16,12 @@ function user_extend_schema() {
         'not null' => TRUE,
       ],
       'email' => [
-        'type' => 'varchar',
+        'type' => 'text',
         'length' => 255,
         'not null' => TRUE,
       ],
       'phone' => [
-        'type' => 'varchar',
+        'type' => 'text',
         'length' => 15,
         'not null' => TRUE,
       ],
@@ -31,7 +31,7 @@ function user_extend_schema() {
         'not null' => TRUE,
       ],
       'aadhar' => [
-        'type' => 'varchar',
+        'type' => 'text',
         'length' => 12,
         'not null' => TRUE,
       ],

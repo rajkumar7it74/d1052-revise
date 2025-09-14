@@ -1,0 +1,113 @@
+uuid: 17a8d8c7-03e8-4e52-a744-dfc64addfc94
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.recipe.field_recipe_description
+    - field.field.node.recipe.field_recipe_dish_type
+    - field.field.node.recipe.field_recipe_image
+    - field.field.node.recipe.field_recipe_ingredients
+    - field.field.node.recipe.field_recipe_instructions
+    - field.field.node.recipe.field_recipe_read_time
+    - field.field.node.recipe.field_recipe_tags
+    - field.field.node.recipe.field_recipe_total_time
+    - field.field.node.recipe.field_tag_content
+    - image.style.recipe_medium
+    - node.type.recipe
+  module:
+    - estimated_read_time
+    - image
+    - options
+    - text
+    - user
+id: node.recipe.default
+targetEntityType: node
+bundle: recipe
+mode: default
+content:
+  computed_blog_reading_time:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_recipe_description:
+    type: basic_string
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_recipe_dish_type:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_recipe_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: recipe_medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_recipe_ingredients:
+    type: text_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_recipe_instructions:
+    type: text_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_recipe_read_time:
+    type: estimated_read_time_text
+    label: above
+    settings:
+      tokenized_string: '@minutes min read'
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_recipe_tags:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_recipe_total_time:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_tag_content:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true

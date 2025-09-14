@@ -1,0 +1,21 @@
+uuid: fdde107e-7974-485d-9000-a25e8a137a3e
+langcode: en
+status: true
+dependencies: {  }
+name: recipe_medium
+label: 'Recipe Medium'
+effects:
+  b0de26f8-550f-47b6-b03e-d2a4daf3285d:
+    uuid: b0de26f8-550f-47b6-b03e-d2a4daf3285d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 600
+      anchor: center-center
+  5a901fba-6af4-4925-a854-a987de40d5a5:
+    uuid: 5a901fba-6af4-4925-a854-a987de40d5a5
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

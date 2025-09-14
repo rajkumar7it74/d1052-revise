@@ -1,0 +1,21 @@
+uuid: dcc3dcc6-9f9b-4fad-84eb-10efab5aa23c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_style
+    - paragraphs.paragraphs_type.blog_testimonials
+  module:
+    - options
+id: paragraph.blog_testimonials.field_quote_style
+field_name: field_quote_style
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Quote Style'
+description: 'Visual style selector (e.g. minimal, boxed, highlighted)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

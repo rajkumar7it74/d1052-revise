@@ -1,0 +1,21 @@
+uuid: 68fe788b-9f36-43a7-82fc-165fa6574548
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_card_count
+    - paragraphs.paragraphs_type.related_articles
+  module:
+    - options
+id: paragraph.related_articles.field_card_count
+field_name: field_card_count
+entity_type: paragraph
+bundle: related_articles
+label: 'Card Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

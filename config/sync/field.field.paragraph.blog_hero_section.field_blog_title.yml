@@ -1,0 +1,19 @@
+uuid: 8e9ee731-e764-46fb-9bc2-f7c4790f7fcd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_title
+    - paragraphs.paragraphs_type.blog_hero_section
+id: paragraph.blog_hero_section.field_blog_title
+field_name: field_blog_title
+entity_type: paragraph
+bundle: blog_hero_section
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

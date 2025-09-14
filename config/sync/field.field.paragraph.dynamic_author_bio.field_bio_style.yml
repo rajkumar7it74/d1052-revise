@@ -1,0 +1,21 @@
+uuid: 6cc2a872-3c44-4e72-ad14-8352d3106f8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_bio_style
+    - paragraphs.paragraphs_type.dynamic_author_bio
+  module:
+    - options
+id: paragraph.dynamic_author_bio.field_bio_style
+field_name: field_bio_style
+entity_type: paragraph
+bundle: dynamic_author_bio
+label: 'Bio Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

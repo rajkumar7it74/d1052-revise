@@ -1,0 +1,21 @@
+uuid: aedf8ab6-0d04-451b-bdc0-889e41ed4c4c
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.field_image_alt
+field_name: field_image_alt
+entity_type: media
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

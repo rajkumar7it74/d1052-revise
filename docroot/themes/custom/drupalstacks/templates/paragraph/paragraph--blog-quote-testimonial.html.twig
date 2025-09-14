@@ -1,0 +1,14 @@
+<div class="blog-quote-testimonial {{ quote_style_class }}">
+  <div class="quote-wrapper">
+    <blockquote class="quote-text">
+      {{ quote_text }}
+    </blockquote>
+
+    <div class="quote-author">
+      {% if author_image %}
+        <img class="author-avatar" src="{{ author_image }}" alt="{{ author_name }}" />
+      {% endif %}
+      <div class="author-name">{{ author_name }}</div>
+    </div>
+  </div>
+</div>

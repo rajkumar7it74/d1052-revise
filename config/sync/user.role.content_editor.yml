@@ -1,0 +1,62 @@
+uuid: 1993d68b-2f0e-451f-ac5b-85391fc64105
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.blog_body_editor
+    - node.type.article
+    - node.type.blog
+    - node.type.page
+    - rest.resource.expose_content_api_resource
+    - rest.resource.expose_contents_resource
+    - rest.resource.expose_specific_content_type_resource
+    - rest.resource.recipe_create_resource
+    - taxonomy.vocabulary.tags
+  module:
+    - comment
+    - contextual
+    - file
+    - filter
+    - node
+    - path
+    - rest
+    - system
+    - taxonomy
+    - toolbar
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access toolbar'
+  - 'administer url aliases'
+  - 'create article content'
+  - 'create blog content'
+  - 'create page content'
+  - 'create terms in tags'
+  - 'create url aliases'
+  - 'delete article revisions'
+  - 'delete own article content'
+  - 'delete own files'
+  - 'delete own page content'
+  - 'delete page revisions'
+  - 'edit own article content'
+  - 'edit own blog content'
+  - 'edit own comments'
+  - 'edit own page content'
+  - 'edit terms in tags'
+  - 'restful get expose_content_api_resource'
+  - 'restful get expose_contents_resource'
+  - 'restful get expose_specific_content_type_resource'
+  - 'restful post recipe_create_resource'
+  - 'revert all revisions'
+  - 'use text format blog_body_editor'
+  - 'view all revisions'
+  - 'view own unpublished content'
+  - 'view the administration theme'

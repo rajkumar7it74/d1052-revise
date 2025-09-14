@@ -1,0 +1,27 @@
+uuid: e8808232-2d08-4971-9f98-739fd759afac
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: pAsVNVW3wfmOiG7r80ef-UbrXu5ql7TrXJIWDhjoMrA
+id: drupalstacks_old_account_menu
+theme: drupalstacks_old
+region: header
+weight: -12
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

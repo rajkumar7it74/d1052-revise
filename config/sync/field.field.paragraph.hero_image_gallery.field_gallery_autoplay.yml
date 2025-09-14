@@ -1,0 +1,21 @@
+uuid: 114fdeb2-c70d-4c98-84fa-b0f000c99f6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gallery_autoplay
+    - paragraphs.paragraphs_type.hero_image_gallery
+id: paragraph.hero_image_gallery.field_gallery_autoplay
+field_name: field_gallery_autoplay
+entity_type: paragraph
+bundle: hero_image_gallery
+label: 'Gallery Autoplay'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

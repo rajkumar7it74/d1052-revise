@@ -1,0 +1,7 @@
+responsive_styles:
+  recipe_large: recipe_large
+  recipe_medium: recipe_medium
+  recipe_small: recipe_small
+lazyloader: 1
+fallback_style: recipe_medium
+style_viewport_map: "recipe_small: min-width: 1024px\r\nrecipe_medium: min-width: 768px\r\nrecipe_large: max-width: 767px"

@@ -1,0 +1,21 @@
+uuid: c8239ece-8e92-45fa-851c-c5ae7fd67d0b
+langcode: en
+status: true
+dependencies: {  }
+name: cta_full_width
+label: 'CTA full width'
+effects:
+  17ac42ac-1124-4ab6-9da6-956aabae9772:
+    uuid: 17ac42ac-1124-4ab6-9da6-956aabae9772
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 600
+      anchor: center-center
+  28481f3b-bdba-40a0-ae50-30f9e3c057f4:
+    uuid: 28481f3b-bdba-40a0-ae50-30f9e3c057f4
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

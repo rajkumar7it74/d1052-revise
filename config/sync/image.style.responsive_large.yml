@@ -1,0 +1,21 @@
+uuid: 11a34c5b-fcd9-4bce-b6d9-b4caf399f5ca
+langcode: en
+status: true
+dependencies: {  }
+name: responsive_large
+label: 'Responsive Large'
+effects:
+  4ed3cf81-3655-452a-843a-ea497bc0bce1:
+    uuid: 4ed3cf81-3655-452a-843a-ea497bc0bce1
+    id: image_scale
+    weight: 1
+    data:
+      width: 1200
+      height: 800
+      upscale: false
+  0c5cab63-89d2-4dc0-92e1-1147c221afdc:
+    uuid: 0c5cab63-89d2-4dc0-92e1-1147c221afdc
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,20 @@
+uuid: 1c749aa5-6353-405e-8d0a-1df3fb87bf82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_extra_info
+  module:
+    - user
+id: user.user.field_extra_info
+field_name: field_extra_info
+entity_type: user
+bundle: user
+label: 'Extra Info'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

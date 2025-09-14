@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: MKU0RHgfRDMCbOXq7m7ZrDXfxbaBOsC2PZaQeE-EXnQ
+disallow_unpublished_content: true
+limit_results: 10
+allow_entity_type: true
+show_status: true

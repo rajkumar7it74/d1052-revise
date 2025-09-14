@@ -1,0 +1,38 @@
+uuid: 6bfb4f9c-5b49-43a4-bf86-87efd2b731a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_photo
+    - paragraphs.paragraphs_type.blog_author_bio
+  module:
+    - image
+id: paragraph.blog_author_bio.field_author_photo
+field_name: field_author_photo
+entity_type: paragraph
+bundle: blog_author_bio
+label: author_photo
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

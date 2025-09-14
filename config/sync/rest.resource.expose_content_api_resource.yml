@@ -1,0 +1,18 @@
+uuid: 834667f8-41f6-4a71-a383-d76ff078357b
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - expose_content_api
+    - serialization
+id: expose_content_api_resource
+plugin_id: expose_content_api_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - basic_auth

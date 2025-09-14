@@ -1,0 +1,23 @@
+uuid: 916afb34-1d50-4f63-92f5-f37afde6c4c8
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: WFgz7SwAGlIco9k97Uz8CG9Y3Y3nS5rKD39RhkKQtjs
+id: drupalstacks_old_search_form_wide
+theme: drupalstacks_old
+region: header
+weight: -12
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

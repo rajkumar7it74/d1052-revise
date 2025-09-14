@@ -1,0 +1,10 @@
+uuid: 2116971d-523c-45de-97f5-76a82dd44eff
+langcode: en
+status: true
+dependencies: {  }
+id: blog_testimonials
+label: 'Blog Testimonials'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

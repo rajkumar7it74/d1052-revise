@@ -1,0 +1,21 @@
+uuid: 728174e4-cd23-4ecb-97c1-3b170582aec9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dynamic_author_bio.field_bio_style
+    - paragraphs.paragraphs_type.dynamic_author_bio
+id: paragraph.dynamic_author_bio.default
+targetEntityType: paragraph
+bundle: dynamic_author_bio
+mode: default
+content:
+  field_bio_style:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,22 @@
+uuid: e6b8c7a7-00bc-4618-b077-a1defd8450c7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: 6O0gC4TZTBbBnnzYfAFvabohhUaGB9BqasrpqHRWDQM
+id: drupalstacks_old_messages
+theme: drupalstacks_old
+region: header
+weight: -12
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

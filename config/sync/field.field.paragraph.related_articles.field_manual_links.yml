@@ -1,0 +1,29 @@
+uuid: 2585555c-453e-423f-b319-beb18aa0bd5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_manual_links
+    - node.type.blog
+    - paragraphs.paragraphs_type.related_articles
+id: paragraph.related_articles.field_manual_links
+field_name: field_manual_links
+entity_type: paragraph
+bundle: related_articles
+label: 'Manual Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      blog: blog
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: blog
+field_type: entity_reference

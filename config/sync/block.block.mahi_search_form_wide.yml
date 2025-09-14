@@ -1,0 +1,23 @@
+uuid: 56811086-5eee-4bbc-8fe7-334e7fa12297
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - mahi
+_core:
+  default_config_hash: WFgz7SwAGlIco9k97Uz8CG9Y3Y3nS5rKD39RhkKQtjs
+id: mahi_search_form_wide
+theme: mahi
+region: search_box
+weight: -12
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

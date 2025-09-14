@@ -1,0 +1,36 @@
+uuid: 866522ab-f7c0-4e10-82f1-c497a487604d
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_blog_background_style
+field_name: field_blog_background_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: light
+      label: light
+    -
+      value: dark
+      label: dark
+    -
+      value: overlay
+      label: overlay
+    -
+      value: split
+      label: split
+    -
+      value: minimal
+      label: minimal
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

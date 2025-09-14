@@ -1,0 +1,25 @@
+uuid: 77a51656-ade0-4616-a91c-1982099beca9
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalstacks
+_core:
+  default_config_hash: n_nlgjggHVfQt2H__zvLOKB2YtjPDbQ5tHijF9LE1aM
+id: drupalstacks_site_branding
+theme: drupalstacks
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: false
+visibility: {  }

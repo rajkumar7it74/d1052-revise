@@ -1,0 +1,16 @@
+<div class="hero-image-gallery slick-slider">
+    {% for item in gallery_items %}
+      <div class="slick-slide">
+        <picture>
+          <source srcset="{{ item.webp }}" type="image/webp">
+          <source srcset="{{ item.jpeg }}" type="image/jpeg">
+          <img src="{{ item.jpeg }}" alt="{{ item.alt }}" loading="lazy" />
+        </picture>
+  
+        {% if item.caption %}
+          <div class="slick-caption">{{ item.caption }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+  

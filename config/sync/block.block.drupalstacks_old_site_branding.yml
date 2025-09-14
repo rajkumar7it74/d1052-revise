@@ -1,0 +1,25 @@
+uuid: 9834211e-542b-48ac-a3d2-fc0446645bef
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: Ki5kUxL9gNONfmNzBVYav365zNdgYNhmOkIPf37rjeE
+id: drupalstacks_old_site_branding
+theme: drupalstacks_old
+region: header
+weight: -11
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

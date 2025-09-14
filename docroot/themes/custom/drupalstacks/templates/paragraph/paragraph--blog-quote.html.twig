@@ -1,0 +1,39 @@
+<div class="quote-block {{ quote_style_class }} {% if is_featured %}quote-featured{% endif %}" style="background-color: {{ background_color }};">
+  <div class="quote-wrapper">
+    
+    {# SVG Quote Mark #}
+    <svg class="quote-icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
+      <path d="M5 4h4v12H5zM15 4h4v12h-4z" fill="currentColor"/>
+    </svg>
+
+    <blockquote class="quote-text">
+      {{ quote_text }}
+    </blockquote>
+
+    <div class="quote-author">
+      {% if quote_author_image %}
+        <img class="author-avatar" src="{{ quote_author_image }}" alt="{{ quote_author }}" width="64" height="64" />
+      {% endif %}
+      <div class="author-details">
+        <div class="author-name">{{ quote_author }}</div>
+        {% if quote_author_title %}
+          <div class="author-title">{{ quote_author_title }}</div>
+        {% endif %}
+        {% if quote_date %}
+          <div class="quote-date">{{ quote_date }}</div>
+        {% endif %}
+        {% if quote_source %}
+          <div class="quote-source">Source: {{ quote_source }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if quote_tags %}
+      <div class="quote-tags">
+        {% for tag in quote_tags %}
+          <span class="quote-tag">{{ tag.label }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
