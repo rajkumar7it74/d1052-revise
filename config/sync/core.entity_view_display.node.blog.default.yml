@@ -1,0 +1,35 @@
+uuid: 6b866ed3-c406-4d14-b5ea-464d9892cda2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog.body
+    - field.field.node.blog.field_blog_paragraph
+    - field.field.node.blog.field_fallback_image
+    - node.type.blog
+  module:
+    - entity_reference_revisions
+    - user
+id: node.blog.default
+targetEntityType: node
+bundle: blog
+mode: default
+content:
+  field_blog_paragraph:
+    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  field_fallback_image: true
+  langcode: true

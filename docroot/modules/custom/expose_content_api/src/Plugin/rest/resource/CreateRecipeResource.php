@@ -112,12 +112,10 @@ class CreateRecipeResource extends ResourceBase {
         'field_recipe_ingredients' => $data['recipe_ingredients'],
         'field_recipe_instructions' => $data['recipe_instructions'],
         'field_recipe_total_time' => $data['recipe_total_time'],
-        'field_recipe_image' => [
-            'target_id' => $this->saveBase64Image($data['recipe_image']),
-            'alt' => $data['image_alt'] ?? 'Recipe image',
-          ],
-        
-        
+        // 'field_recipe_image' => [
+        //     'target_id' => $this->saveBase64Image($data['recipe_image']),
+        //     'alt' => $data['image_alt'] ?? 'Recipe image',
+        //   ],
         'status' => 1,
       ]);
       $node->save();

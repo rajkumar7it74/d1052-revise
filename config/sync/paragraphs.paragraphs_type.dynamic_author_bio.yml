@@ -1,0 +1,10 @@
+uuid: a9330a51-1054-4eec-a335-67f15d5daff0
+langcode: en
+status: true
+dependencies: {  }
+id: dynamic_author_bio
+label: 'Dynamic Author Bio'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

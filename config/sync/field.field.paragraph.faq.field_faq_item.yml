@@ -1,0 +1,64 @@
+uuid: 3764a96f-0522-4124-b8ad-fe92f94edcbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_faq_item
+    - paragraphs.paragraphs_type.faq
+    - paragraphs.paragraphs_type.faq_item
+  module:
+    - entity_reference_revisions
+id: paragraph.faq.field_faq_item
+field_name: field_faq_item
+entity_type: paragraph
+bundle: faq
+label: 'FAQ Items'
+description: 'Frequently Asked Questions and answers.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      faq_item: faq_item
+    negate: 0
+    target_bundles_drag_drop:
+      blog_author_bio:
+        weight: 13
+        enabled: false
+      blog_content:
+        weight: 14
+        enabled: false
+      blog_hero_section:
+        weight: 15
+        enabled: false
+      blog_quote:
+        weight: 16
+        enabled: false
+      blog_testimonials:
+        weight: 17
+        enabled: false
+      call_to_action:
+        weight: 18
+        enabled: false
+      faq:
+        weight: 19
+        enabled: false
+      faq_item:
+        weight: 20
+        enabled: true
+      hero_image_gallery:
+        weight: 21
+        enabled: false
+      poll_survey_embed:
+        weight: 22
+        enabled: false
+      related_articles:
+        weight: 23
+        enabled: false
+      video_embed:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

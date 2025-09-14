@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5aeb2e9a41fa338727b4b45b65cfce07",
+    "content-hash": "4a2c3965cace117493db29c2ecc9d2c6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1432,6 +1432,40 @@
             "time": "2024-11-01T21:49:07+00:00"
         },
         {
+            "name": "drupal-ckeditor-libraries-group/codesnippet",
+            "version": "4.22.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal-ckeditor-libraries-group/codesnippet.git",
+                "reference": "6e5db84150a5094040d420b9588f2cb815cc2fc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal-ckeditor-libraries-group/codesnippet/zipball/6e5db84150a5094040d420b9588f2cb815cc2fc3",
+                "reference": "6e5db84150a5094040d420b9588f2cb815cc2fc3",
+                "shasum": ""
+            },
+            "type": "drupal-library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later",
+                "LGPL-2.1-or-later",
+                "MPL-1.1"
+            ],
+            "description": "CKEditor 4 codesnippet plugin",
+            "homepage": "https://ckeditor.com/cke4/addon/codesnippet",
+            "keywords": [
+                "CKEditor",
+                "codesnippet",
+                "plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/ckeditor/ckeditor4/issues",
+                "source": "https://github.com/ckeditor/ckeditor4/tree/master/plugins/codesnippet"
+            },
+            "time": "2023-02-08T14:53:49+00:00"
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "3.6.2",
             "source": {
@@ -1518,6 +1552,215 @@
             }
         },
         {
+            "name": "drupal/blazy",
+            "version": "3.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/blazy.git",
+                "reference": "3.0.13"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/blazy-3.0.13.zip",
+                "reference": "3.0.13",
+                "shasum": "f1fbac3fddbf166a4c80753dc4ec2fb0d18758c3"
+            },
+            "require": {
+                "drupal/core": ">=9.4"
+            },
+            "conflict": {
+                "drupal/csp": "<1.12"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.13",
+                    "datestamp": "1729740941",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Gaus Surahman",
+                    "homepage": "https://www.drupal.org/u/gausarts",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/2663268/committers",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                }
+            ],
+            "description": "Provides basic bLazy integration for lazy loading and multi-serving images.",
+            "homepage": "https://drupal.org/project/blazy",
+            "keywords": [
+                "Drupal",
+                "bLazy",
+                "lazyload"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/blazy",
+                "issues": "https://drupal.org/project/issues/blazy"
+            }
+        },
+        {
+            "name": "drupal/ckeditor",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor.git",
+                "reference": "1.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor-1.0.2.zip",
+                "reference": "1.0.2",
+                "shasum": "fec2ca9ad852a00c7b9584cb6040dc860364c481"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10"
+            },
+            "require-dev": {
+                "drupal/classy": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.2",
+                    "datestamp": "1695740655",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/user/85918"
+                },
+                {
+                    "name": "jcisio",
+                    "homepage": "https://www.drupal.org/user/210762"
+                },
+                {
+                    "name": "Jorrit",
+                    "homepage": "https://www.drupal.org/user/161217"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                },
+                {
+                    "name": "magnus",
+                    "homepage": "https://www.drupal.org/user/73919"
+                },
+                {
+                    "name": "nod_",
+                    "homepage": "https://www.drupal.org/user/598310"
+                },
+                {
+                    "name": "p.wiaderny",
+                    "homepage": "https://www.drupal.org/user/2956619"
+                },
+                {
+                    "name": "vokiel",
+                    "homepage": "https://www.drupal.org/user/2793801"
+                },
+                {
+                    "name": "wim leers",
+                    "homepage": "https://www.drupal.org/user/99777"
+                },
+                {
+                    "name": "wwalc",
+                    "homepage": "https://www.drupal.org/user/184556"
+                },
+                {
+                    "name": "xjm",
+                    "homepage": "https://www.drupal.org/user/65776"
+                }
+            ],
+            "description": "WYSIWYG editing for rich text fields using CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor"
+            }
+        },
+        {
+            "name": "drupal/codesnippet",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/codesnippet.git",
+                "reference": "8.x-1.9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/codesnippet-8.x-1.9.zip",
+                "reference": "8.x-1.9",
+                "shasum": "96cb31b9b3fa87b789a31cbb50a8d6491b4995c9"
+            },
+            "require": {
+                "drupal-ckeditor-libraries-group/codesnippet": "^4.5.11",
+                "drupal/ckeditor": "*",
+                "drupal/core": "^9.2 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.9",
+                    "datestamp": "1683639413",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Quillen (kevinquillen)",
+                    "homepage": "https://www.drupal.org/u/kevinquillen",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "szloredan",
+                    "homepage": "https://www.drupal.org/user/3531611"
+                }
+            ],
+            "description": "Adds the CodeSnippet plugin to CKEditor.",
+            "homepage": "http://drupal.org/project/codesnippet",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/codesnippet",
+                "issues": "http://drupal.org/project/issues/codesnippet"
+            }
+        },
+        {
             "name": "drupal/computed_field",
             "version": "4.0.0-beta3",
             "source": {
@@ -1591,6 +1834,103 @@
             "homepage": "https://www.drupal.org/project/computed_field",
             "support": {
                 "source": "https://git.drupalcode.org/project/computed_field"
+            }
+        },
+        {
+            "name": "drupal/conditional_fields",
+            "version": "4.0.0-alpha6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/conditional_fields.git",
+                "reference": "4.0.0-alpha6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/conditional_fields-4.0.0-alpha6.zip",
+                "reference": "4.0.0-alpha6",
+                "shasum": "0438e4e0e372cd68578679dfce3c990f8a12a4d7"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/entity_reference_revisions": "1.x-dev",
+                "drupal/paragraphs": "^1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.0-alpha6",
+                    "datestamp": "1733933531",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "benjifisher",
+                    "homepage": "https://www.drupal.org/user/683300"
+                },
+                {
+                    "name": "colan",
+                    "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "dqd",
+                    "homepage": "https://www.drupal.org/user/1001934"
+                },
+                {
+                    "name": "ergonlogic",
+                    "homepage": "https://www.drupal.org/user/368613"
+                },
+                {
+                    "name": "geek-merlin",
+                    "homepage": "https://www.drupal.org/user/229048"
+                },
+                {
+                    "name": "heddn",
+                    "homepage": "https://www.drupal.org/user/1463982"
+                },
+                {
+                    "name": "itsekhmistro",
+                    "homepage": "https://www.drupal.org/user/928152"
+                },
+                {
+                    "name": "mparker17",
+                    "homepage": "https://www.drupal.org/user/536298"
+                },
+                {
+                    "name": "OlgaRabodzei",
+                    "homepage": "https://www.drupal.org/user/3389198"
+                },
+                {
+                    "name": "peterpoe",
+                    "homepage": "https://www.drupal.org/user/55674"
+                },
+                {
+                    "name": "saurabh-2k17",
+                    "homepage": "https://www.drupal.org/user/3622252"
+                },
+                {
+                    "name": "szhu",
+                    "homepage": "https://www.drupal.org/user/3525295"
+                },
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
+                }
+            ],
+            "description": "Enables conditional field behaviors.",
+            "homepage": "https://www.drupal.org/project/conditional_fields",
+            "support": {
+                "source": "https://git.drupalcode.org/project/conditional_fields",
+                "issues": "https://www.drupal.org/project/issues/conditional_fields"
             }
         },
         {
@@ -2044,6 +2384,120 @@
             }
         },
         {
+            "name": "drupal/encrypt",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/encrypt.git",
+                "reference": "8.x-3.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/encrypt-8.x-3.2.zip",
+                "reference": "8.x-3.2",
+                "shasum": "32a700eeb59aac51f6ce4651718243a1641d5ef0"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "drupal/key": "^1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-3.2",
+                    "datestamp": "1727640040",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alexpott",
+                    "homepage": "https://www.drupal.org/user/157725"
+                },
+                {
+                    "name": "greggles",
+                    "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "rlhawk",
+                    "homepage": "https://www.drupal.org/user/352283"
+                },
+                {
+                    "name": "theunraveler",
+                    "homepage": "https://www.drupal.org/user/71548"
+                },
+                {
+                    "name": "zzolo",
+                    "homepage": "https://www.drupal.org/user/147331"
+                }
+            ],
+            "description": "Provides an API for two-way encryption.",
+            "homepage": "https://www.drupal.org/project/encrypt",
+            "support": {
+                "source": "https://git.drupalcode.org/project/encrypt"
+            }
+        },
+        {
+            "name": "drupal/entity_autocomplete_suggestions",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_autocomplete_suggestions.git",
+                "reference": "3.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_autocomplete_suggestions-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "3e2ba639211c2bbf49a428dd9965c4b013592ada"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0",
+                    "datestamp": "1695287394",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "rajkumar7it74",
+                    "homepage": "https://www.drupal.org/user/2805885"
+                }
+            ],
+            "description": "Alters entity autocomplete suggestions.",
+            "homepage": "https://www.drupal.org/project/entity_autocomplete_suggestions",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_autocomplete_suggestions"
+            }
+        },
+        {
             "name": "drupal/entity_events",
             "version": "2.0.5",
             "source": {
@@ -2096,6 +2550,143 @@
             }
         },
         {
+            "name": "drupal/entity_reference_revisions",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_reference_revisions.git",
+                "reference": "8.x-1.12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_reference_revisions-8.x-1.12.zip",
+                "reference": "8.x-1.12",
+                "shasum": "2a2ff8617c7ce01b56df1caaf0a563da04948e26"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/diff": "^1 || ^2"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.12",
+                    "datestamp": "1722804497",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Frans",
+                    "homepage": "https://www.drupal.org/user/514222"
+                },
+                {
+                    "name": "jeroen.b",
+                    "homepage": "https://www.drupal.org/user/1853532"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                }
+            ],
+            "description": "Entity Reference Revisions",
+            "homepage": "https://www.drupal.org/project/entity_reference_revisions",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/entity_usage",
+            "version": "2.0.0-beta24",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_usage.git",
+                "reference": "8.x-2.0-beta24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta24.zip",
+                "reference": "8.x-2.0-beta24",
+                "shasum": "063cf50d2b5cf7c99bb86a818c03fcfef2082151"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11"
+            },
+            "require-dev": {
+                "drupal/block_field": "~1.0",
+                "drupal/dynamic_entity_reference": "~1.0 || ^2.0 || ^4.0",
+                "drupal/entity_browser": "~2.0",
+                "drupal/entity_browser_block": "~1.0 || ^2.0",
+                "drupal/entity_embed": "^1.7",
+                "drupal/entity_reference_revisions": "~1.0",
+                "drupal/inline_entity_form": "^1.0@RC || ^3.0@RC",
+                "drupal/paragraphs": "~1.0",
+                "drupal/redirect": "^1.11",
+                "drupal/webform": "^6.0.0-alpha4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-beta24",
+                    "datestamp": "1743745774",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "lullabot",
+                    "homepage": "https://www.drupal.org/user/3815489"
+                },
+                {
+                    "name": "marcoscano",
+                    "homepage": "https://www.drupal.org/user/1288796"
+                },
+                {
+                    "name": "seanb",
+                    "homepage": "https://www.drupal.org/user/545912"
+                }
+            ],
+            "description": "Track usage of entities referenced by other entities",
+            "homepage": "https://www.drupal.org/project/entity_usage",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity_usage",
+                "issues": "http://drupal.org/project/issues/entity_usage"
+            }
+        },
+        {
             "name": "drupal/estimated_read_time",
             "version": "1.2.0",
             "source": {
@@ -2139,6 +2730,130 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/estimated_read_time",
                 "issues": "https://www.drupal.org/project/issues/estimated_read_time"
+            }
+        },
+        {
+            "name": "drupal/field_group",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/field_group.git",
+                "reference": "4.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_group-4.0.0.zip",
+                "reference": "4.0.0",
+                "shasum": "d3ff81d8a64b6ac392989b668cfa417be5101642"
+            },
+            "require": {
+                "drupal/core": "^10.3 || ^11"
+            },
+            "require-dev": {
+                "drupal/jquery_ui_accordion": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "4.0.0",
+                    "datestamp": "1745478894",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "joevagyok",
+                    "homepage": "https://www.drupal.org/user/2876343"
+                },
+                {
+                    "name": "jyve",
+                    "homepage": "https://www.drupal.org/user/591438"
+                },
+                {
+                    "name": "nils.destoop",
+                    "homepage": "https://www.drupal.org/user/361625"
+                },
+                {
+                    "name": "Stalski",
+                    "homepage": "https://www.drupal.org/user/322618"
+                },
+                {
+                    "name": "swentel",
+                    "homepage": "https://www.drupal.org/user/107403"
+                }
+            ],
+            "description": "Provides the field_group module.",
+            "homepage": "https://www.drupal.org/project/field_group",
+            "support": {
+                "source": "https://git.drupalcode.org/project/field_group",
+                "issues": "https://www.drupal.org/project/issues/field_group"
+            }
+        },
+        {
+            "name": "drupal/highlightjs_input_filter",
+            "version": "1.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/highlightjs_input_filter.git",
+                "reference": "1.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/highlightjs_input_filter-1.1.5.zip",
+                "reference": "1.1.5",
+                "shasum": "b5bf5f11d6634d90586f2a8234a87ebf3c3aa1cf"
+            },
+            "require": {
+                "drupal/core": "^9.0 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.1.5",
+                    "datestamp": "1729650722",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Nicholas Mangold",
+                    "homepage": "https://nicholasmangold.com/",
+                    "email": "nic.mangold@gmail.com"
+                }
+            ],
+            "description": "Provides an input filter to highlight code using highlight.js.",
+            "homepage": "http://drupal.org/project/highlightjs_input_filter",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/highlightjs_input_filter"
             }
         },
         {
@@ -2209,6 +2924,81 @@
             }
         },
         {
+            "name": "drupal/key",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/key.git",
+                "reference": "8.x-1.20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/key-8.x-1.20.zip",
+                "reference": "8.x-1.20",
+                "shasum": "f45415552de129e9976af72224393cd1d1f2ea65"
+            },
+            "require": {
+                "drupal/core": ">=8.9 <12"
+            },
+            "require-dev": {
+                "drush/drush": ">=9"
+            },
+            "suggest": {
+                "drush/drush": ">=11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.20",
+                    "datestamp": "1744582168",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": ">=9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "cellar door",
+                    "homepage": "https://www.drupal.org/user/658076"
+                },
+                {
+                    "name": "crashtest_",
+                    "homepage": "https://www.drupal.org/user/261457"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "rlhawk",
+                    "homepage": "https://www.drupal.org/user/352283"
+                }
+            ],
+            "description": "Provides the ability to manage site-wide keys",
+            "homepage": "http://drupal.org/project/key",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/key",
+                "issues": "http://drupal.org/project/key"
+            }
+        },
+        {
             "name": "drupal/mahi",
             "version": "1.1.0",
             "source": {
@@ -2250,6 +3040,87 @@
             "homepage": "https://www.drupal.org/project/mahi",
             "support": {
                 "source": "https://git.drupalcode.org/project/mahi"
+            }
+        },
+        {
+            "name": "drupal/paragraphs",
+            "version": "1.19.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/paragraphs.git",
+                "reference": "8.x-1.19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.19.zip",
+                "reference": "8.x-1.19",
+                "shasum": "831a81a11eac419e8410db45efef5b283c4d117c"
+            },
+            "require": {
+                "drupal/core": "^10.2 || ^11",
+                "drupal/entity_reference_revisions": "~1.3"
+            },
+            "require-dev": {
+                "drupal/block_field": "1.x-dev",
+                "drupal/diff": "1.x-dev",
+                "drupal/entity_browser": "2.x-dev",
+                "drupal/entity_usage": "2.x-dev",
+                "drupal/feeds": "^3",
+                "drupal/field_group": "3.x-dev",
+                "drupal/inline_entity_form": "3.x-dev",
+                "drupal/paragraphs-paragraphs_library": "*",
+                "drupal/replicate": "1.x-dev",
+                "drupal/search_api": "^1",
+                "drupal/search_api_db": "*"
+            },
+            "suggest": {
+                "drupal/entity_browser": "Recommended for an improved user experience when using the Paragraphs library module"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.19",
+                    "datestamp": "1740907076",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "frans",
+                    "homepage": "https://www.drupal.org/user/514222"
+                },
+                {
+                    "name": "jeroen.b",
+                    "homepage": "https://www.drupal.org/user/1853532"
+                },
+                {
+                    "name": "jstoller",
+                    "homepage": "https://www.drupal.org/user/99012"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                },
+                {
+                    "name": "primsi",
+                    "homepage": "https://www.drupal.org/user/282629"
+                }
+            ],
+            "description": "Enables the creation of Paragraphs entities.",
+            "homepage": "https://www.drupal.org/project/paragraphs",
+            "support": {
+                "source": "https://git.drupalcode.org/project/paragraphs"
             }
         },
         {
@@ -2315,6 +3186,64 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/read_time",
                 "issues": "https://www.drupal.org/project/issues/read_time"
+            }
+        },
+        {
+            "name": "drupal/real_aes",
+            "version": "2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/real_aes.git",
+                "reference": "8.x-2.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/real_aes-8.x-2.6.zip",
+                "reference": "8.x-2.6",
+                "shasum": "c18f40c69beadac60836032a127e53d5c0cd0a57"
+            },
+            "require": {
+                "defuse/php-encryption": "^2.0",
+                "drupal/core": "^8 || ^9 || ^10 || ^11",
+                "drupal/encrypt": "^3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.6",
+                    "datestamp": "1719066076",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "heine",
+                    "homepage": "https://www.drupal.org/user/17943"
+                },
+                {
+                    "name": "nerdstein",
+                    "homepage": "https://www.drupal.org/user/1557710"
+                },
+                {
+                    "name": "ptmkenny",
+                    "homepage": "https://www.drupal.org/user/97885"
+                },
+                {
+                    "name": "rlhawk",
+                    "homepage": "https://www.drupal.org/user/352283"
+                }
+            ],
+            "description": "Provides an Authenticated AES encryption method for Encrypt through the Defuse PHP Encryption library.",
+            "homepage": "https://www.drupal.org/project/real_aes",
+            "support": {
+                "source": "https://git.drupalcode.org/project/real_aes"
             }
         },
         {
@@ -2443,6 +3372,125 @@
             }
         },
         {
+            "name": "drupal/slick",
+            "version": "3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/slick.git",
+                "reference": "3.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/slick-3.0.4.zip",
+                "reference": "3.0.4",
+                "shasum": "2ec5b9b3d17bdbf9e09b926adacebd597eb4800e"
+            },
+            "require": {
+                "drupal/blazy": "^3.0",
+                "drupal/core": ">=9.4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.4",
+                    "datestamp": "1729250264",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/2232779/committers",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "shadcn",
+                    "homepage": "https://www.drupal.org/user/571032"
+                },
+                {
+                    "name": "thalles",
+                    "homepage": "https://www.drupal.org/user/3589086"
+                }
+            ],
+            "description": "Slick carousel, the last carousel you'll ever need.",
+            "homepage": "https://drupal.org/project/slick",
+            "keywords": [
+                "Drupal",
+                "carousel",
+                "slideshow"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/slick",
+                "issues": "https://drupal.org/project/issues/slick"
+            }
+        },
+        {
+            "name": "drupal/slick_paragraphs",
+            "version": "3.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/slick_paragraphs.git",
+                "reference": "3.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/slick_paragraphs-3.0.2.zip",
+                "reference": "3.0.2",
+                "shasum": "4d31495ab91837ea106e37b6ba34527a1456cc32"
+            },
+            "require": {
+                "drupal/core": ">=9.4",
+                "drupal/paragraphs": "^1.0",
+                "drupal/slick": "^3.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.2",
+                    "datestamp": "1725787337",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Gaus Surahman",
+                    "homepage": "https://www.drupal.org/u/gausarts",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/2791135/committers",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Provides Slick Carousel integration with Paragraphs.",
+            "homepage": "https://drupal.org/project/slick_paragraphs",
+            "keywords": [
+                "Drupal",
+                "Paragraphs",
+                "carousel",
+                "slideshow"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/slick_paragraphs",
+                "issues": "https://drupal.org/project/issues/slick_paragraphs"
+            }
+        },
+        {
             "name": "drupal/twig_tweak",
             "version": "3.4.1",
             "source": {
@@ -2500,6 +3548,63 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/twig_tweak",
                 "issues": "https://www.drupal.org/project/issues/twig_tweak"
+            }
+        },
+        {
+            "name": "drupal/view_unpublished",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/view_unpublished.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/view_unpublished-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "7dd4411c53866585ac6319d147ab11d214d55877"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3.18",
+                "phpcompatibility/php-compatibility": "10.x-dev@dev"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1724503131",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Agnes Chisholm",
+                    "homepage": "https://www.drupal.org/user/173461",
+                    "email": "amaria@chisholmtech.com"
+                },
+                {
+                    "name": "fathima.asmat",
+                    "homepage": "https://www.drupal.org/user/3622664"
+                },
+                {
+                    "name": "tobiasb",
+                    "homepage": "https://www.drupal.org/user/183956"
+                }
+            ],
+            "description": "Select which roles should be able to see unpublished nodes.",
+            "homepage": "https://www.drupal.org/project/view_unpublished",
+            "support": {
+                "source": "https://git.drupalcode.org/project/view_unpublished"
             }
         },
         {
@@ -7911,6 +9016,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "drupal/computed_field": 10,
+        "drupal/conditional_fields": 15,
+        "drupal/entity_usage": 10,
         "drupal/read_time": 10
     },
     "prefer-stable": true,

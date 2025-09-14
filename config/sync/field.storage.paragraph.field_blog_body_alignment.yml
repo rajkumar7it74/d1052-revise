@@ -1,0 +1,30 @@
+uuid: 4b8ba97e-2066-40fe-8d19-1f2b989967bc
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_blog_body_alignment
+field_name: field_blog_body_alignment
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: left
+      label: left
+    -
+      value: center
+      label: center
+    -
+      value: right
+      label: right
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

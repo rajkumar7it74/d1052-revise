@@ -1,0 +1,19 @@
+uuid: 7e1663f3-d6ed-4946-b776-a36ca56f48c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body_background_color
+    - paragraphs.paragraphs_type.blog_content
+id: paragraph.blog_content.field_body_background_color
+field_name: field_body_background_color
+entity_type: paragraph
+bundle: blog_content
+label: background_color
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

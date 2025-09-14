@@ -1,0 +1,21 @@
+uuid: 7dddf872-4f9b-4f64-9fe2-5936a5e73e57
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_background_style
+    - paragraphs.paragraphs_type.blog_hero_section
+  module:
+    - options
+id: paragraph.blog_hero_section.field_blog_background_style
+field_name: field_blog_background_style
+entity_type: paragraph
+bundle: blog_hero_section
+label: 'Background Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

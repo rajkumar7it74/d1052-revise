@@ -1,0 +1,117 @@
+uuid: 983ae621-fd8f-4a75-93c9-9bf38dffcb9f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_hero_section.field_blog_background_style
+    - field.field.paragraph.blog_hero_section.field_blog_featured_image
+    - field.field.paragraph.blog_hero_section.field_blog_subtitle
+    - field.field.paragraph.blog_hero_section.field_blog_theme_style
+    - field.field.paragraph.blog_hero_section.field_blog_title
+    - field.field.paragraph.blog_hero_section.field_blog_video_embed
+    - image.style.responsive_medium
+    - paragraphs.paragraphs_type.blog_hero_section
+  module:
+    - field_group
+    - image
+third_party_settings:
+  field_group:
+    group_hero_title:
+      children:
+        - field_blog_title
+        - field_blog_subtitle
+      label: 'Hero Title'
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+    group_hero_media:
+      children:
+        - field_blog_featured_image
+        - field_blog_video_embed
+      label: 'Hero Media'
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+    group_hero_style_options:
+      children:
+        - field_blog_background_style
+      label: 'Style Options'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: true
+        id: ''
+        label_as_html: false
+        description: ''
+        required_fields: true
+id: paragraph.blog_hero_section.default
+targetEntityType: paragraph
+bundle: blog_hero_section
+mode: default
+content:
+  field_blog_background_style:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_blog_featured_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: responsive_medium
+    third_party_settings: {  }
+  field_blog_subtitle:
+    type: string_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_blog_theme_style:
+    type: options_select
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_blog_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_blog_video_embed:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

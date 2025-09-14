@@ -60,7 +60,6 @@
  * @see template_preprocess_node()
  */
 #}
-
 {%
   set layout = layout ? 'layout--' ~ layout|clean_class
 %}
@@ -82,7 +81,11 @@
 %}
 {% set aria_label = label is not iterable and label is not empty ? label : '' %}
 
-<div class="col-md-6 col-lg-4 mb-4 d-flex">
+{% if page %}
+  <div class="col-12 mb-4 d-flex">
+{% else %}
+  <div class="col-12 col-md-6 col-lg-4 mb-4 d-flex">
+{% endif %}
 
   <article{{ attributes.addClass(classes).setAttribute('role', 'article').setAttribute('aria-label', aria_label) }}>
 
@@ -98,6 +101,9 @@
       </div>
     {% endif %}
 
+    <div{{ content_attributes.addClass(['node__content', 'card-body', 'text-body']) }}>
+      {{ content|without('comment') }}
+    </div>
     <header class="card-header bg-light">
       {{ title_prefix }}
       {% if label and not page %}
@@ -127,20 +133,5 @@
         </div>
       {% endif %}
     </header>
-
-    <div{{ content_attributes.addClass(['node__content', 'card-body', 'text-body']) }}>
-      {{ content|without('comment') }}
-    </div>
-
-    {% if content.comment %}
-      <div class="card-footer bg-white">
-        <button class="btn btn-sm btn-outline-secondary w-100" type="button" data-bs-toggle="collapse" data-bs-target="#comments-{{ node.id }}" aria-expanded="false" aria-controls="comments-{{ node.id }}">
-          {{ 'Show Comments'|t }}
-        </button>
-        <div id="comments-{{ node.id }}" class="collapse mt-3">
-          {{ content.comment }}
-        </div>
-      </div>
-    {% endif %}
   </article>
 </div>

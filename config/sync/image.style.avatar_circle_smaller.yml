@@ -1,0 +1,21 @@
+uuid: 175d5089-38d9-4c4f-ad32-cf44f78db550
+langcode: en
+status: true
+dependencies: {  }
+name: avatar_circle_smaller
+label: 'Avatar Circle Smaller'
+effects:
+  8c3b513c-8a45-4e04-9d18-6a0e0ffd1e71:
+    uuid: 8c3b513c-8a45-4e04-9d18-6a0e0ffd1e71
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 64
+      height: 64
+      anchor: center-center
+  f1716f8b-495c-4f33-8361-e70fb6b7aa8d:
+    uuid: f1716f8b-495c-4f33-8361-e70fb6b7aa8d
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

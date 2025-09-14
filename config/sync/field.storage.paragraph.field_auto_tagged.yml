@@ -1,0 +1,18 @@
+uuid: 74d99745-d9b6-47c0-beea-75ac4e7d0d70
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_auto_tagged
+field_name: field_auto_tagged
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

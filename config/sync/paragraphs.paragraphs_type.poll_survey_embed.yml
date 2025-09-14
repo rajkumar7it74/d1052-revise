@@ -1,0 +1,10 @@
+uuid: 933c9053-9af8-4d12-9132-50c15577ed87
+langcode: en
+status: true
+dependencies: {  }
+id: poll_survey_embed
+label: 'Poll/Survey Embed'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

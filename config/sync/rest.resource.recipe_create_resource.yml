@@ -1,0 +1,20 @@
+uuid: d4d83660-1401-44e7-a548-045172f097be
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - expose_content_api
+    - serialization
+    - user
+id: recipe_create_resource
+plugin_id: recipe_create_resource
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie

@@ -1,0 +1,21 @@
+uuid: ff2ed7d3-d7b6-4921-88a9-e9783548da1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_theme_style
+    - paragraphs.paragraphs_type.blog_hero_section
+  module:
+    - options
+id: paragraph.blog_hero_section.field_blog_theme_style
+field_name: field_blog_theme_style
+entity_type: paragraph
+bundle: blog_hero_section
+label: 'Blog Theme Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

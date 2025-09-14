@@ -1,0 +1,23 @@
+uuid: c28254a5-088f-4fd9-b3ef-ce133812ec91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_blog_body_alignment
+    - paragraphs.paragraphs_type.blog_content
+  module:
+    - options
+id: paragraph.blog_content.field_blog_body_alignment
+field_name: field_blog_body_alignment
+entity_type: paragraph
+bundle: blog_content
+label: Alignment
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: left
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -11,6 +11,7 @@ use Drupal\common_utility\Service\CommonUtility;
 // To enabled caching
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableResponseInterface;
+use Drupal\Core\Cache\CacheableJsonResponse;
 
 /**
  * Provides a REST API endpoint for content.
@@ -112,14 +113,21 @@ class ContentsResource extends ResourceBase {
     // Add cache tags (e.g., invalidate when node changes)
     $cache_metadata->addCacheTags(['node:list', 'node:1']);
     // Attach metadata to response
-    //$response->addCacheableDependency($cache_metadata);
     //$cache_metadata->applyTo($response);
     $response->addCacheableDependency($cache_metadata);
-    //dump($response->getCacheableMetadata());
-    //dump($response);
 
     // Not recommened way.
     $response->headers->set('Cache-Control', 'public, max-age=3600');
+    $cache_metadata->applyTo($response);
+
+
+    // $response = new CacheableJsonResponse($data);
+    // $cache_metadata = new CacheableMetadata();
+    // $cache_metadata->addCacheTags(['my_resource_tag']);
+    // $cache_metadata->addCacheContexts(['user']);
+    // $cache_metadata->setCacheMaxAge(3600); // Cache for 1 hour
+
+    
     //dump($response);
 
     

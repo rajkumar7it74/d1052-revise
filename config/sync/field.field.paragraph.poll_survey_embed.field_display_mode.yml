@@ -1,0 +1,21 @@
+uuid: 6d4f622b-9ecd-4c97-8dbd-d76b1b8f28c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_display_mode
+    - paragraphs.paragraphs_type.poll_survey_embed
+  module:
+    - options
+id: paragraph.poll_survey_embed.field_display_mode
+field_name: field_display_mode
+entity_type: paragraph
+bundle: poll_survey_embed
+label: 'Display Mode'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

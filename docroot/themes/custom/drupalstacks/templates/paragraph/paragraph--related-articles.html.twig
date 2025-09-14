@@ -1,0 +1,62 @@
+<div class="related-articles {{ display_style_class }} {{ card_count_class }}">
+  {% if related_articles %}
+    <div class="related-articles__wrapper">
+      {% for article in related_articles %}
+        <div class="related-article-card">
+          
+          {# Article Image #}
+          {% if article.image %}
+            <div class="card-image">
+              <a href="{{ article.url }}">
+                <img src="{{ article.image }}" alt="{{ article.title }}" loading="lazy" />
+              </a>
+            </div>
+          {% endif %}
+
+          <div class="card-content">
+            
+            {# Title #}
+            <h3 class="card-title">
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            </h3>
+
+            {# Body #}
+            {% if article.body %}
+              <div class="card-body">{{ article.body }}</div>
+            {% endif %}
+
+            {# Author Info (after body) #}
+            <div class="card-meta">
+              {% if article.author_image %}
+                <img class="author-avatar" src="{{ article.author_image }}" alt="{{ article.author_name }}" />
+              {% endif %}
+              <span class="author-name">{{ article.author_name }}</span>
+              <span class="published-date">{{ article.published_date }}</span>
+
+            </div>
+
+            {# Social Actions #}
+            <div class="card-actions">
+              <button class="clap-btn" data-article-id="{{ loop.index }}">👏 {{ article.claps }}</button>
+              <button class="response-btn">💬 {{ article.responses }}</button>
+              <button class="bookmark-btn" data-article-id="{{ loop.index }}">🔖</button>
+
+              <div class="popup-wrapper">
+                <button class="menu-btn" aria-label="More options">⋯</button>
+                <div class="popup-menu">
+                  <ul>
+                    <li><a href="#">Follow {{ article.author_name }}</a></li>
+                    <li><a href="#">Mute {{ article.author_name }}</a></li>
+                    <li><button class="popup-close">Close</button></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No related articles found.</p>
+  {% endif %}
+</div>

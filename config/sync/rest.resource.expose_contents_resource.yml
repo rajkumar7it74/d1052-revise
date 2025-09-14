@@ -1,0 +1,20 @@
+uuid: f378eac0-94e6-421e-b0db-4258ce0fb0ca
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - expose_content_api
+    - serialization
+    - user
+id: expose_contents_resource
+plugin_id: expose_contents_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie

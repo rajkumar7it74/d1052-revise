@@ -1,0 +1,19 @@
+uuid: 8a8b8b3e-a209-4ed9-9ff8-71afb87c0d5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_source
+    - paragraphs.paragraphs_type.blog_quote
+id: paragraph.blog_quote.field_quote_source
+field_name: field_quote_source
+entity_type: paragraph
+bundle: blog_quote
+label: 'Quote Source'
+description: 'Where the quote came from (book, interview, article, etc.)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

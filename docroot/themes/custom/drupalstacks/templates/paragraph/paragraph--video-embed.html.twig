@@ -1,0 +1,23 @@
+<div class="video-embed-block video-provider--{{ provider }}">
+  <div class="video-wrapper">
+    {% if provider == 'youtube' %}
+      <iframe
+        src="https://www.youtube.com/embed/{{ video_id }}{% if autoplay %}?autoplay=1{% endif %}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    {% elseif provider == 'vimeo' %}
+      <iframe
+        src="https://player.vimeo.com/video/{{ video_id }}{% if autoplay %}?autoplay=1{% endif %}"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    {% endif %}
+  </div>
+
+  {% if caption %}
+    <div class="video-caption">{{ caption }}</div>
+  {% endif %}
+</div>

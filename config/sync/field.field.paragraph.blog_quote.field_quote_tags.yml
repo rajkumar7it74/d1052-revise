@@ -1,0 +1,29 @@
+uuid: c1c700b0-2bbd-4593-bfbf-5c0971d501dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_tags
+    - paragraphs.paragraphs_type.blog_quote
+    - taxonomy.vocabulary.tags
+id: paragraph.blog_quote.field_quote_tags
+field_name: field_quote_tags
+entity_type: paragraph
+bundle: blog_quote
+label: tags
+description: 'Categories or topics (e.g. leadership, creativity, motivation)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

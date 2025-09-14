@@ -1,0 +1,21 @@
+uuid: 0bec017d-a3a0-456c-8834-a09ac50e5fa7
+langcode: en
+status: true
+dependencies: {  }
+name: avatar_circle_medium
+label: 'Avatar Circle Medium'
+effects:
+  73893e85-cf22-4fc7-b515-a6f42bce3327:
+    uuid: 73893e85-cf22-4fc7-b515-a6f42bce3327
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 128
+      height: 128
+      anchor: center-center
+  f6345dc2-45c1-4d7b-b6af-afe1d6dd34fa:
+    uuid: f6345dc2-45c1-4d7b-b6af-afe1d6dd34fa
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,22 @@
+uuid: 8764cc03-56a0-4518-8e62-67817d167e56
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: 4WmbqV_BiKsuJxbaTjH1FrfTA3__jmXBBEjfFSOdk4E
+id: drupalstacks_old_secondary_local_tasks
+theme: drupalstacks_old
+region: content
+weight: -11
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

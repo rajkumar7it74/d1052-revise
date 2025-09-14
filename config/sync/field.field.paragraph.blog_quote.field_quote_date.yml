@@ -1,0 +1,21 @@
+uuid: d258da40-86c9-4a5e-b615-2e695f44fdad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_quote_date
+    - paragraphs.paragraphs_type.blog_quote
+  module:
+    - datetime
+id: paragraph.blog_quote.field_quote_date
+field_name: field_quote_date
+entity_type: paragraph
+bundle: blog_quote
+label: 'Quote Date'
+description: 'When the quote was said or published (optional)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,19 @@
+uuid: 1de7b17f-5038-4699-b601-965fb63924e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_title
+    - paragraphs.paragraphs_type.blog_quote
+id: paragraph.blog_quote.field_author_title
+field_name: field_author_title
+entity_type: paragraph
+bundle: blog_quote
+label: 'Author Title'
+description: 'Their role or affiliation (e.g. CEO, Author, Philosopher)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

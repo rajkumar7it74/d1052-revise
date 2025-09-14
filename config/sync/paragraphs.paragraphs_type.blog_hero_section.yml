@@ -1,0 +1,10 @@
+uuid: cfdc13a0-a1b4-4b60-a799-8a2e2abd3dbc
+langcode: en
+status: true
+dependencies: {  }
+id: blog_hero_section
+label: 'Hero Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

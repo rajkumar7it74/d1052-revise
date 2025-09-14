@@ -1,0 +1,57 @@
+<div class="hero-section {{ bg_class }}">
+  {% if featured_image %}
+    <div class="hero-image" style="background-image: url('{{ featured_image }}');">
+      {% if background_style == 'overlay' %}
+        <div class="overlay"></div>
+      {% endif %}
+    </div>
+    <picture>
+      <source
+        srcset="{{ hero_image_webp.small }} 480w,
+                {{ hero_image_webp.medium }} 768w,
+                {{ hero_image_webp.large }} 1200w"
+        sizes="(max-width: 480px) 100vw,
+               (max-width: 768px) 100vw,
+               1200px"
+        type="image/webp">
+    
+      <source
+        srcset="{{ hero_image_jpeg.small }} 480w,
+                {{ hero_image_jpeg.medium }} 768w,
+                {{ hero_image_jpeg.large }} 1200w"
+        sizes="(max-width: 480px) 100vw,
+               (max-width: 768px) 100vw,
+               1200px"
+        type="image/jpeg">
+    
+      <img src="{{ hero_image_jpeg.large }}"
+           alt="{{ hero_image_alt }}"
+           loading="lazy"
+           class="hero-image">
+    </picture>
+    
+  {% endif %}
+
+  <div class="hero-content" data-aos="fade-up">
+    {% if title %}
+      <h1 class="hero-title">{{ title }}</h1>
+    {% endif %}
+    {% if subtitle %}
+      <p class="hero-subtitle">{{ subtitle }}</p>
+    {% endif %}
+    {% if video_embed %}
+      <div class="hero-video">
+        <div class="video-wrapper">
+        <iframe width="560" height="315" 
+          src="https://www.youtube.com/embed/{{video_embed}}"
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          allowfullscreen>
+        </iframe>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

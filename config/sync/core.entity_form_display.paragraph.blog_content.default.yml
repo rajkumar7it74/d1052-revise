@@ -1,0 +1,41 @@
+uuid: ae39fda9-abce-4631-938d-4dbc158ddf20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_content.field_blog_body
+    - field.field.paragraph.blog_content.field_blog_body_alignment
+    - field.field.paragraph.blog_content.field_body_background_color
+    - paragraphs.paragraphs_type.blog_content
+  module:
+    - text
+id: paragraph.blog_content.default
+targetEntityType: paragraph
+bundle: blog_content
+mode: default
+content:
+  field_blog_body:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_blog_body_alignment:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_body_background_color:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

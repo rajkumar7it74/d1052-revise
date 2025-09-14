@@ -1,0 +1,43 @@
+<div class="hero-section {{ layout_class }} {{ theme_class }}">
+  {% if layout_class == 'hero-style--overlay' %}
+    <div class="hero-image">
+      {% if featured_image %}
+        <img src="{{ featured_image }}" alt="{{ title }}" />
+      {% endif %}
+      <div class="hero-overlay">
+        <div class="hero-content">
+          <h1>{{ title }}</h1>
+          {% if subtitle %}
+            <p class="hero-subtitle">{{ subtitle }}</p>
+          {% endif %}
+          {{ video_embed }}
+        </div>
+      </div>
+    </div>
+
+  {% elseif layout_class == 'hero-style--split' %}
+    <div class="hero-split">
+      <div class="hero-image-side">
+        {% if featured_image %}
+          <img src="{{ featured_image }}" alt="{{ title }}" />
+        {% endif %}
+      </div>
+      <div class="hero-content-side">
+        <h1>{{ title }}</h1>
+        {% if subtitle %}
+          <p class="hero-subtitle">{{ subtitle }}</p>
+        {% endif %}
+        {{ video_embed }}
+      </div>
+    </div>
+
+  {% elseif layout_class == 'hero-style--minimal' %}
+    <div class="hero-minimal">
+      <h1>{{ title }}</h1>
+      {% if subtitle %}
+        <p class="hero-subtitle">{{ subtitle }}</p>
+      {% endif %}
+      {{ video_embed }}
+    </div>
+  {% endif %}
+</div>

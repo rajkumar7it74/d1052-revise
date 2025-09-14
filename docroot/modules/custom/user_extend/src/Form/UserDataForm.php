@@ -8,6 +8,8 @@ use Drupal\Component\Utility\EmailValidator;
 use Drupal\Core\Database\Connection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\common_utility\Service\CommonUtility;
+use Drupal\encrypt\EncryptServiceInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 class UserDataForm extends FormBase {
   
@@ -27,13 +29,26 @@ class UserDataForm extends FormBase {
 
   protected $commonUitlity;
 
+  protected $encryptionService;
+  
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   */
+  protected $entityTypeManager;
+
   /**
    * Constructs a new UserDataForm.
    */
-  public function __construct(Connection $database, EmailValidator $emailValidator, CommonUtility $commonUitlity) {
+  public function __construct(Connection $database,
+    EmailValidator $emailValidator,
+    CommonUtility $commonUitlity,
+    EncryptServiceInterface $encryptionService,
+    EntityTypeManagerInterface $entityTypeManager) {
     $this->database = $database;
     $this->emailValidator = $emailValidator;
     $this->commonUitlity = $commonUitlity;
+    $this->encryptionService = $encryptionService;
+    $this->entityTypeManager = $entityTypeManager;
   }
   
   /**
@@ -43,7 +58,9 @@ class UserDataForm extends FormBase {
     return new static(
       $container->get('database'),
       $container->get('email.validator'),
-      $container->get('common_utility.common_utility')
+      $container->get('common_utility.common_utility'),
+      $container->get('encryption'),
+      $container->get('entity_type.manager'),
     );
   }
 
@@ -192,15 +209,16 @@ class UserDataForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $email = trim($form_state->getValue('email'));
+    $profile = $this->entityTypeManager->getStorage('encryption_profile')->load('pii_profile');
     if ($this->commonUitlity->registerUserWithEmail($email)) {
       // Insert data to database.
       $this->database->insert('user_extend_data')
       ->fields([
         'name' => trim($form_state->getValue('name')),
-        'email' => trim($form_state->getValue('email')),
-        'phone' => trim($form_state->getValue('phone')),
+        'email' => $this->encryptionService->encrypt(trim($form_state->getValue('email')), $profile),
+        'phone' => $this->encryptionService->encrypt(trim($form_state->getValue('phone')), $profile),
         'dob' => $form_state->getValue('dob'),
-        'aadhar' => str_replace('-', '', trim($form_state->getValue('aadhar'))),
+        'aadhar' => $this->encryptionService->encrypt(str_replace('-', '', trim($form_state->getValue('aadhar'))), $profile),
       ])
       ->execute();
       // Show mwssage.

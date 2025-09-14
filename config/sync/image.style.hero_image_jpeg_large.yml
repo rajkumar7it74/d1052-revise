@@ -1,0 +1,21 @@
+uuid: 1bc04e32-e6fc-415a-9eb2-9d679fb27522
+langcode: en
+status: true
+dependencies: {  }
+name: hero_image_jpeg_large
+label: 'hero Image Jpeg large'
+effects:
+  058b601f-0c08-4689-a99b-504f506059fa:
+    uuid: 058b601f-0c08-4689-a99b-504f506059fa
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 675
+      anchor: center-center
+  0808f58b-2f33-4132-81ee-1e34bd2b83f7:
+    uuid: 0808f58b-2f33-4132-81ee-1e34bd2b83f7
+    id: image_convert
+    weight: 2
+    data:
+      extension: jpeg

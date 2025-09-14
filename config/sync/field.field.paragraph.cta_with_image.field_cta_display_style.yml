@@ -1,0 +1,21 @@
+uuid: 63098a44-1eea-47d1-899b-021a619e13c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_display_style
+    - paragraphs.paragraphs_type.cta_with_image
+  module:
+    - options
+id: paragraph.cta_with_image.field_cta_display_style
+field_name: field_cta_display_style
+entity_type: paragraph
+bundle: cta_with_image
+label: 'CTA Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

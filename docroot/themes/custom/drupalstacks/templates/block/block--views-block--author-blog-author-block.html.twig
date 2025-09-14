@@ -1,0 +1,70 @@
+{# block--author-info.html.twig
+   Bootstrap 5 author panel with a11y.
+   Expected variables (set in preprocess):
+     - author_name (string)
+     - author_url (string, optional)
+     - author_bio (string, optional)
+     - author_picture_url (string URL) OR author_picture (rendered image)
+     - published_date (human string, e.g. "August 27, 2020")
+     - published_iso (ISO 8601 for <time datetime>)
+#}
+
+{% set _id = (attributes.id ?? ('author-block-' ~ random())) ~ '-title' %}
+
+<section{{ attributes.addClass('author-panel','author-panel--narrow','border','rounded-3','p-4','bg-white') }}
+         role="complementary"
+         aria-labelledby="{{ _id }}">
+  <h2 id="{{ _id }}" class="visually-hidden">{{ 'Author information'|t }}</h2>
+
+  <div class="row align-items-center g-3 g-md-4">
+    {# Avatar #}
+    <div class="col-auto">
+      {% if author_picture_url %}
+        <img src="{{ author_picture_url }}"
+             alt="{{ 'Photo of @name'|t({'@name': author_name}) }}"
+             class="rounded-circle img-fluid"
+             width="64" height="64"
+             style="width:64px;height:64px;object-fit:cover;">
+      {% elseif author_picture %}
+        {{ author_picture }}
+      {% else %}
+        <div class="rounded-circle bg-light border"
+             style="width:64px;height:64px;"
+             aria-hidden="true"></div>
+      {% endif %}
+    </div>
+
+    {# Main text #}
+    <div class="col">
+      <p class="h3 mb-1">
+        {{ 'Published by'|t }} <span class="fw-bold">{{ author_name }}</span>
+      </p>
+
+      {% if author_bio %}
+        <p class="text-muted fst-italic mb-2">{{ author_bio }}</p>
+      {% endif %}
+
+      {% if author_url %}
+        <a class="link-primary" href="{{ author_url }}" rel="author">
+          {{ 'View all posts by @name'|t({'@name': author_name}) }}
+        </a>
+      {% endif %}
+    </div>
+    {# Status + date (right) #}
+    <div class="col-md-auto text-md-end ms-md-auto">
+        <div class="fw-bold">{{ 'Published'|t }}</div>
+        {% if published_iso %}
+            <time class="text-muted" datetime="{{ published_iso }}">{{ published_date }}</time>
+        {% elseif published_date %}
+            <span class="text-muted">{{ published_date }}</span>
+        {% endif %}
+    </div>
+  </div>
+    
+</section>
+    {# Comments from preprocess (rendered comment field, label hidden) #}
+    {% if author_block_comments %}
+    <div class="mt-4" id="comments-after-author">
+        {{ author_block_comments }}
+    </div>
+    {% endif %}

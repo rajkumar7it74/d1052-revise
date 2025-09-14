@@ -1,0 +1,19 @@
+uuid: 2f8cd2f3-43d0-4041-9257-c97a6e47a9b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_name
+    - paragraphs.paragraphs_type.blog_author_bio
+id: paragraph.blog_author_bio.field_author_name
+field_name: field_author_name
+entity_type: paragraph
+bundle: blog_author_bio
+label: 'Author Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

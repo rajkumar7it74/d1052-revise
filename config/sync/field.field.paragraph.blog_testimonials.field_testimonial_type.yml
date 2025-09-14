@@ -1,0 +1,21 @@
+uuid: d484d529-351f-45b6-849e-ebaedcf89172
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_testimonial_type
+    - paragraphs.paragraphs_type.blog_testimonials
+  module:
+    - options
+id: paragraph.blog_testimonials.field_testimonial_type
+field_name: field_testimonial_type
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Testimonial Type'
+description: 'To distinguish between written, video, audio, or social media quotes'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

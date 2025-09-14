@@ -1,0 +1,21 @@
+uuid: 3e0ecb1a-6c5f-4978-b881-20de465ca836
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_testimonial_date
+    - paragraphs.paragraphs_type.blog_testimonials
+  module:
+    - datetime
+id: paragraph.blog_testimonials.field_testimonial_date
+field_name: field_testimonial_date
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Testimonial Date'
+description: 'When the testimonial was given (optional, for freshness)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

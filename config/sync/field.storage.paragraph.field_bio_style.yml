@@ -1,0 +1,30 @@
+uuid: f8ab0dce-ce3a-4b85-bfac-e3090699cdad
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_bio_style
+field_name: field_bio_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: default
+      label: default
+    -
+      value: highlighted
+      label: Highlighted
+    -
+      value: dark
+      label: dark
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

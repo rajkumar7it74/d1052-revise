@@ -1,0 +1,40 @@
+uuid: 8be0f9b1-e695-44fe-85a2-ba63a10d4990
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.poll_survey_embed.field_description
+    - field.field.paragraph.poll_survey_embed.field_display_mode
+    - field.field.paragraph.poll_survey_embed.field_embed_code
+    - paragraphs.paragraphs_type.poll_survey_embed
+  module:
+    - options
+id: paragraph.poll_survey_embed.default
+targetEntityType: paragraph
+bundle: poll_survey_embed
+mode: default
+content:
+  field_description:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_display_mode:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_embed_code:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

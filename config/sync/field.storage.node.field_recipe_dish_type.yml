@@ -1,0 +1,30 @@
+uuid: dcf826de-9190-450a-8bd9-0fbcb3411bf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_recipe_dish_type
+field_name: field_recipe_dish_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: appetizer
+      label: Appetizer
+    -
+      value: dessert
+      label: Dessert
+    -
+      value: main_course
+      label: 'Main Course'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

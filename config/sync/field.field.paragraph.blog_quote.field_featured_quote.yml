@@ -1,0 +1,21 @@
+uuid: e99a1823-3b87-4564-b739-2ad16e43b51b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_quote
+    - paragraphs.paragraphs_type.blog_quote
+id: paragraph.blog_quote.field_featured_quote
+field_name: field_featured_quote
+entity_type: paragraph
+bundle: blog_quote
+label: featured
+description: 'Boolean to mark standout quotes for homepage or sliders'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

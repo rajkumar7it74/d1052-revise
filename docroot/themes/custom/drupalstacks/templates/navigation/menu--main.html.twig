@@ -1,0 +1,62 @@
+{#
+  Bootstrap 5 accessible menu for the "main" menu
+  FIXED: Use Drupal's link() so anchors always have proper href attributes.
+#}
+{% macro render_items(items, attributes, menu_level) %}
+  {%- if items -%}
+    {%- if menu_level == 0 -%}
+      <ul{{ attributes.addClass('navbar-nav','me-auto') }} role="menubar">
+    {%- else -%}
+      <ul class="dropdown-menu" role="menu" aria-label="submenu">
+    {%- endif -%}
+
+    {%- for item in items -%}
+      {% set has_children = item.below is not empty %}
+      {% set is_active = item.in_active_trail %}
+
+      {# li classes #}
+      {% set item_classes = [
+        menu_level == 0 ? 'nav-item' : 'dropdown-item-wrapper',
+        has_children and menu_level == 0 ? 'dropdown' : '',
+        is_active and menu_level == 0 ? 'active' : ''
+      ] %}
+
+      <li{{ item.attributes.addClass(item_classes).setAttribute('role','none') }}>
+        {% if has_children and menu_level == 0 %}
+          {# Top-level dropdown toggle link #}
+          {% set link_attrs = {
+            'class': ['nav-link','dropdown-toggle'],
+            'role': 'menuitem',
+            'data-bs-toggle': 'dropdown',
+            'aria-expanded': 'false',
+            'aria-haspopup': 'true'
+          } %}
+          {% if is_active %}
+            {% set link_attrs = link_attrs|merge({'aria-current':'page'}) %}
+          {% endif %}
+          {{ link(item.title, item.url, link_attrs) }}
+          {{ _self.render_items(item.below, attributes, menu_level + 1) }}
+        {% else %}
+          {# Regular link (top-level or submenu) #}
+          {% set link_classes = menu_level == 0 ? ['nav-link'] : ['dropdown-item'] %}
+          {% set link_attrs = {
+            'class': link_classes,
+            'role': 'menuitem'
+          } %}
+          {% if is_active %}
+            {% set link_attrs = link_attrs|merge({'aria-current':'page'}) %}
+          {% endif %}
+          {{ link(item.title, item.url, link_attrs) }}
+
+          {# Render deeper levels (if any) #}
+          {% if has_children %}
+            {{ _self.render_items(item.below, attributes, menu_level + 1) }}
+          {% endif %}
+        {% endif %}
+      </li>
+    {%- endfor -%}
+    </ul>
+  {%- endif -%}
+{% endmacro %}
+
+{{ _self.render_items(items, attributes, 0) }}

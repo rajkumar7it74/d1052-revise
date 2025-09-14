@@ -1,0 +1,19 @@
+uuid: 455fb778-20da-48d7-8308-9e8abf711b95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_company_name
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_company_name
+field_name: field_company_name
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Company Name'
+description: 'Their organization or affiliation (if relevant)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

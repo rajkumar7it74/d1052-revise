@@ -37,8 +37,8 @@
     'view-id-' ~ id,
     'view-display-id-' ~ display_id,
     dom_id ? 'js-view-dom-id-' ~ dom_id,
-    'container-fluid',  // Bootstrap responsive container
-    'py-4'              // Vertical padding
+    'container-fluid',  # Bootstrap responsive container
+    'py-4'              # Vertical padding
   ]
 %}
 <div{{ attributes.addClass(classes) }} role="region" aria-label="{{ title|default('Content section') }}">

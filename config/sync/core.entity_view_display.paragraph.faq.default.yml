@@ -1,0 +1,33 @@
+uuid: 7ddee07e-25f9-4236-86f8-dbf06847fde0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.faq.field_accordion_style
+    - field.field.paragraph.faq.field_faq_item
+    - paragraphs.paragraphs_type.faq
+  module:
+    - entity_reference_revisions
+    - options
+id: paragraph.faq.default
+targetEntityType: paragraph
+bundle: faq
+mode: default
+content:
+  field_accordion_style:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_faq_item:
+    type: entity_reference_revisions_entity_view
+    label: visually_hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

@@ -1,0 +1,10 @@
+uuid: 4995426e-1534-4232-812e-6be81cac4f6c
+langcode: en
+status: true
+dependencies: {  }
+id: blog_author_bio
+label: 'Author Bio'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
