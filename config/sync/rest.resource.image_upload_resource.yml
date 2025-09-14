@@ -1,0 +1,20 @@
+uuid: 7190a44d-86ab-44fa-adda-8b4d44144a82
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - expose_content_api
+    - serialization
+    - user
+id: image_upload_resource
+plugin_id: image_upload_resource
+granularity: resource
+configuration:
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie

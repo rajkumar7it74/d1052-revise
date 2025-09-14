@@ -1,0 +1,21 @@
+uuid: 1ec36bd3-4e1e-450a-b123-4c8b8474ae30
+langcode: en
+status: true
+dependencies: {  }
+name: recipe_small
+label: 'Recipe Small'
+effects:
+  a88a4b7d-70ad-4426-96f1-a4691d39ec39:
+    uuid: a88a4b7d-70ad-4426-96f1-a4691d39ec39
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 300
+      anchor: center-center
+  6ec93976-714e-4db0-bc48-e6215d45c5b6:
+    uuid: 6ec93976-714e-4db0-bc48-e6215d45c5b6
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

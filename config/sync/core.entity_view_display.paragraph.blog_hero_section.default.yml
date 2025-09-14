@@ -1,0 +1,70 @@
+uuid: c8d331f9-0d94-4717-aead-0a82378df2ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_hero_section.field_blog_background_style
+    - field.field.paragraph.blog_hero_section.field_blog_featured_image
+    - field.field.paragraph.blog_hero_section.field_blog_subtitle
+    - field.field.paragraph.blog_hero_section.field_blog_theme_style
+    - field.field.paragraph.blog_hero_section.field_blog_title
+    - field.field.paragraph.blog_hero_section.field_blog_video_embed
+    - image.style.responsive_medium
+    - paragraphs.paragraphs_type.blog_hero_section
+  module:
+    - image
+    - options
+id: paragraph.blog_hero_section.default
+targetEntityType: paragraph
+bundle: blog_hero_section
+mode: default
+content:
+  field_blog_background_style:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_blog_featured_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: responsive_medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_blog_subtitle:
+    type: basic_string
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_blog_theme_style:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_blog_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_blog_video_embed:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

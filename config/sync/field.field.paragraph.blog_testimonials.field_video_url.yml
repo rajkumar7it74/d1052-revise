@@ -1,0 +1,19 @@
+uuid: b8cd55cb-17cb-4af3-bbd2-9f52141680f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_url
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_video_url
+field_name: field_video_url
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Video Url'
+description: 'If it’s a video testimonial, embed or link to the video'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

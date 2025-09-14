@@ -1,0 +1,21 @@
+uuid: 8749aa68-2b83-4a2e-b15e-10369f5e6b1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_bio_style
+    - paragraphs.paragraphs_type.blog_author_bio
+  module:
+    - options
+id: paragraph.blog_author_bio.field_bio_style
+field_name: field_bio_style
+entity_type: paragraph
+bundle: blog_author_bio
+label: 'Bio Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,20 @@
+uuid: f5a18939-20df-4597-a36b-87b3c0745734
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupalstacks
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: drupalstacks_primary_admin_actions
+theme: drupalstacks
+region: highlighted
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

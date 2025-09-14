@@ -1,0 +1,21 @@
+uuid: 89246c2e-ea54-4da8-b4e6-41629a860408
+langcode: en
+status: true
+dependencies: {  }
+name: avatar_circle_smallest
+label: 'Avatar Circle Smallest'
+effects:
+  cda35181-8712-4824-98a5-25e162fd70b4:
+    uuid: cda35181-8712-4824-98a5-25e162fd70b4
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 20
+      height: 20
+      anchor: center-center
+  2c3adcfa-bd88-439c-a056-1b3d3eb45afd:
+    uuid: 2c3adcfa-bd88-439c-a056-1b3d3eb45afd
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

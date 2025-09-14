@@ -1,0 +1,20 @@
+uuid: 60d2989d-83f7-4dd2-b60d-e15c769e39d3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupalstacks
+_core:
+  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
+id: drupalstacks_page_title
+theme: drupalstacks
+region: content_above
+weight: -5
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

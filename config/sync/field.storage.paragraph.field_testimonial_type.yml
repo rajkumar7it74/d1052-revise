@@ -1,0 +1,33 @@
+uuid: fd7a8b63-8a87-464e-ab93-5b92b123d666
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_testimonial_type
+field_name: field_testimonial_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: written
+      label: written
+    -
+      value: video
+      label: video
+    -
+      value: audio
+      label: audio
+    -
+      value: social_media
+      label: 'social media'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,18 @@
+uuid: 6f0ecd8a-03dd-408f-852c-71c65c8c988a
+langcode: en
+status: true
+dependencies:
+  module:
+    - expose_content_api
+    - serialization
+    - user
+id: expose_specific_content_type_resource
+plugin_id: expose_specific_content_type_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

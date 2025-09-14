@@ -1,0 +1,22 @@
+uuid: 3bf83fe4-2276-41a6-ac68-b2eda971d03e
+langcode: en
+status: true
+dependencies:
+  theme:
+    - drupalstacks
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: drupalstacks_primary_local_tasks
+theme: drupalstacks
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

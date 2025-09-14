@@ -1,0 +1,110 @@
+uuid: 90de8a3a-9933-4e0a-9544-57b0d8d21d23
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_quote.field_author_image
+    - field.field.paragraph.blog_quote.field_author_title
+    - field.field.paragraph.blog_quote.field_background_color
+    - field.field.paragraph.blog_quote.field_featured_quote
+    - field.field.paragraph.blog_quote.field_quote_author
+    - field.field.paragraph.blog_quote.field_quote_date
+    - field.field.paragraph.blog_quote.field_quote_source
+    - field.field.paragraph.blog_quote.field_quote_style
+    - field.field.paragraph.blog_quote.field_quote_tags
+    - field.field.paragraph.blog_quote.field_quote_text
+    - paragraphs.paragraphs_type.blog_quote
+  module:
+    - datetime
+    - image
+    - options
+id: paragraph.blog_quote.default
+targetEntityType: paragraph
+bundle: blog_quote
+mode: default
+content:
+  field_author_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_author_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_background_color:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_featured_quote:
+    type: boolean
+    label: visually_hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_quote_author:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_quote_date:
+    type: datetime_default
+    label: visually_hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_quote_source:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_quote_style:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_quote_tags:
+    type: entity_reference_label
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_quote_text:
+    type: basic_string
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+hidden: {  }

@@ -1,0 +1,21 @@
+uuid: a4b7905d-d291-429a-a514-b43bb3806632
+langcode: en
+status: true
+dependencies: {  }
+name: gallery_jpeg_large
+label: 'Gallery Jpeg Large'
+effects:
+  cdc080b3-9aea-48d0-9226-7cfe19d9d80d:
+    uuid: cdc080b3-9aea-48d0-9226-7cfe19d9d80d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1200
+      height: 675
+      anchor: center-center
+  2527c106-1886-4795-8074-cfe281db0cf9:
+    uuid: 2527c106-1886-4795-8074-cfe281db0cf9
+    id: image_convert
+    weight: 2
+    data:
+      extension: jpeg

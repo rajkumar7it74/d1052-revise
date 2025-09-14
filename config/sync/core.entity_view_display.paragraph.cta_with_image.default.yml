@@ -1,0 +1,67 @@
+uuid: f71b98f4-f82b-4a7e-b47b-80e2b12708f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.cta_with_image.field_cta_display_style
+    - field.field.paragraph.cta_with_image.field_cta_image
+    - field.field.paragraph.cta_with_image.field_cta_image_text
+    - field.field.paragraph.cta_with_image.field_cta_link
+    - field.field.paragraph.cta_with_image.field_cta_title
+    - paragraphs.paragraphs_type.cta_with_image
+  module:
+    - image
+    - link
+    - options
+    - text
+id: paragraph.cta_with_image.default
+targetEntityType: paragraph
+bundle: cta_with_image
+mode: default
+content:
+  field_cta_display_style:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_cta_image:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_cta_image_text:
+    type: text_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_cta_link:
+    type: link
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_cta_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

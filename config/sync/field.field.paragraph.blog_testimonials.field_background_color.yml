@@ -1,0 +1,19 @@
+uuid: fa5e6354-f779-4d66-9c65-77634873b6ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: blog_testimonials
+label: background_color
+description: 'Optional field to customize background color per quote block'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

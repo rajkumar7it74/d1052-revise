@@ -1,0 +1,40 @@
+uuid: 06cd82ea-889c-44d7-99b6-edab27e6f7e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.blog_content.field_blog_body
+    - field.field.paragraph.blog_content.field_blog_body_alignment
+    - field.field.paragraph.blog_content.field_body_background_color
+    - paragraphs.paragraphs_type.blog_content
+  module:
+    - options
+    - text
+id: paragraph.blog_content.default
+targetEntityType: paragraph
+bundle: blog_content
+mode: default
+content:
+  field_blog_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_blog_body_alignment:
+    type: list_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_body_background_color:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

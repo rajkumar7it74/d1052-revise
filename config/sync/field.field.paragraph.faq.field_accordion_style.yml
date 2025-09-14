@@ -1,0 +1,21 @@
+uuid: 005c7f69-637d-40ed-888f-e5b1aad793bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_accordion_style
+    - paragraphs.paragraphs_type.faq
+  module:
+    - options
+id: paragraph.faq.field_accordion_style
+field_name: field_accordion_style
+entity_type: paragraph
+bundle: faq
+label: 'Accordion Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,21 @@
+uuid: bb218316-f8d9-491a-ad21-f9cf07cc77c6
+langcode: en
+status: true
+dependencies: {  }
+name: responsive_thumbnail
+label: 'Responsive Thumbnail'
+effects:
+  4bccdaf9-d1a9-4b76-a042-ac3a8e69a8a7:
+    uuid: 4bccdaf9-d1a9-4b76-a042-ac3a8e69a8a7
+    id: image_scale
+    weight: 1
+    data:
+      width: 150
+      height: 150
+      upscale: false
+  af18fba0-a237-4b10-a33e-6565f071c0a1:
+    uuid: af18fba0-a237-4b10-a33e-6565f071c0a1
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

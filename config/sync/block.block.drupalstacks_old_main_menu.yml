@@ -1,0 +1,27 @@
+uuid: 835ed2aa-0851-4267-af30-b6650f7e8914
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: gc42M-jgw5dDfV73xZrNTQdNhX6ol9H4yKnnYdzkXGs
+id: drupalstacks_old_main_menu
+theme: drupalstacks_old
+region: header
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 3
+  expand_all_items: true
+visibility: {  }

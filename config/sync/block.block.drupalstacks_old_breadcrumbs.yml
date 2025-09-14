@@ -1,0 +1,22 @@
+uuid: e296703b-2b1d-4891-8dd9-c9a723eb2ed7
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: E7ZFXXrrN9ZTeE2myhyEjYge1XXRgTPXN9a5c8KoyrM
+id: drupalstacks_old_breadcrumbs
+theme: drupalstacks_old
+region: header
+weight: -12
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

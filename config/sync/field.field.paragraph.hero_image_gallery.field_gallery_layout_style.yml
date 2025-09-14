@@ -1,0 +1,21 @@
+uuid: 0ab81787-f9e3-4c07-986c-9583f67670af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_gallery_layout_style
+    - paragraphs.paragraphs_type.hero_image_gallery
+  module:
+    - options
+id: paragraph.hero_image_gallery.field_gallery_layout_style
+field_name: field_gallery_layout_style
+entity_type: paragraph
+bundle: hero_image_gallery
+label: layout_style
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

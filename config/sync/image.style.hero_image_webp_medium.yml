@@ -1,0 +1,21 @@
+uuid: 020ab99f-b796-48b5-848e-516037011995
+langcode: en
+status: true
+dependencies: {  }
+name: hero_image_webp_medium
+label: 'Hero Image Webp medium'
+effects:
+  d53eb3cc-6708-41d0-ae00-fd2bef529b53:
+    uuid: d53eb3cc-6708-41d0-ae00-fd2bef529b53
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 768
+      height: 432
+      anchor: center-center
+  602a3dbd-6507-4596-b24b-5dea749330f7:
+    uuid: 602a3dbd-6507-4596-b24b-5dea749330f7
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,19 @@
+uuid: 0842d4c3-4dc7-4bdd-88eb-f6ec8d6a113f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_recipe_ingredients
+field_name: field_recipe_ingredients
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

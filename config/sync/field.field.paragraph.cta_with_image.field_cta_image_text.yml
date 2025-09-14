@@ -1,0 +1,24 @@
+uuid: 29ae8f4f-7998-4f6d-922f-75cd5a75af93
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_image_text
+    - filter.format.basic_html
+    - paragraphs.paragraphs_type.cta_with_image
+  module:
+    - text
+id: paragraph.cta_with_image.field_cta_image_text
+field_name: field_cta_image_text
+entity_type: paragraph
+bundle: cta_with_image
+label: 'CTA Text'
+description: 'Supporting description'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+field_type: text

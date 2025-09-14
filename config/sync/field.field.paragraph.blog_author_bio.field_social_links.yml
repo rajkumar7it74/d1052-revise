@@ -1,0 +1,23 @@
+uuid: 7e919476-f427-41ac-a5dd-4072445cbc88
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_social_links
+    - paragraphs.paragraphs_type.blog_author_bio
+  module:
+    - link
+id: paragraph.blog_author_bio.field_social_links
+field_name: field_social_links
+entity_type: paragraph
+bundle: blog_author_bio
+label: 'Social Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

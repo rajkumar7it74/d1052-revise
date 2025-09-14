@@ -1,0 +1,45 @@
+_core:
+  default_config_hash: Khc28Vs_bLvkkxJ3VANkPJSDKfad7eBQ60UpIaBBoso
+favicon:
+  mimetype: image/svg+xml
+  path: 'public://drupal-icon_0.svg'
+  use_default: false
+features:
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+  node_user_picture: true
+logo:
+  path: 'public://drupal-icon.svg'
+  use_default: false
+container_width: '1200'
+header_width: header_width_contained
+main_width: main_width_contained
+footer_width: footer_width_contained
+all_icons_show: 1
+facebook_url: ''
+twitter_url: ''
+instagram_url: ''
+linkedin_url: ''
+youtube_url: ''
+vk_url: ''
+whatsapp_url: ''
+github_url: ''
+telegram_url: ''
+vimeo_url: ''
+slider_show: 1
+slider_images: {  }
+slider_time: 5000
+slider_dots: 'true'
+slider_code: ''
+font_src: local
+highlight_author_comment: 0
+node_author_pic: 0
+node_tags: 0
+copyright_text: 1
+scrolltotop_on: 1
+css_extra: 0
+css_code: ''
+bootstrapicons: 0
+fontawesome_five: 0
+fontawesome_six: 0

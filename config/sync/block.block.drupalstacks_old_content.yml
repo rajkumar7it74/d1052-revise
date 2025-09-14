@@ -1,0 +1,22 @@
+uuid: f9372b67-1cf0-42fe-9bd7-cb6ce76fc3f1
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - drupalstacks_old
+_core:
+  default_config_hash: 0MpHdTxyHKQQKhTl544ZO2_ni3BWEFn-UoAcqfqLAAM
+id: drupalstacks_old_content
+theme: drupalstacks_old
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

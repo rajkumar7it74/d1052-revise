@@ -1,0 +1,19 @@
+uuid: 82089a8e-9b9a-47ce-b168-48c41599e941
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_name
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_author_name
+field_name: field_author_name
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Author Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

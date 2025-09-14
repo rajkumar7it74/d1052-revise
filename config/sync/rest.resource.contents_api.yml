@@ -1,0 +1,20 @@
+uuid: bf4f51e7-6c29-4d01-822d-3e53df4d131b
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - expose_content
+    - serialization
+    - user
+id: contents_api
+plugin_id: contents_api
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie

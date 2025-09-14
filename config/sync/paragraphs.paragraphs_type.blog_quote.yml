@@ -1,0 +1,10 @@
+uuid: 92441df0-9523-4c82-b97b-b6c501db94d9
+langcode: en
+status: true
+dependencies: {  }
+id: blog_quote
+label: 'Blog Quote'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

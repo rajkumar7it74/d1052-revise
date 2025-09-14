@@ -1,0 +1,21 @@
+uuid: 9d568133-ce55-44c8-a79e-d229b55f3c8b
+langcode: en
+status: true
+dependencies: {  }
+name: responsive_medium
+label: 'Responsive Medium'
+effects:
+  d8ecdbcf-4a18-43d5-a84b-eb363e64c494:
+    uuid: d8ecdbcf-4a18-43d5-a84b-eb363e64c494
+    id: image_scale
+    weight: 1
+    data:
+      width: 600
+      height: 400
+      upscale: false
+  b5a76bb2-1827-4835-83d4-6a318c909f37:
+    uuid: b5a76bb2-1827-4835-83d4-6a318c909f37
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

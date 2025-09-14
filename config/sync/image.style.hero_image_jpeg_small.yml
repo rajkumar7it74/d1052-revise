@@ -1,0 +1,21 @@
+uuid: 1032e2fc-6d25-4234-9001-4dc383e873bd
+langcode: en
+status: true
+dependencies: {  }
+name: hero_image_jpeg_small
+label: hero_image_jpeg_small
+effects:
+  4a77c2f8-8282-4e21-89c3-e1e2c455b2ca:
+    uuid: 4a77c2f8-8282-4e21-89c3-e1e2c455b2ca
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 270
+      anchor: center-center
+  219194b1-8515-4dd5-b5a2-c75b3a6987f2:
+    uuid: 219194b1-8515-4dd5-b5a2-c75b3a6987f2
+    id: image_convert
+    weight: 2
+    data:
+      extension: jpeg

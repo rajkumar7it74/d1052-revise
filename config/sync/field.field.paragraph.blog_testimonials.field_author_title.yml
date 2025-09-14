@@ -1,0 +1,19 @@
+uuid: ea13c881-cb85-42bc-8b51-b7fa223c66ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_author_title
+    - paragraphs.paragraphs_type.blog_testimonials
+id: paragraph.blog_testimonials.field_author_title
+field_name: field_author_title
+entity_type: paragraph
+bundle: blog_testimonials
+label: 'Author Title'
+description: 'Their role, job title, or relationship to your brand (optional but useful)'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

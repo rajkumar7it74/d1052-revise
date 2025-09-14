@@ -1,0 +1,39 @@
+uuid: f6e4d7e6-ad2f-49e7-953e-63f0612f906c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.recipe.field_recipe_description
+    - field.field.node.recipe.field_recipe_dish_type
+    - field.field.node.recipe.field_recipe_image
+    - field.field.node.recipe.field_recipe_ingredients
+    - field.field.node.recipe.field_recipe_instructions
+    - field.field.node.recipe.field_recipe_read_time
+    - field.field.node.recipe.field_recipe_tags
+    - field.field.node.recipe.field_recipe_total_time
+    - field.field.node.recipe.field_tag_content
+    - node.type.recipe
+  module:
+    - user
+id: node.recipe.teaser
+targetEntityType: node
+bundle: recipe
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_recipe_description: true
+  field_recipe_dish_type: true
+  field_recipe_image: true
+  field_recipe_ingredients: true
+  field_recipe_instructions: true
+  field_recipe_read_time: true
+  field_recipe_tags: true
+  field_recipe_total_time: true
+  field_tag_content: true
+  langcode: true

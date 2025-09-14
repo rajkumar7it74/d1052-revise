@@ -21,7 +21,7 @@
         attach: function (context, settings) {
           // Select the Aadhaar field
           const $aadhaarField = $('#edit-aadhar', context);
-    
+
           // Prevent multiple bindings using a custom flag
           if ($aadhaarField.length && !$aadhaarField.data('aadhaar-bound')) {
             $aadhaarField.on('input', function () {
